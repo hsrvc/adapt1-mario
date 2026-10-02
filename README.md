@@ -46,11 +46,12 @@ python3.13 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.lock.txt && pip install -e ".[mario,dev]"
 pytest -q                                     # offline, no key
 python scripts/pub/verify_runs.py runs        # check the evidence against its hashes
-export REI_KEY=...                            # your Adapt-1 key, from the Rei Labs dashboard
+export REI_KEY=...                            # your Adapt-1 key, from app.reilabs.org/adapt-1
 python scripts/machina_acquire.py --domain-id my-machina-1 --dry-run --attempts 3    # free rehearsal
 ```
 
 Adapt-1 bills **Records** (each row or result you send) and **Queries** (each decision you ask for) separately.
+Get a key and see your balance at [app.reilabs.org/adapt-1](https://app.reilabs.org/adapt-1).
 Offline steps cost nothing. Coding agents: read [`AGENTS.md`](AGENTS.md) first.
 
 ## Layout

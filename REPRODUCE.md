@@ -17,9 +17,13 @@ python scripts/pub/verify_runs.py runs        # every evidence file against its 
 
 ## 2. Before any live run
 
-- Get an Adapt-1 API key and put it in the environment only: `export REI_KEY=...`.
+- Get an Adapt-1 API key: sign up at [app.reilabs.org/adapt-1](https://app.reilabs.org/adapt-1), where your keys and your
+  Records/Queries balance live. Adapt-1's docs: [docs.reilabs.org](https://docs.reilabs.org)
+  ([quickstart](https://docs.reilabs.org/docs/neuroadapt/quickstart), [full index](https://docs.reilabs.org/llms.txt)).
+- Put the key in the environment only: `export REI_KEY=...`. Rei's own examples call it `ADAPT1_API_KEY`; these
+  scripts read `REI_KEY`.
 - Adapt-1 bills **Records** (every row, result or feedback you send) and **Queries** (every decision you ask for).
-  Check your balance on the Rei Labs dashboard first; the API doesn't report it.
+  Check your balance at [app.reilabs.org/adapt-1](https://app.reilabs.org/adapt-1) first; the API doesn't report it.
 - Use a **new domain name** for every run. Reusing one mixes your rows with old ones, and `--recreate` deletes any
   existing domain with that name first.
 - Run each script that spends Records (`machina_acquire.py`, `ingest_demos.py`, `zero_start_duo.py`) with `--dry-run`
