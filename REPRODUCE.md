@@ -37,7 +37,7 @@ all 3 repeats. Machina is deterministic, so your run should match ours attempt f
 `runs/machina/logs/*-attempts.jsonl.gz` has `max_x`, `flag` and `source` for each attempt. If yours diverges, compare
 the server's resolved config (written near the top of your journal in `artifacts/machina/`) with ours.
 
-## 4. Warm start: 1,428 Records
+## 4. Warm start: 1,017 Records
 
 The two domains are fed the exact rows from our run, which ship in `runs/warm-start/`:
 
@@ -45,9 +45,9 @@ The two domains are fed the exact rows from our run, which ship in `runs/warm-st
 gunzip -k runs/warm-start/*.jsonl.gz
 MACROS=noop,right,right_run,left,right_run_jump_short,right_run_jump_mid,right_run_jump_full,right_jump_full
 
-python scripts/ingest_demos.py --dataset runs/warm-start/w28v3-apex-k6.jsonl --domain-id my-apex-1 \
+python scripts/ingest_demos.py --dataset runs/warm-start/w28count-v3-apex.jsonl --domain-id my-apex-1 \
   --kind apex --features apex_v3 --cadence grounded --bandit \
-  --reward-field reward --reward-max 1.0 --model-type extra_trees --recreate          # 788 Records
+  --reward-field reward_rate --reward-max 1.0 --model-type extra_trees --recreate     # 377 Records
 python scripts/ingest_demos.py --dataset runs/warm-start/w28count-v3-takeoff.jsonl --domain-id my-takeoff-1 \
   --kind takeoff --takeoff-under teacher --features full_v3 --cadence grounded --bandit --macros $MACROS \
   --reward-field reward_rate --reward-max 1.0 --model-type extra_trees --recreate     # 640 Records
@@ -61,8 +61,8 @@ python scripts/frozen_eval.py --domain-id my-takeoff-1 --features full_v3 \
 without saying so. An evaluation in that window measures the fallback, not the policy.
 
 **Expect:** 3161 on all five seeds. The server's fit can vary between builds, so a near miss is possible on a
-different server version. `runs/warm-start/model-state-at-eval.json` records the model's state behind our number.
-How the two datasets were generated is in [`runs/warm-start/README.md`](runs/warm-start/README.md).
+different server version. How the two datasets are rebuilt from code is in
+[`runs/warm-start/README.md`](runs/warm-start/README.md).
 
 ## 5. Zero start: ≈ 8,500 Records, ≈ 15 hours
 

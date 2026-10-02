@@ -105,7 +105,7 @@ def write_provenance(
             "provenance": str(prov) if prov.exists() else None,
         }
     out = target.with_name(target.name + ".provenance.json")
-    out.write_text(json.dumps(record, indent=1) + "\n", encoding="utf-8")
+    out.write_text(json.dumps(record, indent=1, default=str) + "\n", encoding="utf-8")
     return out
 
 

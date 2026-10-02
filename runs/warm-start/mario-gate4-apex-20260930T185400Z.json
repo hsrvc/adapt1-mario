@@ -1,6 +1,6 @@
 {
- "domain_id": "mario-gate3-apex",
- "fed": 788,
+ "domain_id": "mario-gate4-apex",
+ "fed": 377,
  "skip": 0,
  "kind": "apex",
  "features": "apex_v3",
@@ -9,7 +9,7 @@
   "apex_brake",
   "apex_pull_back"
  ],
- "reward_field": "reward",
+ "reward_field": "reward_rate",
  "reward_max": 1.0,
  "recreate": true,
  "learner_after": {
@@ -20,10 +20,10 @@
   "reason": null,
   "episode_count": null,
   "validation_skill": null,
-  "sample_count": 788
+  "sample_count": 377
  },
  "domain_config": {
-  "domain_id": "mario-gate3-apex",
+  "domain_id": "mario-gate4-apex",
   "schema": {
    "event_types": [
     "frame"

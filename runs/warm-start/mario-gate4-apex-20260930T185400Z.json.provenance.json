@@ -1,14 +1,14 @@
 {
  "kind": "ingest",
- "target": "artifacts/ingests/mario-gate3-apex-20260930T161504Z.json",
- "target_sha256": "9147bc9b24ae2891e73a4e2ca92fc44ebef91b416419a327fc25cc97a5ec34ec",
- "written_at": "2026-09-30T16:15:04+00:00",
+ "target": "artifacts/ingests/mario-gate4-apex-20260930T185400Z.json",
+ "target_sha256": "5f6ff4ed9623998694268b29b3201573d11dd05a5d57aa7f57877be84f149ed7",
+ "written_at": "2026-09-30T18:54:00+00:00",
  "command": [
   "ingest_demos.py",
   "--dataset",
-  "artifacts/demos/w28v3-apex-k6.jsonl",
+  "artifacts/demos/w28count-v3-apex.jsonl",
   "--domain-id",
-  "mario-gate3-apex",
+  "mario-gate4-apex",
   "--features",
   "apex_v3",
   "--cadence",
@@ -17,11 +17,11 @@
   "--kind",
   "apex",
   "--reward-field",
-  "reward",
+  "reward_rate",
   "--reward-max",
   "1.0",
   "--max-records",
-  "900",
+  "400",
   "--model-type",
   "extra_trees",
   "--recreate"
@@ -29,7 +29,7 @@
  "script_sha256": "f57fffb5bb55162b2f9bb272d94448c09a99a9cd46679e89576e707dddacc7e0",
  "cwd": "/Users/hsrvc/Documents/playground/rei/mario/agent",
  "git": {
-  "commit": "519fd16394e7c63a6433b9e4d34dc21f19509a72",
+  "commit": "7a97cc4e74c108f35d3aea017c085fb420db002e",
   "dirty": false,
   "dirty_files": [],
   "diff_sha256": null,
@@ -48,8 +48,8 @@
  },
  "inputs": {
   "dataset": {
-   "path": "artifacts/demos/w28v3-apex-k6.jsonl",
-   "sha256": "4b6e790c4d09af9fab6c00c3b8e9fe14100aec6164482f18f2c648b4d6ec53ef",
+   "path": "artifacts/demos/w28count-v3-apex.jsonl",
+   "sha256": "18b116aaece4c8b48096404a58f36ec728acd633f052acfafa856ae4da5957dd",
    "provenance": null
   }
  },

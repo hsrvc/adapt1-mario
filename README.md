@@ -21,7 +21,7 @@ Each result is a **frozen** evaluation: learning is switched off and Adapt-1 pla
 | recipe | idea | result on 1-1 | cost |
 |---|---|---|---|
 | [**Machina**](runs/machina/) | Adapt-1's trajectory engine proposes a whole button sequence per attempt and improves on its best attempts | first flag at attempt 403; the frozen replay clears 3/3 | ≈ 470 Records, 15 min |
-| [**Warm start**](runs/warm-start/) | two Adapt-1 domains (when to jump; how to steer mid-air) learn from 1,428 rows recorded offline | clears 5/5 seeds | 1,428 Records |
+| [**Warm start**](runs/warm-start/) | two Adapt-1 domains (when to jump; how to steer mid-air) learn from 1,017 rows recorded offline | clears 5/5 seeds | 1,017 Records |
 | [**Zero start**](runs/zero-start/) | the same two domains start empty and learn only from their own play | clears after 8,000 Records of play (≈ 127 episodes) | ≈ 8,500 Records, ≈ 15 h |
 
 ![zero-start learning curve](runs/zero-start/learning-curve.png)
@@ -53,7 +53,7 @@ Offline steps cost nothing. Coding agents: read [`AGENTS.md`](AGENTS.md) first.
 
 ```
 src/typesafe_mario/   harness, parser, features, Adapt-1 client (stdlib only), learning loops
-scripts/              the commands in REPRODUCE.md; historical/ = exact old generators the warm-start data needs
+scripts/              the commands in REPRODUCE.md; historical/ = an exact older generator the warm-start data needs
 tests/                offline tests (no key, no network)
 runs/                 the evidence: machina/, warm-start/, zero-start/stage-1..5/, each with a sha256 index
 ```

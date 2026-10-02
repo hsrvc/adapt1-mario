@@ -63,20 +63,23 @@
 {"decision": 50, "kind": "takeoff", "x": 2072, "grounded": true, "macro": "right_run", "status": "selected", "frames": 8, "x_after": 2096}
 {"decision": 50, "kind": "apex", "x": 2162, "choice": "apex_keep", "frame": 22, "vx": 3.0}
 {"decision": 51, "kind": "takeoff", "x": 2096, "grounded": true, "macro": "right_run_jump_mid", "status": "selected", "frames": 28, "x_after": 2180}
-{"decision": 51, "kind": "apex", "x": 2261, "choice": "apex_keep", "frame": 27, "vx": 3.0}
-{"decision": 52, "kind": "takeoff", "x": 2180, "grounded": false, "macro": "right_run_jump_full", "status": "selected", "frames": 60, "x_after": 2360}
-{"decision": 52, "kind": "apex", "x": 2441, "choice": "apex_keep", "frame": 27, "vx": 3.0}
-{"decision": 53, "kind": "takeoff", "x": 2360, "grounded": false, "macro": "right_run_jump_full", "status": "selected", "frames": 40, "x_after": 2480}
-{"decision": 54, "kind": "takeoff", "x": 2480, "grounded": true, "macro": "right_run", "status": "selected", "frames": 19, "x_after": 2537}
-{"decision": 55, "kind": "takeoff", "x": 2537, "grounded": true, "macro": "right_run", "status": "selected", "frames": 9, "x_after": 2564}
-{"decision": 55, "kind": "apex", "x": 2630, "choice": "apex_keep", "frame": 22, "vx": 3.0}
-{"decision": 56, "kind": "takeoff", "x": 2564, "grounded": true, "macro": "right_run_jump_mid", "status": "selected", "frames": 40, "x_after": 2684}
-{"decision": 57, "kind": "takeoff", "x": 2684, "grounded": true, "macro": "right_run", "status": "selected", "frames": 8, "x_after": 2708}
-{"decision": 57, "kind": "apex", "x": 2738, "choice": "apex_keep", "frame": 10, "vx": 3.0}
-{"decision": 58, "kind": "takeoff", "x": 2708, "grounded": true, "macro": "right_run_jump_mid", "status": "selected", "frames": 40, "x_after": 2828}
-{"decision": 58, "kind": "apex", "x": 2894, "choice": "apex_keep", "frame": 22, "vx": 3.0}
-{"decision": 59, "kind": "takeoff", "x": 2828, "grounded": true, "macro": "right_run_jump_mid", "status": "selected", "frames": 31, "x_after": 2921}
-{"decision": 59, "kind": "apex", "x": 3002, "choice": "apex_keep", "frame": 27, "vx": 3.0}
-{"decision": 60, "kind": "takeoff", "x": 2921, "grounded": false, "macro": "right_run_jump_full", "status": "selected", "frames": 33, "x_after": 3020}
-{"decision": 61, "kind": "takeoff", "x": 3020, "grounded": true, "macro": "right_run", "status": "selected", "frames": 36, "x_after": 3128}
-{"decision": 62, "kind": "takeoff", "x": 3128, "grounded": true, "macro": "right_run_jump_full", "status": "selected", "frames": 10, "x_after": 3161}
+{"decision": 51, "kind": "apex", "x": 2243, "choice": "apex_keep", "frame": 21, "vx": 3.0}
+{"decision": 52, "kind": "takeoff", "x": 2180, "grounded": false, "macro": "right_run_jump_mid", "status": "selected", "frames": 52, "x_after": 2336}
+{"decision": 52, "kind": "apex", "x": 2402, "choice": "apex_keep", "frame": 22, "vx": 3.0}
+{"decision": 53, "kind": "takeoff", "x": 2336, "grounded": true, "macro": "right_run_jump_mid", "status": "selected", "frames": 27, "x_after": 2417}
+{"decision": 53, "kind": "apex", "x": 2483, "choice": "apex_keep", "frame": 22, "vx": 3.0}
+{"decision": 54, "kind": "takeoff", "x": 2417, "grounded": true, "macro": "right_run_jump_mid", "status": "selected", "frames": 53, "x_after": 2576}
+{"decision": 54, "kind": "apex", "x": 2642, "choice": "apex_keep", "frame": 22, "vx": 3.0}
+{"decision": 55, "kind": "takeoff", "x": 2576, "grounded": true, "macro": "right_run_jump_mid", "status": "selected", "frames": 40, "x_after": 2696}
+{"decision": 56, "kind": "takeoff", "x": 2696, "grounded": true, "macro": "right_run", "status": "selected", "frames": 8, "x_after": 2720}
+{"decision": 56, "kind": "apex", "x": 2786, "choice": "apex_keep", "frame": 22, "vx": 3.0}
+{"decision": 57, "kind": "takeoff", "x": 2720, "grounded": true, "macro": "right_run_jump_mid", "status": "selected", "frames": 40, "x_after": 2840}
+{"decision": 57, "kind": "apex", "x": 2863, "choice": "apex_keep", "frame": 22, "vx": 1.5}
+{"decision": 58, "kind": "takeoff", "x": 2840, "grounded": true, "macro": "right_run_jump_mid", "status": "selected", "frames": 34, "x_after": 2884}
+{"decision": 59, "kind": "takeoff", "x": 2884, "grounded": true, "macro": "right_run", "status": "selected", "frames": 8, "x_after": 2902}
+{"decision": 59, "kind": "apex", "x": 2983, "choice": "apex_keep", "frame": 27, "vx": 3.0}
+{"decision": 60, "kind": "takeoff", "x": 2902, "grounded": false, "macro": "right_run_jump_full", "status": "selected", "frames": 33, "x_after": 2994}
+{"decision": 60, "kind": "apex", "x": 3008, "choice": "apex_keep", "frame": 25, "vx": 1.3125}
+{"decision": 61, "kind": "takeoff", "x": 2994, "grounded": true, "macro": "right_run_jump_full", "status": "selected", "frames": 42, "x_after": 3036}
+{"decision": 62, "kind": "takeoff", "x": 3036, "grounded": true, "macro": "right_run", "status": "selected", "frames": 31, "x_after": 3123}
+{"decision": 63, "kind": "takeoff", "x": 3123, "grounded": true, "macro": "right_run_jump_full", "status": "selected", "frames": 12, "x_after": 3161}

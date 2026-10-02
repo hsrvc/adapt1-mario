@@ -1,16 +1,16 @@
-=== step 5 eval: gate4-takeoff + gate3-apex, 1-1 2026年10月 1日 週四 02時37分34秒 CST
+=== step 5b eval: gate4-takeoff + gate4-apex, 1-1 2026年10月 1日 週四 02時54分50秒 CST
 frozen-eval mario-gate4-takeoff (full_v3) over 5 seeds: [777, 1, 2, 3, 4]
-  seed  777: max_x=3161 flag=True decisions= 62 reward=3075.0 server={'selected': 62} apex={'apex_keep': 20} apex_server={'selected': 20} -> artifacts/frozen-eval/gate4/1-1-seed777.gif
-  seed    1: max_x=3161 flag=True decisions= 62 reward=3075.0 server={'selected': 62} apex={'apex_keep': 20} apex_server={'selected': 20} -> artifacts/frozen-eval/gate4/1-1-seed1.gif
-  seed    2: max_x=3161 flag=True decisions= 62 reward=3075.0 server={'selected': 62} apex={'apex_keep': 20} apex_server={'selected': 20} -> artifacts/frozen-eval/gate4/1-1-seed2.gif
-  seed    3: max_x=3161 flag=True decisions= 62 reward=3075.0 server={'selected': 62} apex={'apex_keep': 20} apex_server={'selected': 20} -> artifacts/frozen-eval/gate4/1-1-seed3.gif
-  seed    4: max_x=3161 flag=True decisions= 62 reward=3075.0 server={'selected': 62} apex={'apex_keep': 20} apex_server={'selected': 20} -> artifacts/frozen-eval/gate4/1-1-seed4.gif
+  seed  777: max_x=3161 flag=True decisions= 62 reward=3075.0 server={'selected': 62} apex={'apex_keep': 20} apex_server={'selected': 20} -> artifacts/frozen-eval/gate4b/1-1-seed777.gif
+  seed    1: max_x=3161 flag=True decisions= 63 reward=3070.0 server={'selected': 63} apex={'apex_keep': 22} apex_server={'selected': 22} -> artifacts/frozen-eval/gate4b/1-1-seed1.gif
+  seed    2: max_x=3161 flag=True decisions= 62 reward=3075.0 server={'selected': 62} apex={'apex_keep': 20} apex_server={'selected': 20} -> artifacts/frozen-eval/gate4b/1-1-seed2.gif
+  seed    3: max_x=3161 flag=True decisions= 62 reward=3075.0 server={'selected': 62} apex={'apex_keep': 20} apex_server={'selected': 20} -> artifacts/frozen-eval/gate4b/1-1-seed3.gif
+  seed    4: max_x=3161 flag=True decisions= 62 reward=3075.0 server={'selected': 62} apex={'apex_keep': 20} apex_server={'selected': 20} -> artifacts/frozen-eval/gate4b/1-1-seed4.gif
 
 === frozen-eval summary ===
-  server selected / abstained: 310 / 0  (0% abstained — findings #22: if ~100%, this measured the FALLBACK, not the learner)
+  server selected / abstained: 311 / 0  (0% abstained — findings #22: if ~100%, this measured the FALLBACK, not the learner)
   seeds:      5
   flag_rate:  5/5 = 1.00
   mean max_x: 3161
   median:     3161
   min / max:  3161 / 3161
-eval done 2026年10月 1日 週四 02時54分26秒 CST
+eval done 2026年10月 1日 週四 03時12分09秒 CST
