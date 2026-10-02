@@ -6,9 +6,11 @@ cheap and valid:
 1. **The API key lives in `REI_KEY` only.** Never write it into a file, a command you echo, a log or a commit.
 2. **Live runs cost the user money.** Records are spent per row sent. Run offline first (`pytest -q`, then every script
    that spends Records with `--dry-run`) and tell the user the Record cost from REPRODUCE.md before you start a live run.
-3. **Use a new domain name for every live run.** Don't reuse or delete the user's existing domains.
+3. **Use a new domain name for every live run.** Don't reuse or delete the user's existing domains: `--recreate`
+   deletes a domain with that name first.
 4. **A `200` response means the server accepted the request, not that anything learned.** Judge a run by a frozen
-   evaluation: `max_x` 3161 means the flag. `frozen_eval.py --wait-installed` avoids evaluating while the model is
+   evaluation: `max_x` 3161 means the flag, and it only counts if the summary shows 0 % abstained (otherwise the
+   client's fallback played, not the learner). `frozen_eval.py --wait-installed` avoids evaluating while the model is
    retraining.
 5. **Rewards must be in [0, 1]** (and, for sequential learning, add up to at most 1 per episode). The server silently
    clips anything else, and the learner can then refuse to choose (`abstained` on every query). The scripts already

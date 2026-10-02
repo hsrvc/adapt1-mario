@@ -4,8 +4,8 @@ Run everything from the repository root. The steps go from free to paid.
 
 ## 1. Install and test: free
 
-Python 3.13 or newer. The emulator comes from the `gym-super-mario-bros` package. Getting the game legally is your
-responsibility.
+Python 3.13 or newer. The emulator and the game come with the `gym-super-mario-bros` package; using them is subject
+to your local law.
 
 ```bash
 python3.13 -m venv .venv && . .venv/bin/activate
@@ -20,7 +20,8 @@ python scripts/pub/verify_runs.py runs        # every evidence file against its 
 - Get an Adapt-1 API key and put it in the environment only: `export REI_KEY=...`.
 - Adapt-1 bills **Records** (every row, result or feedback you send) and **Queries** (every decision you ask for).
   Check your balance on the Rei Labs dashboard first; the API doesn't report it.
-- Use a **new domain name** for every run. Reusing one mixes your rows with old ones.
+- Use a **new domain name** for every run. Reusing one mixes your rows with old ones, and `--recreate` deletes any
+  existing domain with that name first.
 - Run each script that spends Records (`machina_acquire.py`, `ingest_demos.py`, `zero_start_duo.py`) with `--dry-run`
   first. It runs the same code against an offline stub and spends nothing. The evaluation scripts spend Queries only.
 
@@ -38,6 +39,8 @@ all 3 repeats. Machina is deterministic, so your run should match ours attempt f
 the server's resolved config (written near the top of your journal in `artifacts/machina/`) with ours.
 
 ## 4. Warm start: 1,017 Records
+
+Also ≈ 1,000 Queries for the ingest (one per row) and ≈ 400 for the evaluation.
 
 The two domains are fed the exact rows from our run, which ship in `runs/warm-start/`:
 
