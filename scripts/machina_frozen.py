@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Frozen use of an acquired Machina sequence (mario/machina-arm.md §4.3-4.4). Queries only, 0 Records.
+"""Frozen use of an acquired Machina sequence. Queries only, 0 Records.
 
 `propose` with mode "frozen" from the reset observation, execute it for real, repeat N times; no observe
 is sent, so nothing is learned. --env SuperMarioBros-2-1-v0 is the transfer contrast (the sequence was
@@ -33,23 +33,40 @@ def main() -> int:
     journal = Journal(args.journal_dir / f"{args.domain_id}-frozen-{args.env}-{ts}.jsonl")
     m = MachinaClient(Adapt1Client(), args.domain_id, journal)
     st = m.trajectory("state", {})
-    print("state:", {k: st.get(k) for k in ("status", "retained_trajectories", "pending_decisions", "version")})
+    print(
+        "state:",
+        {k: st.get(k) for k in ("status", "retained_trajectories", "pending_decisions", "version")},
+    )
     results = []
     for i in range(args.repeats):
         env = create_mario_env(args.env, render_mode="rgb_array")
         parser = MarioStateParser(decision_horizon_frames=8)
         _f, info = env.reset(seed=777)
         snap = parser.parse(info, _unwrap_ram(env), previous_action=None)
-        prop = m.trajectory("propose", {"state": state_row(snap), "goal": GOAL, "mode": "frozen",
-                                        "request_id": f"{args.domain_id}-frozen-{args.env}-{ts}-{i}"})
+        prop = m.trajectory(
+            "propose",
+            {
+                "state": state_row(snap),
+                "goal": GOAL,
+                "mode": "frozen",
+                "request_id": f"{args.domain_id}-frozen-{args.env}-{ts}-{i}",
+            },
+        )
         trace = execute_sequence(env, parser, snap, prop["actions"])
         env.close()
-        journal.write("frozen_execution", {"proposal_meta": {k: v for k, v in prop.items() if k != "actions"}, "trace": trace})
+        journal.write(
+            "frozen_execution",
+            {"proposal_meta": {k: v for k, v in prop.items() if k != "actions"}, "trace": trace},
+        )
         results.append(trace)
-        print(f"repeat {i}: proposal rows={len(prop['actions'])} source={prop.get('source')} status={prop.get('status')} "
-              f"-> executed {trace['executed']} max_x={trace['max_x']} {'FLAG' if trace['flag'] else 'dead' if trace['dead'] else 'stall/horizon'}",
-              flush=True)
-    print(f"\nfrozen {args.domain_id} on {args.env}: max_x {[t['max_x'] for t in results]} flags {sum(t['flag'] for t in results)}/{len(results)}")
+        print(
+            f"repeat {i}: proposal rows={len(prop['actions'])} source={prop.get('source')} status={prop.get('status')} "
+            f"-> executed {trace['executed']} max_x={trace['max_x']} {'FLAG' if trace['flag'] else 'dead' if trace['dead'] else 'stall/horizon'}",
+            flush=True,
+        )
+    print(
+        f"\nfrozen {args.domain_id} on {args.env}: max_x {[t['max_x'] for t in results]} flags {sum(t['flag'] for t in results)}/{len(results)}"
+    )
     return 0
 
 

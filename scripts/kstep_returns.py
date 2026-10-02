@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """Rewrite a demonstration dataset's per-step reward as a client-side k-step return — offline, FREE.
 
-findings #22: on every Mario domain the server's own delayed credit never reached the decision that
-mattered (the max jump off pipe 4 kept a higher value than running off it after 216 observations,
-with n_step 5 and 20). This computes that credit on the client from the recorded trajectory:
+On our Mario domains the server's own delayed credit never reached the decision that mattered (the
+max jump off pipe 4 kept a higher value than running off it after 216 observations, with n_step 5 and
+20). This computes that credit on the client from the recorded trajectory:
 
     R_t = ( sum_{i<k} gamma^i * r_{t+i} ) / ( sum_{i<k} gamma^i )      within the episode
 
@@ -31,8 +31,12 @@ from typesafe_mario.returns import frame_horizon_returns, kstep_returns  # noqa:
 
 def _pipe_top_like(ctx: dict) -> bool:
     # standing on a platform with a 4-tile drop 2 tiles ahead and no pit visible: the pipe-4 top
-    return (ctx.get("grounded") == 1.0 and ctx.get("drop_dist") == 2.0
-            and ctx.get("drop_depth") == 4.0 and ctx.get("gap_dist", 999.0) >= 999.0)
+    return (
+        ctx.get("grounded") == 1.0
+        and ctx.get("drop_dist") == 2.0
+        and ctx.get("drop_depth") == 4.0
+        and ctx.get("gap_dist", 999.0) >= 999.0
+    )
 
 
 def main() -> int:
@@ -41,10 +45,18 @@ def main() -> int:
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--k", type=int, default=6)
     ap.add_argument("--gamma", type=float, default=0.9)
-    ap.add_argument("--report", action="store_true", help="print per-macro mean returns overall and at pipe-4-top-like states")
-    ap.add_argument("--frames-horizon", type=int, default=0,
-                    help="also write `reward_rate` = the fixed frame-horizon return over this many frames "
-                         "(rows need `frames`; 2026-09-23, findings #29 follow-up). 0 = off.")
+    ap.add_argument(
+        "--report",
+        action="store_true",
+        help="print per-macro mean returns overall and at pipe-4-top-like states",
+    )
+    ap.add_argument(
+        "--frames-horizon",
+        type=int,
+        default=0,
+        help="also write `reward_rate` = the fixed frame-horizon return over this many frames "
+        "(rows need `frames`). 0 = off.",
+    )
     args = ap.parse_args()
 
     rows = [json.loads(l) for l in args.dataset.read_text().splitlines() if l.strip()]
@@ -69,10 +81,24 @@ def main() -> int:
         print("at pipe-4-top-like states:")
         for m, v in sorted(top.items(), key=lambda kv: -statistics.mean(kv[1])):
             print(f"   {m:<22} {statistics.mean(v):.4f}  (n={len(v)})")
-        print("episode return sums max:", round(max(sum(r['reward'] for r in out if r['episode_id'] == e)
-                                                   for e in {r['episode_id'] for r in out}), 3))
+        print(
+            "episode return sums max:",
+            round(
+                max(
+                    sum(r["reward"] for r in out if r["episode_id"] == e)
+                    for e in {r["episode_id"] for r in out}
+                ),
+                3,
+            ),
+        )
     from typesafe_mario.provenance import write_provenance
-    write_provenance(args.out, kind="returns", inputs={"dataset": args.dataset}, extra={k: v for k, v in vars(args).items() if k not in ('dataset', 'out')})
+
+    write_provenance(
+        args.out,
+        kind="returns",
+        inputs={"dataset": args.dataset},
+        extra={k: v for k, v in vars(args).items() if k not in ("dataset", "out")},
+    )
     return 0
 
 

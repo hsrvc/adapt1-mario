@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Build the public tree from the allowlist (pub plan §7): copy, then scan; non-zero exit on any hit.
+"""Build the public tree from the allowlist: copy, then scan; non-zero exit on any hit.
 
     python scripts/pub/build_public_tree.py --manifest ../pub-manifest.txt --out /path/to/adapt1-mario
 

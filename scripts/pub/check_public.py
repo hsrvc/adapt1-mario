@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Scan a tree for anything the public repo must never contain (pub plan §6). Exit 1 on any hit.
+"""Scan a tree for anything the public repo must never contain. Exit 1 on any hit.
 
     python scripts/pub/check_public.py <dir> [--extra-pattern REGEX ...]
 

@@ -116,27 +116,27 @@ def main() -> int:
         "--macros",
         default=None,
         help="comma-separated hypotheses to declare (grounded cadence); rows whose policy is not "
-        "listed are dropped. Default: every Macro. `--macros` without `jump` = the 8 of #28 — "
-        "an undeclared-but-fed macro 422s, a declared-but-unfed one wins on the prior (#22 item 4).",
+        "listed are dropped. Default: every Macro. Declare exactly the macros you feed: an "
+        "undeclared-but-fed macro 422s, a declared-but-unfed one wins on the prior.",
     )
     ap.add_argument(
         "--cadence",
         choices=CADENCES,
         default="frame",
         help="the cadence the dataset was recorded with; sets the domain's hypotheses "
-        "(Action names for frame, Macro names for grounded — findings #21)",
+        "(Action names for frame, Macro names for grounded)",
     )
     ap.add_argument(
         "--tcp",
         action="store_true",
         help="enable learning.temporal_context (bounded episode history of the numeric "
-        "features; findings #22: separates the two aliased 4-tall pipe tops). Every "
+        "features; separates the two look-alike 4-tall pipe tops). Every "
         "query and feedback then carries context.metadata {episode_id, step}.",
     )
     ap.add_argument(
         "--bandit",
         action="store_true",
-        help="create a DIRECT-feedback domain (no learning.sequential block). findings #22: "
+        help="create a DIRECT-feedback domain (no learning.sequential block): "
         "use with rewards that already carry the delayed credit (kstep_returns.py); "
         "avoids the sequential_q_mlp path that output constants on every Mario domain.",
     )

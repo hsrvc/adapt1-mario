@@ -41,14 +41,19 @@ def main() -> int:
     _f, info = env.reset(seed=777)
     snap = parser.parse(info, _unwrap_ram(env), previous_action=None)
     frames: list[np.ndarray] = []
-    trace = execute_sequence(env, parser, snap, actions, on_frame=lambda f: frames.append(np.array(f, dtype=np.uint8)))
+    trace = execute_sequence(
+        env, parser, snap, actions, on_frame=lambda f: frames.append(np.array(f, dtype=np.uint8))
+    )
     env.close()
     args.out.parent.mkdir(parents=True, exist_ok=True)
     n = write_gif(frames, args.out, fps=30, decimate=args.decimate)
     from PIL import Image
+
     Image.fromarray(frames[-1]).save(args.out.with_suffix(".last.png"))
-    print(f"{args.out}: {len(frames)} frames -> {n} gif frames; executed {trace['executed']}/{len(actions)} "
-          f"max_x={trace['max_x']} {'FLAG' if trace['flag'] else 'dead' if trace['dead'] else 'stall/horizon'}")
+    print(
+        f"{args.out}: {len(frames)} frames -> {n} gif frames; executed {trace['executed']}/{len(actions)} "
+        f"max_x={trace['max_x']} {'FLAG' if trace['flag'] else 'dead' if trace['dead'] else 'stall/horizon'}"
+    )
     return 0
 
 

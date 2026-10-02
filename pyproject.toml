@@ -33,7 +33,8 @@ dev = [
 typesafe-mario = "typesafe_mario.cli:main"
 
 [project.urls]
-Repository = "https://github.com/fhshaik/typesafe-mario"
+Repository = "https://github.com/hsrvc/adapt1-mario"
+Upstream = "https://github.com/fhshaik/typesafe-mario"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/typesafe_mario"]

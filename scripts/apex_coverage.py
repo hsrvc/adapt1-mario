@@ -47,7 +47,13 @@ sys.path.insert(0, "src")
 from typesafe_mario.adapt1_policy import APEX_EXTRA_NAMES, FEATURE_NAMES, FULL_V3_FEATURE_NAMES  # noqa: E402
 from typesafe_mario.demos import apex_hook, build_rows  # noqa: E402
 from typesafe_mario.macros import (  # noqa: E402
-    X_SPEED_ADDR, ApexChoice, Macro, _float_state, action_set, execute, has_apex,
+    X_SPEED_ADDR,
+    ApexChoice,
+    Macro,
+    _float_state,
+    action_set,
+    execute,
+    has_apex,
 )
 from typesafe_mario.policy import Decision, DiversifiedHeuristicPolicy  # noqa: E402
 from typesafe_mario.returns import frame_horizon_return, kstep_return  # noqa: E402
@@ -67,8 +73,12 @@ STUCK_RATE = 3e-4  # below this, no branch made progress inside the horizon
 
 def state_key(ram) -> tuple[int, int, int, int]:
     """The emulator state as the planner sees it: Mario's x, y, x-speed and float state."""
-    return (int(ram[0x006D]) * 256 + int(ram[0x0086]), int(ram[0x00CE]), int(ram[X_SPEED_ADDR]),
-            _float_state(ram))
+    return (
+        int(ram[0x006D]) * 256 + int(ram[0x0086]),
+        int(ram[0x00CE]),
+        int(ram[X_SPEED_ADDR]),
+        _float_state(ram),
+    )
 
 
 def keep_hook(_event):
@@ -85,9 +95,13 @@ class Forced:
 
     def choose(self, snapshot, actions, extra=None) -> Decision:
         self.teacher_choice = self.teacher._apex_rule(snapshot, extra or {}, list(actions)).value
-        return Decision(action=self.action, confidence=1.0,
-                        probabilities={a.value: float(a == self.action) for a in actions},
-                        latency_ms=0.0, selection_status="explored" if self.explored else None)
+        return Decision(
+            action=self.action,
+            confidence=1.0,
+            probabilities={a.value: float(a == self.action) for a in actions},
+            latency_ms=0.0,
+            selection_status="explored" if self.explored else None,
+        )
 
 
 class PlanTeacher:
@@ -106,54 +120,103 @@ class PlanTeacher:
         allowed = list(actions)
         if allowed and isinstance(allowed[0], ApexChoice):
             if self.in_plan:
-                return Decision(action=ApexChoice.KEEP, confidence=1.0,
-                                probabilities={a.value: float(a is ApexChoice.KEEP) for a in allowed},
-                                latency_ms=0.0)
+                return Decision(
+                    action=ApexChoice.KEEP,
+                    confidence=1.0,
+                    probabilities={a.value: float(a is ApexChoice.KEEP) for a in allowed},
+                    latency_ms=0.0,
+                )
             return self.teacher.choose(snapshot, actions, extra=extra)
         macro = self.plan_map.get(state_key(self.ram))
         self.in_plan = macro is not None
         if macro is None:
             return self.teacher.choose(snapshot, actions, extra=extra)
-        return Decision(action=macro, confidence=1.0,
-                        probabilities={a.value: float(a == macro) for a in allowed}, latency_ms=0.0)
+        return Decision(
+            action=macro,
+            confidence=1.0,
+            probabilities={a.value: float(a == macro) for a in allowed},
+            latency_ms=0.0,
+        )
 
 
 def interesting(nav: dict, hazard: dict | None = None) -> bool:
     """A state worth branching at: terrain inside the window, or (2026-09-22, 2-1 diagnosis) an enemy
     within 6 tiles ahead — the 1-1 policy died on 2-1 to a kicked shell at a state no terrain rule marks."""
-    d, g, o = nav.get("drop_distance_tiles"), nav.get("gap_distance_tiles"), nav.get("obstacle_distance_tiles")
+    d, g, o = (
+        nav.get("drop_distance_tiles"),
+        nav.get("gap_distance_tiles"),
+        nav.get("obstacle_distance_tiles"),
+    )
     e = (hazard or {}).get("nearest_enemy_distance_pixels")
-    return ((d is not None and d <= 4) or (g is not None and g <= 6) or (o is not None and o <= 4)
-            or (e is not None and 0 <= float(e) <= 96))
+    return (
+        (d is not None and d <= 4)
+        or (g is not None and g <= 6)
+        or (o is not None and o <= 4)
+        or (e is not None and 0 <= float(e) <= 96)
+    )
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--env", default="SuperMarioBros-1-1-v0")
     ap.add_argument("--seed", type=int, default=777)
-    ap.add_argument("--macros", default=DEFAULT_MACROS,
-                    help=f"comma-separated macros to branch on, or 'all' for {ALL_MACROS}")
-    ap.add_argument("--stride", type=int, default=0,
-                    help="also branch at every N-th uninteresting grounded state (0 = only interesting)")
-    ap.add_argument("--k", type=int, default=6, help="teacher continuation decisions per branch (per-decision return)")
+    ap.add_argument(
+        "--macros",
+        default=DEFAULT_MACROS,
+        help=f"comma-separated macros to branch on, or 'all' for {ALL_MACROS}",
+    )
+    ap.add_argument(
+        "--stride",
+        type=int,
+        default=0,
+        help="also branch at every N-th uninteresting grounded state (0 = only interesting)",
+    )
+    ap.add_argument(
+        "--k",
+        type=int,
+        default=6,
+        help="teacher continuation decisions per branch (per-decision return)",
+    )
     ap.add_argument("--gamma", type=float, default=0.9)
-    ap.add_argument("--frames-horizon", type=int, default=128,
-                    help="fixed frame horizon of `reward_rate` (the continuation runs until both --k "
-                         "decisions and this many frames after the branch's last decision row)")
-    ap.add_argument("--follow", choices=("teacher", "best"), default="teacher",
-                    help="the main line: the teacher's own rule, or the branch with the best "
-                         "frame-horizon return at every branch point (lookahead teacher)")
-    ap.add_argument("--plan-depth", type=int, default=7,
-                    help="follow=best: when no one-step branch makes progress, search macro sequences "
-                         "up to this depth (0 = off)")
-    ap.add_argument("--plan-goal", type=int, default=24, help="px of progress that ends the plan search")
+    ap.add_argument(
+        "--frames-horizon",
+        type=int,
+        default=128,
+        help="fixed frame horizon of `reward_rate` (the continuation runs until both --k "
+        "decisions and this many frames after the branch's last decision row)",
+    )
+    ap.add_argument(
+        "--follow",
+        choices=("teacher", "best"),
+        default="teacher",
+        help="the main line: the teacher's own rule, or the branch with the best "
+        "frame-horizon return at every branch point (lookahead teacher)",
+    )
+    ap.add_argument(
+        "--plan-depth",
+        type=int,
+        default=7,
+        help="follow=best: when no one-step branch makes progress, search macro sequences "
+        "up to this depth (0 = off)",
+    )
+    ap.add_argument(
+        "--plan-goal", type=int, default=24, help="px of progress that ends the plan search"
+    )
     ap.add_argument("--plan-beam", type=int, default=400, help="max sequences kept per depth")
-    ap.add_argument("--write-mainline", action="store_true",
-                    help="also write the main line's decisions as rows (episode id main-<env>-s<seed>)")
+    ap.add_argument(
+        "--write-mainline",
+        action="store_true",
+        help="also write the main line's decisions as rows (episode id main-<env>-s<seed>)",
+    )
     ap.add_argument("--max-decisions", type=int, default=400)
-    ap.add_argument("--features-version", type=int, choices=(1, 2), default=1,
-                    help="1 = the frozen v1 superset (the #28/#32 domains); 2 = per-frame units, "
-                         "no reliability (full_v2 / apex_v2 domains, findings #33)")
+    ap.add_argument(
+        "--features-version",
+        type=int,
+        choices=(1, 2),
+        default=1,
+        help="1 = the frozen v1 superset (the #28/#32 domains); 2 = per-frame units, "
+        "no reliability (full_v2 / apex_v2 domains, findings #33)",
+    )
     ap.add_argument("--out", type=Path, required=True)
     args = ap.parse_args()
     global NAMES
@@ -175,7 +238,9 @@ def main() -> int:
     sink = args.out.open("w")
     n_rows = n_points = n_branches = 0
     summary: dict[str, list] = {}
-    chosen: list[tuple[int, str, str | None, str]] = []  # follow=best: (x, macro, apex, teacher's macro)
+    chosen: list[
+        tuple[int, str, str | None, str]
+    ] = []  # follow=best: (x, macro, apex, teacher's macro)
     plans: list[tuple[int, list[str], int]] = []  # (x, plan, end x) — or end x = -1 when none found
     level_tag = args.env.replace("SuperMarioBros-", "").replace("-v0", "")
     main_rows: list[dict] = []
@@ -186,18 +251,35 @@ def main() -> int:
     def run_decision(policy, decision, p, s):
         """Execute one decision with the apex look; return (rows-without-returns, next_snapshot)."""
         a_state: dict = {}
-        ex = execute(env, decision.action, grounded=s.grounded, ram=ram,
-                     apex=apex_hook(p, env, policy, decision, a_state))
+        ex = execute(
+            env,
+            decision.action,
+            grounded=s.grounded,
+            ram=ram,
+            apex=apex_hook(p, env, policy, decision, a_state),
+        )
         fired = ex.apex is not None and bool(a_state)
-        nxt = p.parse(ex.info, ram,
-                      previous_action=(a_state["decision"].action.value if fired else decision.action.value),
-                      previous_reward=(ex.total_reward - ex.reward_to_apex if fired else ex.total_reward),
-                      frames=(ex.frames - ex.frames_to_apex if fired else ex.frames))
+        nxt = p.parse(
+            ex.info,
+            ram,
+            previous_action=(a_state["decision"].action.value if fired else decision.action.value),
+            previous_reward=(ex.total_reward - ex.reward_to_apex if fired else ex.total_reward),
+            frames=(ex.frames - ex.frames_to_apex if fired else ex.frames),
+        )
         terminal = bool(ex.terminated or nxt.dead or nxt.clear)
-        rows = build_rows(snapshot=s, decision=decision, execution=ex,
-                          apex_state=a_state if fired else None, next_snapshot=nxt, terminal=terminal,
-                          names=NAMES, reward_config=PROGRESS_FRACTION, episode_id="", first_step=0,
-                          tag_kind=True)
+        rows = build_rows(
+            snapshot=s,
+            decision=decision,
+            execution=ex,
+            apex_state=a_state if fired else None,
+            next_snapshot=nxt,
+            terminal=terminal,
+            names=NAMES,
+            reward_config=PROGRESS_FRACTION,
+            episode_id="",
+            first_step=0,
+            tag_kind=True,
+        )
         return rows, nxt, terminal
 
     def plan_escape(frozen_parser, s0):
@@ -211,20 +293,37 @@ def main() -> int:
             nxt_frontier = []
             for prefix, _ in frontier:
                 for m in macros:
-                    base._restore(); base.done = False
-                    p = copy.deepcopy(frozen_parser); s = s0; keys = []; dead = False; x = x0
+                    base._restore()
+                    base.done = False
+                    p = copy.deepcopy(frozen_parser)
+                    s = s0
+                    keys = []
+                    dead = False
+                    x = x0
                     if root_key is None:
-                        root_key = state_key(ram); seen.add(root_key)
+                        root_key = state_key(ram)
+                        seen.add(root_key)
                     for step_m in (*prefix, m):
                         keys.append(state_key(ram))
-                        ex = execute(env, step_m, grounded=s.grounded, ram=ram,
-                                     apex=keep_hook if has_apex(step_m) else None)
+                        ex = execute(
+                            env,
+                            step_m,
+                            grounded=s.grounded,
+                            ram=ram,
+                            apex=keep_hook if has_apex(step_m) else None,
+                        )
                         # keep_hook never parses at the apex, so the interval is the whole macro
-                        s = p.parse(ex.info, ram, previous_action=step_m.value, previous_reward=ex.total_reward,
-                                    frames=ex.frames)
+                        s = p.parse(
+                            ex.info,
+                            ram,
+                            previous_action=step_m.value,
+                            previous_reward=ex.total_reward,
+                            frames=ex.frames,
+                        )
                         x = s.x
                         if ex.terminated or s.dead or s.clear:
-                            dead = s.dead; break
+                            dead = s.dead
+                            break
                     if dead:
                         continue
                     key = state_key(ram)
@@ -246,28 +345,42 @@ def main() -> int:
             break
         own = plan_teacher.choose(snap, action_set("grounded"))
         nav = snap.navigation_features()
-        branch_here = snap.grounded and (interesting(nav, snap.threat_features()) or (args.stride and d % args.stride == 0))
+        branch_here = snap.grounded and (
+            interesting(nav, snap.threat_features()) or (args.stride and d % args.stride == 0)
+        )
         main_policy, main_decision = plan_teacher, own
         if branch_here:
             n_points += 1
             base._backup()
             frozen_parser = copy.deepcopy(parser)
             x0 = snap.x
+
             def do_branches():
                 nonlocal n_branches
                 best_key, best_rate, buffered = None, -1.0, []
                 for macro in macros:
-                    for choice in (list(ApexChoice) if has_apex(macro) else [None]):
+                    for choice in list(ApexChoice) if has_apex(macro) else [None]:
                         base._restore()
                         base.done = False
                         p = copy.deepcopy(frozen_parser)
                         explored = macro is not own.action
-                        branch_policy = Forced(choice, explored, teacher) if choice is not None else plan_teacher
+                        branch_policy = (
+                            Forced(choice, explored, teacher)
+                            if choice is not None
+                            else plan_teacher
+                        )
                         first_rows, nxt, terminal = run_decision(
-                            branch_policy, Decision(action=macro, confidence=1.0, probabilities={},
-                                                    latency_ms=0.0,
-                                                    selection_status="explored" if explored else None),
-                            p, snap)
+                            branch_policy,
+                            Decision(
+                                action=macro,
+                                confidence=1.0,
+                                probabilities={},
+                                latency_ms=0.0,
+                                selection_status="explored" if explored else None,
+                            ),
+                            p,
+                            snap,
+                        )
                         rewards = [float(r["reward"]) for r in first_rows]
                         frames = [int(r["frames"]) for r in first_rows]
                         lead = sum(frames[:-1])  # frames before the branch's LAST decision row
@@ -281,15 +394,21 @@ def main() -> int:
                             rewards.extend(float(r["reward"]) for r in rows)
                             frames.extend(int(r["frames"]) for r in rows)
                             cont += 1
-                        ep_id = f"cov-{level_tag}-d{d:03d}-x{x0}-{macro.value}" + (f"-{choice.value}" if choice else "")
-                        teacher_choice = branch_policy.teacher_choice if choice is not None else None
+                        ep_id = f"cov-{level_tag}-d{d:03d}-x{x0}-{macro.value}" + (
+                            f"-{choice.value}" if choice else ""
+                        )
+                        teacher_choice = (
+                            branch_policy.teacher_choice if choice is not None else None
+                        )
                         dead, cleared = bool(terminal and s.dead), bool(s.clear)
                         for i, r in enumerate(first_rows):
                             r["episode_id"] = ep_id
                             r["step"] = i
                             r["immediate_reward"] = r["reward"]
                             r["reward"] = kstep_return(rewards, i, args.k, args.gamma)
-                            r["reward_rate"] = frame_horizon_return(rewards, frames, i, horizon, cleared=cleared)
+                            r["reward_rate"] = frame_horizon_return(
+                                rewards, frames, i, horizon, cleared=cleared
+                            )
                             r["x_takeoff"] = x0
                             r["branch_return_rewards"] = len(rewards)
                             r["branch_frames"] = sum(frames)
@@ -302,10 +421,15 @@ def main() -> int:
                         n_branches += 1
                         key = (x0, macro.value, choice.value if choice else "-")
                         rate0 = first_rows[0]["reward_rate"]
-                        summary[key] = [round(first_rows[0]["reward"], 4), rate0,
-                                        first_rows[-1]["reward"] if len(first_rows) > 1 else None,
-                                        "DEAD" if dead else ("CLEAR" if cleared else f"x={s.x}")]
-                        is_own = (macro is own.action) and (choice is None or choice.value == teacher_choice)
+                        summary[key] = [
+                            round(first_rows[0]["reward"], 4),
+                            rate0,
+                            first_rows[-1]["reward"] if len(first_rows) > 1 else None,
+                            "DEAD" if dead else ("CLEAR" if cleared else f"x={s.x}"),
+                        ]
+                        is_own = (macro is own.action) and (
+                            choice is None or choice.value == teacher_choice
+                        )
                         if rate0 > best_rate + 1e-9 or (abs(rate0 - best_rate) <= 1e-9 and is_own):
                             best_rate, best_key = rate0, (macro, choice)
                 return best_key, best_rate, buffered
@@ -315,9 +439,13 @@ def main() -> int:
             base.done = False
             if args.follow == "best":
                 if best_rate < STUCK_RATE and args.plan_depth > 0 and not pending_plan:
-                    print(f"  stuck at x={x0} (best one-step rate {best_rate:.5f}); planning...", flush=True)
+                    print(
+                        f"  stuck at x={x0} (best one-step rate {best_rate:.5f}); planning...",
+                        flush=True,
+                    )
                     found = plan_escape(frozen_parser, snap)
-                    base._restore(); base.done = False
+                    base._restore()
+                    base.done = False
                     if found is None:
                         plans.append((x0, [], -1))
                         print(f"  no plan within depth {args.plan_depth}", flush=True)
@@ -332,21 +460,44 @@ def main() -> int:
                         # branch rows carry the plan's credit (not the pre-plan zeros).
                         n_branches -= len(buffered)
                         best_key, best_rate, buffered = do_branches()
-                        base._restore(); base.done = False
+                        base._restore()
+                        base.done = False
                 if pending_plan:
                     macro = pending_plan.popleft()
                     choice = ApexChoice.KEEP if has_apex(macro) else None
-                    chosen.append((x0, macro.value, choice.value if choice else None, own.action.value))
+                    chosen.append(
+                        (x0, macro.value, choice.value if choice else None, own.action.value)
+                    )
                     plan_teacher.in_plan = True
-                    main_policy = Forced(choice, macro is not own.action, teacher) if choice is not None else plan_teacher
-                    main_decision = Decision(action=macro, confidence=1.0, probabilities={}, latency_ms=0.0,
-                                             selection_status=None)
+                    main_policy = (
+                        Forced(choice, macro is not own.action, teacher)
+                        if choice is not None
+                        else plan_teacher
+                    )
+                    main_decision = Decision(
+                        action=macro,
+                        confidence=1.0,
+                        probabilities={},
+                        latency_ms=0.0,
+                        selection_status=None,
+                    )
                 elif best_key is not None:
                     macro, choice = best_key
-                    chosen.append((x0, macro.value, choice.value if choice else None, own.action.value))
-                    main_policy = Forced(choice, macro is not own.action, teacher) if choice is not None else plan_teacher
-                    main_decision = Decision(action=macro, confidence=1.0, probabilities={}, latency_ms=0.0,
-                                             selection_status=None)
+                    chosen.append(
+                        (x0, macro.value, choice.value if choice else None, own.action.value)
+                    )
+                    main_policy = (
+                        Forced(choice, macro is not own.action, teacher)
+                        if choice is not None
+                        else plan_teacher
+                    )
+                    main_decision = Decision(
+                        action=macro,
+                        confidence=1.0,
+                        probabilities={},
+                        latency_ms=0.0,
+                        selection_status=None,
+                    )
             for r in buffered:
                 sink.write(json.dumps(r, separators=(",", ":")) + "\n")
                 n_rows += 1
@@ -355,11 +506,18 @@ def main() -> int:
             choice = ApexChoice.KEEP if has_apex(macro) else None
             plan_teacher.in_plan = True
             main_policy = Forced(choice, False, teacher) if choice is not None else plan_teacher
-            main_decision = Decision(action=macro, confidence=1.0, probabilities={}, latency_ms=0.0,
-                                     selection_status=None)
+            main_decision = Decision(
+                action=macro,
+                confidence=1.0,
+                probabilities={},
+                latency_ms=0.0,
+                selection_status=None,
+            )
         # Main line: the teacher's own decision, the best branch, or the plan's next step.
         x_here = snap.x
-        in_plan_step = bool(plans) and plans[-1][2] == 0 and (main_decision.action.value in plans[-1][1])
+        in_plan_step = (
+            bool(plans) and plans[-1][2] == 0 and (main_decision.action.value in plans[-1][1])
+        )
         rows, snap, terminal = run_decision(main_policy, main_decision, parser, snap)
         for r in rows:
             r["x_takeoff"] = x_here
@@ -382,15 +540,28 @@ def main() -> int:
             r["step"] = i
             r["immediate_reward"] = r["reward"]
             r["reward"] = kstep_return(main_rewards, i, args.k, args.gamma)
-            r["reward_rate"] = frame_horizon_return(main_rewards, main_frames, i, horizon, cleared=cleared)
+            r["reward_rate"] = frame_horizon_return(
+                main_rewards, main_frames, i, horizon, cleared=cleared
+            )
             sink.write(json.dumps(r, separators=(",", ":")) + "\n")
             n_rows += 1
     sink.close()
-    write_provenance(args.out, kind="rollouts", extra={"rows": n_rows, "branch_points": n_points, "branches": n_branches, "features_version": args.features_version})
+    write_provenance(
+        args.out,
+        kind="rollouts",
+        extra={
+            "rows": n_rows,
+            "branch_points": n_points,
+            "branches": n_branches,
+            "features_version": args.features_version,
+        },
+    )
     env.close()
     print(f"branch points {n_points}, branches {n_branches}, rows {n_rows} -> {args.out}")
-    print(f"main line ({args.follow}): {len(main_rows)} rows, ended x={snap.x} dead={snap.dead} clear={snap.clear}"
-          + (" (written)" if args.write_mainline else ""))
+    print(
+        f"main line ({args.follow}): {len(main_rows)} rows, ended x={snap.x} dead={snap.dead} clear={snap.clear}"
+        + (" (written)" if args.write_mainline else "")
+    )
     for x0, plan, end in plans:
         print(f"plan at x={x0}: {plan or 'NONE FOUND'} -> x={end}")
     if chosen:
@@ -398,13 +569,17 @@ def main() -> int:
         for x0, m, c, own_m in chosen:
             mark = "" if m == own_m else "  <- differs"
             print(f"   x={x0:5d}: {m}{'/' + c if c else ''}  (teacher: {own_m}){mark}")
-    print("per branch: takeoff-row k-step return / frame-horizon rate / apex-row k-step return / where the branch ended")
+    print(
+        "per branch: takeoff-row k-step return / frame-horizon rate / apex-row k-step return / where the branch ended"
+    )
     last_x = None
     for (x0, macro, choice), (r0, rate0, r1, end) in summary.items():
         if x0 != last_x:
             print(f"  x={x0}")
             last_x = x0
-        print(f"     {macro:<22} {choice:<15} {r0:.4f}  {rate0:.4f}  {'-' if r1 is None else f'{r1:.4f}'}  {end}")
+        print(
+            f"     {macro:<22} {choice:<15} {r0:.4f}  {rate0:.4f}  {'-' if r1 is None else f'{r1:.4f}'}  {end}"
+        )
     return 0
 
 

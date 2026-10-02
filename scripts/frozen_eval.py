@@ -1,14 +1,13 @@
 """Frozen-eval a trained Mario domain: exploration off, no feedback, queries only.
 
-This is the honest play measurement (design-notes §12, findings #15/#16): `validation_skill`
+This is the honest play measurement: `validation_skill`
 is Q-prediction accuracy, NOT play skill, so the only way to know whether warm-start moved
 actual behaviour is to freeze the policy and run whole episodes on fixed seeds.
 
 FREE of Records — `record_episode` calls only `policy.choose` (→ `/domains/{id}/query`), never
 `observe`/feedback, so it spends Queries quota only and adds no training transitions.
 
-Reports per-seed max_x + flag, then the aggregate (flag_rate, mean/median/max reach) — the
-numbers that compare against #15's x≈723 wall and the teacher's deterministic reach.
+Reports per-seed max_x + flag, then the aggregate (flag_rate, mean/median/max reach).
 """
 
 from __future__ import annotations
@@ -32,18 +31,18 @@ def main() -> int:
         "--apex-features",
         choices=("apex", "apex_v2", "apex_v3"),
         default="apex",
-        help="the apex domain's arm: apex_v2 = per-frame units (findings #33)",
+        help="the apex domain's feature set (apex_v3 for the published runs)",
     )
     ap.add_argument(
         "--apex-domain",
         default=None,
-        help="grounded cadence (design-notes §14a): a second domain (features `apex`, "
+        help="grounded cadence: a second domain (features `apex`, "
         "hypotheses apex_keep/brake/pull_back) queried once at the top of every jump",
     )
     ap.add_argument(
         "--macros",
         default=None,
-        help="comma-separated grounded macros the domain declares (e.g. the 8 of #28 without `jump`); "
+        help="comma-separated grounded macros the domain declares (e.g. the 8 used by the published runs, without `jump`); "
         "the fallback on abstention picks among these. Default: every Macro.",
     )
     ap.add_argument("--env", default="SuperMarioBros-1-1-v0")
