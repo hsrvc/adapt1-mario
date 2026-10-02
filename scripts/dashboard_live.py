@@ -40,7 +40,7 @@ LABEL = {
     "right_run_jump_short": "running jump, short",
     "right_run_jump_mid": "running jump, medium",
     "right_run_jump_full": "running jump, full",
-    "right_jump_full": "standing jump, full",
+    "right_jump_full": "walking jump, full",
     "apex_keep": "keep going",
     "apex_brake": "brake",
     "apex_pull_back": "pull back",
