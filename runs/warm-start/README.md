@@ -15,7 +15,8 @@ Both are rewarded the same way: Mario's progress per frame over the next 128 fra
 `extra_trees` model, pinned with `learning.training.model_type`. Frozen evaluation (exploration off,
 `selection_mode: exploit`): **3161, the flag, on seeds 777, 1, 2, 3 and 4**, 62–63 decisions each, every one picked by
 the server. On this takeoff policy's jumps the apex domain always answers "keep going", so the takeoff domain carries
-the clear.
+the clear. The apex domain matters for other takeoff policies: in an earlier run, a takeoff domain without it died at
+x = 723 every time.
 
 ## Files
 

@@ -10,9 +10,13 @@ datasets and evaluations.
 ## How it works
 
 Adapt-1 never sees pixels. At each decision the harness sends a short row of numbers (Mario's speed, the floor ahead,
-the nearest enemy, the height of the obstacle in front) and gets back one of 8 macros, such as `right_run_jump_full`.
-After the game plays the macro out, the harness reports how far Mario got, and Adapt-1 learns from that. Machina works
-differently: it proposes the whole button sequence for an attempt at once.
+the nearest enemy, the height of the obstacle in front) to a **domain** — one learner on Adapt-1's server, with its own
+rows and model — and gets back one of 8 macros, such as `right_run_jump_full`. After the game plays the macro out, the
+harness reports how far Mario got, and the domain learns from that. The warm start begins from moves recorded from a
+**scripted player** written by hand; the zero start begins from nothing.
+
+**Machina**, Adapt-1's trajectory engine, works differently: it proposes the whole button sequence for an attempt at
+once and improves on its best attempts.
 
 ## Results
 

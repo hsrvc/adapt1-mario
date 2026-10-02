@@ -6,7 +6,7 @@ Run it: [`REPRODUCE.md` §5](../../REPRODUCE.md#5-zero-start--8500-records--16-h
 
 Two new, empty domains with the same design as the warm start (takeoff + apex, 8 macros, `extra_trees`, v3 features),
 trained only on their own play. Credit: each decision is rewarded with Mario's progress per frame over the next 128 frames. Exploration:
-UCB. Learner row budget (`max_samples`) 16,384, never reached. A frozen evaluation every 25 episodes on seed 777.
+UCB (tries less-tested moves first). Learner row budget (`max_samples`) 16,384, never reached. A frozen evaluation every 25 episodes on seed 777.
 
 | stage | Records | episodes | online clears | frozen checkpoints (reach) |
 |---|---|---|---|---|

@@ -10,8 +10,8 @@ reports what ran and how far Mario got. Machina keeps the best attempts and edit
 
 - State: 8 numbers per step (x and y position, x and y speed, on the ground or not, distance to the next gap,
   obstacle and enemy). Actions: 4 channels decoded into NES buttons.
-- Config: horizon 256, capacity 96, the option profile in [`REPRODUCE.md`](../../REPRODUCE.md), `seed: 1`, emulator
-  `reset(seed=777)`.
+- Config: horizon 256, capacity 96, the option profile in [`REPRODUCE.md`](../../REPRODUCE.md), server seed `1`,
+  emulator seed `777`.
 - Cost: 1 Record per attempt (467) plus 2 to create and configure; 1 Query per proposal.
 
 **Result:** first flag at attempt **403**, and 42 flags in the 467 attempts. The run stops 64 attempts after the first

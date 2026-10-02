@@ -16,8 +16,8 @@ cheap and valid:
    clips anything else, and the learner can then refuse to choose (`abstained` on every query). The scripts already
    respect this; keep it if you change them.
 6. **Retry 502, 503 and 504** with backoff (the client does this). Don't retry 409 or 413: fix the request instead.
-7. The emulator is deterministic (`reset(seed=777)`), so one seed per evaluation is enough. The server's model fit is
-   not, except for Machina.
+7. The emulator is deterministic: a given seed replays identically, and different seeds can differ slightly. The
+   server's model fit is not deterministic, except for Machina.
 
 ## Where things are
 
