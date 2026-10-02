@@ -240,8 +240,12 @@ class LiveDashboard:
         game_h = c.height - game_y - margin
 
         self._text(f"{self.brain} plays Mario", self.font_title, t.text, margin, 18)
+        replaying = bool(decision and decision.telemetry and decision.telemetry.get("replay"))
         if run_ended:
             status = f"Run ended · {ended_reason}" if ended_reason else "Run ended"
+        elif replaying:
+            status = "Replay of a recorded run"
+            waiting = False
         else:
             status = f"Querying {self.brain}…" if waiting else "Live decision loop"
         status_width = self.font_small.size(status)[0]
@@ -311,9 +315,13 @@ class LiveDashboard:
         else:
             first_metric = ("Confidence", f"{confidence * 100:.0f}%")
         metrics = (
-            first_metric,
-            ("Latency", f"{latency:.0f} ms"),
-            ("Episode reward", f"{episode_reward:+.3f}"),
+            (first_metric, ("Learning", "off"), ("Position", f"x {snapshot.x}"))
+            if replaying
+            else (
+                first_metric,
+                ("Latency", f"{latency:.0f} ms"),
+                ("Episode reward", f"{episode_reward:+.3f}"),
+            )
         )
         for index, (label, value) in enumerate(metrics):
             metric_x = x + index * metric_width
@@ -334,8 +342,9 @@ class LiveDashboard:
             mode = "learning" if telemetry.get("learning") else "frozen"
             self._text(f"Adapt-1 · {telemetry.get('domain')}", self.font_label, t.text, x, y)
             y += 22
+            sample_text = f" · {samples} samples" if samples is not None else ""
             self._text(
-                f"{model} · {skill_text} · {samples} samples · {mode}",
+                f"{model} · {skill_text}{sample_text} · {mode}",
                 self.font_small,
                 t.muted,
                 x,
@@ -372,9 +381,10 @@ class LiveDashboard:
                 y,
             )
             y += 26
-            self._text("Learned value per macro", self.font_label, t.text, x, y)
-            y += 22
             values = telemetry.get("values") or {}
+            if values or not telemetry.get("replay"):
+                self._text("Learned value per macro", self.font_label, t.text, x, y)
+                y += 22
             top = max(values.values()) if values else 0.0
             order = self._action_order(values.keys())
             for name in order[:8]:
@@ -388,7 +398,7 @@ class LiveDashboard:
                     selected=name == selected_action,
                 )
                 y += 30
-            if not values:
+            if not values and not telemetry.get("replay"):
                 y = (
                     self._wrapped(
                         "no per-macro values in the response (tie / no model)",
@@ -440,9 +450,25 @@ class LiveDashboard:
                 )
             nav = snapshot.navigation_features()
             terrain = (
-                f"Terrain  pit {nav.get('gap_distance_tiles')}/{nav.get('gap_width_tiles_visible')}"
-                f" · drop {nav.get('drop_distance_tiles')}/{nav.get('drop_depth_tiles')}"
-                f" · wall {nav.get('obstacle_distance_tiles')}"
+                "Terrain  "
+                + " · ".join(
+                    f"{label} {nav.get(key)} tiles"
+                    for label, key in (
+                        ("pit in", "gap_distance_tiles"),
+                        ("drop in", "drop_distance_tiles"),
+                        ("wall in", "obstacle_distance_tiles"),
+                    )
+                    if nav.get(key) is not None
+                )
+                if any(
+                    nav.get(k) is not None
+                    for k in (
+                        "gap_distance_tiles",
+                        "drop_distance_tiles",
+                        "obstacle_distance_tiles",
+                    )
+                )
+                else "Terrain  clear ahead"
             )
             self._text(terrain, self.font_mono, t.muted, x, y)
             y += 24

@@ -1,0 +1,3327 @@
+{
+ "domain_id": "mario-gate4-takeoff",
+ "apex_domain": "mario-gate4-apex",
+ "seed": 777,
+ "stats": {
+  "decisions": 62,
+  "frames": 1176,
+  "gif_frames": 0,
+  "max_x": 3161,
+  "reached_flag": true,
+  "reward_total": 3075.0,
+  "apex_choices": {
+   "apex_keep": 20
+  },
+  "gif": "/var/folders/d_/fz1_gr213078b2qs5cp6njl00000gn/T/tmpkucwf6mu/x.gif"
+ },
+ "trace": [
+  {
+   "decision": 1,
+   "kind": "takeoff",
+   "x": 40,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 43
+  },
+  {
+   "decision": 2,
+   "kind": "takeoff",
+   "x": 43,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 53
+  },
+  {
+   "decision": 3,
+   "kind": "takeoff",
+   "x": 53,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 70
+  },
+  {
+   "decision": 4,
+   "kind": "takeoff",
+   "x": 70,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 93
+  },
+  {
+   "decision": 5,
+   "kind": "takeoff",
+   "x": 93,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 117
+  },
+  {
+   "decision": 6,
+   "kind": "takeoff",
+   "x": 117,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 141
+  },
+  {
+   "decision": 7,
+   "kind": "takeoff",
+   "x": 141,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 165
+  },
+  {
+   "decision": 8,
+   "kind": "takeoff",
+   "x": 165,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 189
+  },
+  {
+   "decision": 9,
+   "kind": "takeoff",
+   "x": 189,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 213
+  },
+  {
+   "decision": 10,
+   "kind": "takeoff",
+   "x": 213,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 237
+  },
+  {
+   "decision": 11,
+   "kind": "takeoff",
+   "x": 237,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 261
+  },
+  {
+   "decision": 11,
+   "kind": "apex",
+   "x": 327,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 12,
+   "kind": "takeoff",
+   "x": 261,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 27,
+   "x_after": 342
+  },
+  {
+   "decision": 13,
+   "kind": "takeoff",
+   "x": 342,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 366
+  },
+  {
+   "decision": 14,
+   "kind": "takeoff",
+   "x": 366,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 390
+  },
+  {
+   "decision": 15,
+   "kind": "takeoff",
+   "x": 390,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 20,
+   "x_after": 434
+  },
+  {
+   "decision": 15,
+   "kind": "apex",
+   "x": 440,
+   "choice": "apex_keep",
+   "frame": 21,
+   "vx": 0.8125
+  },
+  {
+   "decision": 16,
+   "kind": "takeoff",
+   "x": 434,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 31,
+   "x_after": 451
+  },
+  {
+   "decision": 17,
+   "kind": "takeoff",
+   "x": 451,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 467
+  },
+  {
+   "decision": 18,
+   "kind": "takeoff",
+   "x": 467,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 15,
+   "x_after": 510
+  },
+  {
+   "decision": 19,
+   "kind": "takeoff",
+   "x": 510,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 534
+  },
+  {
+   "decision": 20,
+   "kind": "takeoff",
+   "x": 534,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 558
+  },
+  {
+   "decision": 21,
+   "kind": "takeoff",
+   "x": 558,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 582
+  },
+  {
+   "decision": 21,
+   "kind": "apex",
+   "x": 614,
+   "choice": "apex_keep",
+   "frame": 28,
+   "vx": 1.75
+  },
+  {
+   "decision": 22,
+   "kind": "takeoff",
+   "x": 582,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 51,
+   "x_after": 654
+  },
+  {
+   "decision": 22,
+   "kind": "apex",
+   "x": 713,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 23,
+   "kind": "takeoff",
+   "x": 654,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 27,
+   "x_after": 728
+  },
+  {
+   "decision": 23,
+   "kind": "apex",
+   "x": 809,
+   "choice": "apex_keep",
+   "frame": 27,
+   "vx": 3.0
+  },
+  {
+   "decision": 24,
+   "kind": "takeoff",
+   "x": 728,
+   "grounded": false,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 63,
+   "x_after": 898
+  },
+  {
+   "decision": 24,
+   "kind": "apex",
+   "x": 901,
+   "choice": "apex_keep",
+   "frame": 25,
+   "vx": 0.625
+  },
+  {
+   "decision": 25,
+   "kind": "takeoff",
+   "x": 898,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 33,
+   "x_after": 909
+  },
+  {
+   "decision": 26,
+   "kind": "takeoff",
+   "x": 909,
+   "grounded": false,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 924
+  },
+  {
+   "decision": 27,
+   "kind": "takeoff",
+   "x": 924,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 25,
+   "x_after": 996
+  },
+  {
+   "decision": 28,
+   "kind": "takeoff",
+   "x": 996,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1020
+  },
+  {
+   "decision": 29,
+   "kind": "takeoff",
+   "x": 1020,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1044
+  },
+  {
+   "decision": 29,
+   "kind": "apex",
+   "x": 1110,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 30,
+   "kind": "takeoff",
+   "x": 1044,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 1164
+  },
+  {
+   "decision": 31,
+   "kind": "takeoff",
+   "x": 1164,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1188
+  },
+  {
+   "decision": 32,
+   "kind": "takeoff",
+   "x": 1188,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1212
+  },
+  {
+   "decision": 32,
+   "kind": "apex",
+   "x": 1242,
+   "choice": "apex_keep",
+   "frame": 10,
+   "vx": 3.0
+  },
+  {
+   "decision": 33,
+   "kind": "takeoff",
+   "x": 1212,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 19,
+   "x_after": 1269
+  },
+  {
+   "decision": 34,
+   "kind": "takeoff",
+   "x": 1269,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1293
+  },
+  {
+   "decision": 35,
+   "kind": "takeoff",
+   "x": 1293,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1317
+  },
+  {
+   "decision": 35,
+   "kind": "apex",
+   "x": 1383,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 36,
+   "kind": "takeoff",
+   "x": 1317,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 1437
+  },
+  {
+   "decision": 37,
+   "kind": "takeoff",
+   "x": 1437,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1461
+  },
+  {
+   "decision": 38,
+   "kind": "takeoff",
+   "x": 1461,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1485
+  },
+  {
+   "decision": 38,
+   "kind": "apex",
+   "x": 1551,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 39,
+   "kind": "takeoff",
+   "x": 1485,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 1605
+  },
+  {
+   "decision": 40,
+   "kind": "takeoff",
+   "x": 1605,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1629
+  },
+  {
+   "decision": 40,
+   "kind": "apex",
+   "x": 1695,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 41,
+   "kind": "takeoff",
+   "x": 1629,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 1749
+  },
+  {
+   "decision": 41,
+   "kind": "apex",
+   "x": 1781,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 0.75
+  },
+  {
+   "decision": 42,
+   "kind": "takeoff",
+   "x": 1749,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 27,
+   "x_after": 1786
+  },
+  {
+   "decision": 43,
+   "kind": "takeoff",
+   "x": 1786,
+   "grounded": false,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1799
+  },
+  {
+   "decision": 44,
+   "kind": "takeoff",
+   "x": 1799,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 20,
+   "x_after": 1856
+  },
+  {
+   "decision": 45,
+   "kind": "takeoff",
+   "x": 1856,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1880
+  },
+  {
+   "decision": 46,
+   "kind": "takeoff",
+   "x": 1880,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1904
+  },
+  {
+   "decision": 47,
+   "kind": "takeoff",
+   "x": 1904,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1928
+  },
+  {
+   "decision": 47,
+   "kind": "apex",
+   "x": 1994,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 48,
+   "kind": "takeoff",
+   "x": 1928,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 2048
+  },
+  {
+   "decision": 49,
+   "kind": "takeoff",
+   "x": 2048,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 2072
+  },
+  {
+   "decision": 50,
+   "kind": "takeoff",
+   "x": 2072,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 2096
+  },
+  {
+   "decision": 50,
+   "kind": "apex",
+   "x": 2162,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 51,
+   "kind": "takeoff",
+   "x": 2096,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 28,
+   "x_after": 2180
+  },
+  {
+   "decision": 51,
+   "kind": "apex",
+   "x": 2261,
+   "choice": "apex_keep",
+   "frame": 27,
+   "vx": 3.0
+  },
+  {
+   "decision": 52,
+   "kind": "takeoff",
+   "x": 2180,
+   "grounded": false,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 60,
+   "x_after": 2360
+  },
+  {
+   "decision": 52,
+   "kind": "apex",
+   "x": 2441,
+   "choice": "apex_keep",
+   "frame": 27,
+   "vx": 3.0
+  },
+  {
+   "decision": 53,
+   "kind": "takeoff",
+   "x": 2360,
+   "grounded": false,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 2480
+  },
+  {
+   "decision": 54,
+   "kind": "takeoff",
+   "x": 2480,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 19,
+   "x_after": 2537
+  },
+  {
+   "decision": 55,
+   "kind": "takeoff",
+   "x": 2537,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 9,
+   "x_after": 2564
+  },
+  {
+   "decision": 55,
+   "kind": "apex",
+   "x": 2630,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 56,
+   "kind": "takeoff",
+   "x": 2564,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 2684
+  },
+  {
+   "decision": 57,
+   "kind": "takeoff",
+   "x": 2684,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 2708
+  },
+  {
+   "decision": 57,
+   "kind": "apex",
+   "x": 2738,
+   "choice": "apex_keep",
+   "frame": 10,
+   "vx": 3.0
+  },
+  {
+   "decision": 58,
+   "kind": "takeoff",
+   "x": 2708,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 2828
+  },
+  {
+   "decision": 58,
+   "kind": "apex",
+   "x": 2894,
+   "choice": "apex_keep",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 59,
+   "kind": "takeoff",
+   "x": 2828,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 31,
+   "x_after": 2921
+  },
+  {
+   "decision": 59,
+   "kind": "apex",
+   "x": 3002,
+   "choice": "apex_keep",
+   "frame": 27,
+   "vx": 3.0
+  },
+  {
+   "decision": 60,
+   "kind": "takeoff",
+   "x": 2921,
+   "grounded": false,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 33,
+   "x_after": 3020
+  },
+  {
+   "decision": 61,
+   "kind": "takeoff",
+   "x": 3020,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 36,
+   "x_after": 3128
+  },
+  {
+   "decision": 62,
+   "kind": "takeoff",
+   "x": 3128,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 10,
+   "x_after": 3161
+  }
+ ],
+ "decisions": [
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.003778,
+     "noop": 0.004094,
+     "right": 0.004483,
+     "right_jump_full": 0.004101,
+     "right_run": 0.006527,
+     "right_run_jump_full": 0.004009,
+     "right_run_jump_mid": 0.004204,
+     "right_run_jump_short": 0.002294
+    },
+    "counts": {
+     "selected": 1
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.00563,
+     "noop": 0.005627,
+     "right": 0.006588,
+     "right_jump_full": 0.006019,
+     "right_run": 0.006875,
+     "right_run_jump_full": 0.005519,
+     "right_run_jump_mid": 0.00596,
+     "right_run_jump_short": 0.002529
+    },
+    "counts": {
+     "selected": 2
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005761,
+     "noop": 0.005722,
+     "right": 0.006573,
+     "right_jump_full": 0.006114,
+     "right_run": 0.007065,
+     "right_run_jump_full": 0.00563,
+     "right_run_jump_mid": 0.006036,
+     "right_run_jump_short": 0.001946
+    },
+    "counts": {
+     "selected": 3
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.00593,
+     "noop": 0.00568,
+     "right": 0.006537,
+     "right_jump_full": 0.006249,
+     "right_run": 0.00706,
+     "right_run_jump_full": 0.005786,
+     "right_run_jump_mid": 0.006184,
+     "right_run_jump_short": 0.001894
+    },
+    "counts": {
+     "selected": 4
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005898,
+     "noop": 0.00567,
+     "right": 0.006515,
+     "right_jump_full": 0.006231,
+     "right_run": 0.006761,
+     "right_run_jump_full": 0.005844,
+     "right_run_jump_mid": 0.006159,
+     "right_run_jump_short": 0.001892
+    },
+    "counts": {
+     "selected": 5
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005896,
+     "noop": 0.005556,
+     "right": 0.006397,
+     "right_jump_full": 0.006117,
+     "right_run": 0.005791,
+     "right_run_jump_full": 0.005727,
+     "right_run_jump_mid": 0.006048,
+     "right_run_jump_short": 0.001882
+    },
+    "counts": {
+     "selected": 6
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005896,
+     "noop": 0.005556,
+     "right": 0.006397,
+     "right_jump_full": 0.006117,
+     "right_run": 0.005791,
+     "right_run_jump_full": 0.005727,
+     "right_run_jump_mid": 0.006048,
+     "right_run_jump_short": 0.001882
+    },
+    "counts": {
+     "selected": 7
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005896,
+     "noop": 0.005556,
+     "right": 0.006397,
+     "right_jump_full": 0.006117,
+     "right_run": 0.005791,
+     "right_run_jump_full": 0.005727,
+     "right_run_jump_mid": 0.006048,
+     "right_run_jump_short": 0.001882
+    },
+    "counts": {
+     "selected": 8
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005896,
+     "noop": 0.005556,
+     "right": 0.006397,
+     "right_jump_full": 0.006117,
+     "right_run": 0.005791,
+     "right_run_jump_full": 0.005727,
+     "right_run_jump_mid": 0.006048,
+     "right_run_jump_short": 0.001882
+    },
+    "counts": {
+     "selected": 9
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.003783,
+     "noop": 0.002148,
+     "right": 0.00373,
+     "right_jump_full": 0.003505,
+     "right_run": 0.005569,
+     "right_run_jump_full": 0.00149,
+     "right_run_jump_mid": 0.002461,
+     "right_run_jump_short": 0.001482
+    },
+    "counts": {
+     "selected": 10
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005409,
+     "noop": 0.002585,
+     "right": 0.005359,
+     "right_jump_full": 0.005186,
+     "right_run": 0.005572,
+     "right_run_jump_full": 0.001593,
+     "right_run_jump_mid": 0.003125,
+     "right_run_jump_short": 0.001318
+    },
+    "counts": {
+     "selected": 11
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.004499,
+     "noop": 0.001879,
+     "right": 0.004462,
+     "right_jump_full": 0.004359,
+     "right_run": 0.001884,
+     "right_run_jump_full": 0.001784,
+     "right_run_jump_mid": 0.004588,
+     "right_run_jump_short": 0.000901
+    },
+    "counts": {
+     "selected": 12
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005398,
+     "noop": 0.003247,
+     "right": 0.005304,
+     "right_jump_full": 0.005187,
+     "right_run": 0.004168,
+     "right_run_jump_full": 0.002065,
+     "right_run_jump_mid": 0.001436,
+     "right_run_jump_short": 0.001461
+    },
+    "counts": {
+     "selected": 13
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.00494,
+     "noop": 0.003066,
+     "right": 0.004889,
+     "right_jump_full": 0.004731,
+     "right_run": 0.003764,
+     "right_run_jump_full": 0.002305,
+     "right_run_jump_mid": 0.001907,
+     "right_run_jump_short": 0.001703
+    },
+    "counts": {
+     "selected": 14
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004841,
+     "noop": 0.002976,
+     "right": 0.00479,
+     "right_jump_full": 0.004624,
+     "right_run": 0.003508,
+     "right_run_jump_full": 0.002521,
+     "right_run_jump_mid": 0.002276,
+     "right_run_jump_short": 0.002593
+    },
+    "counts": {
+     "selected": 15
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.002604,
+     "noop": 0.002546,
+     "right": 0.002658,
+     "right_jump_full": 0.002573,
+     "right_run": 0.001676,
+     "right_run_jump_full": 0.002575,
+     "right_run_jump_mid": 0.003531,
+     "right_run_jump_short": 0.000577
+    },
+    "counts": {
+     "selected": 16
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005374,
+     "noop": 0.003158,
+     "right": 0.005366,
+     "right_jump_full": 0.005202,
+     "right_run": 0.00467,
+     "right_run_jump_full": 0.002203,
+     "right_run_jump_mid": 0.001492,
+     "right_run_jump_short": 0.001317
+    },
+    "counts": {
+     "selected": 17
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005045,
+     "noop": 0.00309,
+     "right": 0.005011,
+     "right_jump_full": 0.004879,
+     "right_run": 0.004811,
+     "right_run_jump_full": 0.002163,
+     "right_run_jump_mid": 0.002781,
+     "right_run_jump_short": 0.001646
+    },
+    "counts": {
+     "selected": 18
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004412,
+     "noop": 0.004135,
+     "right": 0.004396,
+     "right_jump_full": 0.004304,
+     "right_run": 0.005844,
+     "right_run_jump_full": 0.003395,
+     "right_run_jump_mid": 0.003659,
+     "right_run_jump_short": 0.001125
+    },
+    "counts": {
+     "selected": 19
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.00478,
+     "noop": 0.004796,
+     "right": 0.004782,
+     "right_jump_full": 0.004753,
+     "right_run": 0.005821,
+     "right_run_jump_full": 0.003668,
+     "right_run_jump_mid": 0.003783,
+     "right_run_jump_short": 0.00149
+    },
+    "counts": {
+     "selected": 20
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004708,
+     "noop": 0.00473,
+     "right": 0.004688,
+     "right_jump_full": 0.004678,
+     "right_run": 0.00486,
+     "right_run_jump_full": 0.003671,
+     "right_run_jump_mid": 0.003817,
+     "right_run_jump_short": 0.001594
+    },
+    "counts": {
+     "selected": 21
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.003623,
+     "noop": 0.003487,
+     "right": 0.003605,
+     "right_jump_full": 0.00361,
+     "right_run": 0.000445,
+     "right_run_jump_full": 0.004955,
+     "right_run_jump_mid": 0.002146,
+     "right_run_jump_short": 0.00114
+    },
+    "counts": {
+     "selected": 22
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.004076,
+     "noop": 0.003492,
+     "right": 0.004036,
+     "right_jump_full": 0.003998,
+     "right_run": 0.001479,
+     "right_run_jump_full": 0.003851,
+     "right_run_jump_mid": 0.004479,
+     "right_run_jump_short": 0.001007
+    },
+    "counts": {
+     "selected": 23
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.005921,
+     "noop": 0.005881,
+     "right": 0.005925,
+     "right_jump_full": 0.005915,
+     "right_run": 0.005452,
+     "right_run_jump_full": 0.005879,
+     "right_run_jump_mid": 0.005852,
+     "right_run_jump_short": 0.004375
+    },
+    "counts": {
+     "selected": 24
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.002611,
+     "noop": 0.002549,
+     "right": 0.002649,
+     "right_jump_full": 0.002587,
+     "right_run": 0.001343,
+     "right_run_jump_full": 0.003511,
+     "right_run_jump_mid": 0.002227,
+     "right_run_jump_short": 0.001232
+    },
+    "counts": {
+     "selected": 25
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.006696,
+     "noop": 0.006696,
+     "right": 0.006705,
+     "right_jump_full": 0.006696,
+     "right_run": 0.006334,
+     "right_run_jump_full": 0.006686,
+     "right_run_jump_mid": 0.00657,
+     "right_run_jump_short": 0.005216
+    },
+    "counts": {
+     "selected": 26
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.00569,
+     "noop": 0.003628,
+     "right": 0.005676,
+     "right_jump_full": 0.005559,
+     "right_run": 0.006309,
+     "right_run_jump_full": 0.003191,
+     "right_run_jump_mid": 0.002538,
+     "right_run_jump_short": 0.003307
+    },
+    "counts": {
+     "selected": 27
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004773,
+     "noop": 0.00369,
+     "right": 0.004741,
+     "right_jump_full": 0.004632,
+     "right_run": 0.007305,
+     "right_run_jump_full": 0.003552,
+     "right_run_jump_mid": 0.003618,
+     "right_run_jump_short": 0.002158
+    },
+    "counts": {
+     "selected": 28
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.003247,
+     "noop": 0.002469,
+     "right": 0.003249,
+     "right_jump_full": 0.003122,
+     "right_run": 0.006348,
+     "right_run_jump_full": 0.003632,
+     "right_run_jump_mid": 0.001987,
+     "right_run_jump_short": 0.003009
+    },
+    "counts": {
+     "selected": 29
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.00508,
+     "noop": 0.003864,
+     "right": 0.005066,
+     "right_jump_full": 0.005074,
+     "right_run": 0.002119,
+     "right_run_jump_full": 0.005037,
+     "right_run_jump_mid": 0.00549,
+     "right_run_jump_short": 0.002891
+    },
+    "counts": {
+     "selected": 30
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005001,
+     "noop": 0.002611,
+     "right": 0.004941,
+     "right_jump_full": 0.00472,
+     "right_run": 0.006731,
+     "right_run_jump_full": 0.000834,
+     "right_run_jump_mid": 0.002792,
+     "right_run_jump_short": 0.002665
+    },
+    "counts": {
+     "selected": 31
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.00429,
+     "noop": 0.001742,
+     "right": 0.00427,
+     "right_jump_full": 0.004066,
+     "right_run": 0.005142,
+     "right_run_jump_full": 0.001484,
+     "right_run_jump_mid": 0.001514,
+     "right_run_jump_short": 0.00084
+    },
+    "counts": {
+     "selected": 32
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.005016,
+     "noop": 0.004051,
+     "right": 0.004991,
+     "right_jump_full": 0.005004,
+     "right_run": 0.000632,
+     "right_run_jump_full": 0.00243,
+     "right_run_jump_mid": 0.00564,
+     "right_run_jump_short": 0.001326
+    },
+    "counts": {
+     "selected": 33
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.002616,
+     "noop": 0.002018,
+     "right": 0.002592,
+     "right_jump_full": 0.002528,
+     "right_run": 0.004595,
+     "right_run_jump_full": 0.002175,
+     "right_run_jump_mid": 0.002083,
+     "right_run_jump_short": 0.002015
+    },
+    "counts": {
+     "selected": 34
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.003142,
+     "noop": 0.002407,
+     "right": 0.003142,
+     "right_jump_full": 0.003019,
+     "right_run": 0.005743,
+     "right_run_jump_full": 0.003214,
+     "right_run_jump_mid": 0.00193,
+     "right_run_jump_short": 0.001998
+    },
+    "counts": {
+     "selected": 35
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.00508,
+     "noop": 0.003864,
+     "right": 0.005066,
+     "right_jump_full": 0.005074,
+     "right_run": 0.002119,
+     "right_run_jump_full": 0.005037,
+     "right_run_jump_mid": 0.00549,
+     "right_run_jump_short": 0.002891
+    },
+    "counts": {
+     "selected": 36
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004371,
+     "noop": 0.002479,
+     "right": 0.0043,
+     "right_jump_full": 0.004081,
+     "right_run": 0.006858,
+     "right_run_jump_full": 0.000844,
+     "right_run_jump_mid": 0.002526,
+     "right_run_jump_short": 0.002645
+    },
+    "counts": {
+     "selected": 37
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005367,
+     "noop": 0.002191,
+     "right": 0.005317,
+     "right_jump_full": 0.005125,
+     "right_run": 0.006224,
+     "right_run_jump_full": 0.001441,
+     "right_run_jump_mid": 0.003197,
+     "right_run_jump_short": 0.001012
+    },
+    "counts": {
+     "selected": 38
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.006071,
+     "noop": 0.004782,
+     "right": 0.006044,
+     "right_jump_full": 0.006061,
+     "right_run": 0.000697,
+     "right_run_jump_full": 0.0054,
+     "right_run_jump_mid": 0.006187,
+     "right_run_jump_short": 0.001244
+    },
+    "counts": {
+     "selected": 39
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004914,
+     "noop": 0.002324,
+     "right": 0.004854,
+     "right_jump_full": 0.004644,
+     "right_run": 0.005061,
+     "right_run_jump_full": 0.000834,
+     "right_run_jump_mid": 0.002703,
+     "right_run_jump_short": 0.002131
+    },
+    "counts": {
+     "selected": 40
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.004843,
+     "noop": 0.002355,
+     "right": 0.004807,
+     "right_jump_full": 0.004742,
+     "right_run": 0.002723,
+     "right_run_jump_full": 0.002122,
+     "right_run_jump_mid": 0.004993,
+     "right_run_jump_short": 0.000932
+    },
+    "counts": {
+     "selected": 41
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.004494,
+     "noop": 0.002158,
+     "right": 0.00444,
+     "right_jump_full": 0.004335,
+     "right_run": 0.002698,
+     "right_run_jump_full": 0.001833,
+     "right_run_jump_mid": 0.004399,
+     "right_run_jump_short": 0.001614
+    },
+    "counts": {
+     "selected": 42
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.006394,
+     "noop": 0.00634,
+     "right": 0.006394,
+     "right_jump_full": 0.006394,
+     "right_run": 0.007029,
+     "right_run_jump_full": 0.004356,
+     "right_run_jump_mid": 0.006253,
+     "right_run_jump_short": 0.004937
+    },
+    "counts": {
+     "selected": 43
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005657,
+     "noop": 0.004108,
+     "right": 0.005663,
+     "right_jump_full": 0.005641,
+     "right_run": 0.006709,
+     "right_run_jump_full": 0.005005,
+     "right_run_jump_mid": 0.005471,
+     "right_run_jump_short": 0.002928
+    },
+    "counts": {
+     "selected": 44
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004898,
+     "noop": 0.005121,
+     "right": 0.005898,
+     "right_jump_full": 0.005166,
+     "right_run": 0.006782,
+     "right_run_jump_full": 0.004868,
+     "right_run_jump_mid": 0.005099,
+     "right_run_jump_short": 0.001517
+    },
+    "counts": {
+     "selected": 45
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004515,
+     "noop": 0.002384,
+     "right": 0.004477,
+     "right_jump_full": 0.004245,
+     "right_run": 0.006147,
+     "right_run_jump_full": 0.001525,
+     "right_run_jump_mid": 0.002562,
+     "right_run_jump_short": 0.001523
+    },
+    "counts": {
+     "selected": 46
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005242,
+     "noop": 0.001982,
+     "right": 0.005197,
+     "right_jump_full": 0.005029,
+     "right_run": 0.006178,
+     "right_run_jump_full": 0.001683,
+     "right_run_jump_mid": 0.003014,
+     "right_run_jump_short": 0.000932
+    },
+    "counts": {
+     "selected": 47
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.00599,
+     "noop": 0.004762,
+     "right": 0.005964,
+     "right_jump_full": 0.00598,
+     "right_run": 0.000665,
+     "right_run_jump_full": 0.0052,
+     "right_run_jump_mid": 0.006175,
+     "right_run_jump_short": 0.001311
+    },
+    "counts": {
+     "selected": 48
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.00406,
+     "noop": 0.003841,
+     "right": 0.004036,
+     "right_jump_full": 0.003958,
+     "right_run": 0.006775,
+     "right_run_jump_full": 0.003479,
+     "right_run_jump_mid": 0.003217,
+     "right_run_jump_short": 0.0019
+    },
+    "counts": {
+     "selected": 49
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004455,
+     "noop": 0.004504,
+     "right": 0.00444,
+     "right_jump_full": 0.004436,
+     "right_run": 0.006284,
+     "right_run_jump_full": 0.003904,
+     "right_run_jump_mid": 0.003992,
+     "right_run_jump_short": 0.001134
+    },
+    "counts": {
+     "selected": 50
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.003176,
+     "noop": 0.003152,
+     "right": 0.003139,
+     "right_jump_full": 0.003143,
+     "right_run": 0.000689,
+     "right_run_jump_full": 0.003045,
+     "right_run_jump_mid": 0.003834,
+     "right_run_jump_short": 0.001185
+    },
+    "counts": {
+     "selected": 51
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.007274,
+     "noop": 0.007274,
+     "right": 0.007274,
+     "right_jump_full": 0.007274,
+     "right_run": 0.005328,
+     "right_run_jump_full": 0.007302,
+     "right_run_jump_mid": 0.007279,
+     "right_run_jump_short": 0.005381
+    },
+    "counts": {
+     "selected": 52
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.006643,
+     "noop": 0.006643,
+     "right": 0.006651,
+     "right_jump_full": 0.006643,
+     "right_run": 0.005535,
+     "right_run_jump_full": 0.006679,
+     "right_run_jump_mid": 0.00662,
+     "right_run_jump_short": 0.004825
+    },
+    "counts": {
+     "selected": 53
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.00535,
+     "noop": 0.003346,
+     "right": 0.00531,
+     "right_jump_full": 0.005164,
+     "right_run": 0.004856,
+     "right_run_jump_full": 0.002507,
+     "right_run_jump_mid": 0.001764,
+     "right_run_jump_short": 0.001592
+    },
+    "counts": {
+     "selected": 54
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.004943,
+     "noop": 0.004816,
+     "right": 0.004914,
+     "right_jump_full": 0.004913,
+     "right_run": 0.005606,
+     "right_run_jump_full": 0.004174,
+     "right_run_jump_mid": 0.004537,
+     "right_run_jump_short": 0.001612
+    },
+    "counts": {
+     "selected": 55
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.004714,
+     "noop": 0.004697,
+     "right": 0.004685,
+     "right_jump_full": 0.004692,
+     "right_run": 0.000738,
+     "right_run_jump_full": 0.004591,
+     "right_run_jump_mid": 0.004886,
+     "right_run_jump_short": 0.000985
+    },
+    "counts": {
+     "selected": 56
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005062,
+     "noop": 0.002491,
+     "right": 0.005002,
+     "right_jump_full": 0.004792,
+     "right_run": 0.005731,
+     "right_run_jump_full": 0.000834,
+     "right_run_jump_mid": 0.00282,
+     "right_run_jump_short": 0.002302
+    },
+    "counts": {
+     "selected": 57
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.004388,
+     "noop": 0.001915,
+     "right": 0.004351,
+     "right_jump_full": 0.004232,
+     "right_run": 0.002093,
+     "right_run_jump_full": 0.001827,
+     "right_run_jump_mid": 0.004345,
+     "right_run_jump_short": 0.000905
+    },
+    "counts": {
+     "selected": 58
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.004554,
+     "noop": 0.004538,
+     "right": 0.004529,
+     "right_jump_full": 0.004543,
+     "right_run": 0.00074,
+     "right_run_jump_full": 0.004455,
+     "right_run_jump_mid": 0.004724,
+     "right_run_jump_short": 0.000794
+    },
+    "counts": {
+     "selected": 59
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.007102,
+     "noop": 0.007101,
+     "right": 0.007102,
+     "right_jump_full": 0.007102,
+     "right_run": 0.004831,
+     "right_run_jump_full": 0.00722,
+     "right_run_jump_mid": 0.007081,
+     "right_run_jump_short": 0.005233
+    },
+    "counts": {
+     "selected": 60
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.005603,
+     "noop": 0.003529,
+     "right": 0.005555,
+     "right_jump_full": 0.005441,
+     "right_run": 0.004973,
+     "right_run_jump_full": 0.002432,
+     "right_run_jump_mid": 0.001845,
+     "right_run_jump_short": 0.002591
+    },
+    "counts": {
+     "selected": 61
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.1548980261434979,
+    "sample_count": 634,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.006264,
+     "noop": 0.00626,
+     "right": 0.006253,
+     "right_jump_full": 0.00626,
+     "right_run": 0.00078,
+     "right_run_jump_full": 0.006303,
+     "right_run_jump_mid": 0.006141,
+     "right_run_jump_short": 0.000815
+    },
+    "counts": {
+     "selected": 62
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  }
+ ],
+ "apex": [
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000491,
+     "apex_keep": 0.004152,
+     "apex_pull_back": 0.000485
+    },
+    "counts": {
+     "selected": 1
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000348,
+     "apex_keep": 0.004253,
+     "apex_pull_back": 0.000301
+    },
+    "counts": {
+     "selected": 2
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000439,
+     "apex_keep": 0.004795,
+     "apex_pull_back": 0.00055
+    },
+    "counts": {
+     "selected": 3
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.001044,
+     "apex_keep": 0.003711,
+     "apex_pull_back": 0.002548
+    },
+    "counts": {
+     "selected": 4
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000631,
+     "apex_keep": 0.001577,
+     "apex_pull_back": 0.000476
+    },
+    "counts": {
+     "selected": 5
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000307,
+     "apex_keep": 0.006022,
+     "apex_pull_back": 0.000237
+    },
+    "counts": {
+     "selected": 6
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.00137,
+     "apex_keep": 0.005093,
+     "apex_pull_back": 0.00056
+    },
+    "counts": {
+     "selected": 7
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000735,
+     "apex_keep": 0.003023,
+     "apex_pull_back": 0.001672
+    },
+    "counts": {
+     "selected": 8
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.00137,
+     "apex_keep": 0.005093,
+     "apex_pull_back": 0.00056
+    },
+    "counts": {
+     "selected": 9
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000516,
+     "apex_keep": 0.002464,
+     "apex_pull_back": 0.00048
+    },
+    "counts": {
+     "selected": 10
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000638,
+     "apex_keep": 0.003983,
+     "apex_pull_back": 0.000626
+    },
+    "counts": {
+     "selected": 11
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 9.7e-05,
+     "apex_keep": 0.004931,
+     "apex_pull_back": 0.000137
+    },
+    "counts": {
+     "selected": 12
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000591,
+     "apex_keep": 0.004372,
+     "apex_pull_back": 0.000459
+    },
+    "counts": {
+     "selected": 13
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.002022,
+     "apex_keep": 0.006301,
+     "apex_pull_back": 0.00233
+    },
+    "counts": {
+     "selected": 14
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000675,
+     "apex_keep": 0.001563,
+     "apex_pull_back": 0.000465
+    },
+    "counts": {
+     "selected": 15
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000444,
+     "apex_keep": 0.002151,
+     "apex_pull_back": 0.000374
+    },
+    "counts": {
+     "selected": 16
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000565,
+     "apex_keep": 0.004799,
+     "apex_pull_back": 0.000499
+    },
+    "counts": {
+     "selected": 17
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.000808,
+     "apex_keep": 0.004482,
+     "apex_pull_back": 0.001183
+    },
+    "counts": {
+     "selected": 18
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.001782,
+     "apex_keep": 0.004962,
+     "apex_pull_back": 0.002084
+    },
+    "counts": {
+     "selected": 19
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-gate4-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.00030783249773413957,
+    "sample_count": 370,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.00189,
+     "apex_keep": 0.00304,
+     "apex_pull_back": 0.002041
+    },
+    "counts": {
+     "selected": 20
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  }
+ ]
+}

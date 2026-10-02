@@ -1,0 +1,3084 @@
+{
+ "domain_id": "mario-zero2-takeoff",
+ "apex_domain": "mario-zero2-apex",
+ "seed": 777,
+ "stats": {
+  "decisions": 47,
+  "frames": 1314,
+  "gif_frames": 0,
+  "max_x": 3161,
+  "reached_flag": true,
+  "reward_total": 3087.0,
+  "apex_choices": {
+   "apex_keep": 14,
+   "apex_brake": 9,
+   "apex_pull_back": 8
+  },
+  "gif": "/var/folders/d_/fz1_gr213078b2qs5cp6njl00000gn/T/tmpafyc_gdc/x.gif"
+ },
+ "trace": [
+  {
+   "decision": 0,
+   "kind": "apex",
+   "x": 48,
+   "choice": "apex_keep",
+   "frame": 16,
+   "vx": 1.0
+  },
+  {
+   "decision": 1,
+   "kind": "takeoff",
+   "x": 40,
+   "grounded": true,
+   "macro": "right_run_jump_short",
+   "status": "selected",
+   "frames": 28,
+   "x_after": 65
+  },
+  {
+   "decision": 1,
+   "kind": "apex",
+   "x": 109,
+   "choice": "apex_keep",
+   "frame": 17,
+   "vx": 3.0
+  },
+  {
+   "decision": 2,
+   "kind": "takeoff",
+   "x": 65,
+   "grounded": true,
+   "macro": "right_run_jump_short",
+   "status": "selected",
+   "frames": 30,
+   "x_after": 148
+  },
+  {
+   "decision": 2,
+   "kind": "apex",
+   "x": 199,
+   "choice": "apex_keep",
+   "frame": 17,
+   "vx": 3.0
+  },
+  {
+   "decision": 3,
+   "kind": "takeoff",
+   "x": 148,
+   "grounded": true,
+   "macro": "right_run_jump_short",
+   "status": "selected",
+   "frames": 30,
+   "x_after": 238
+  },
+  {
+   "decision": 3,
+   "kind": "apex",
+   "x": 289,
+   "choice": "apex_brake",
+   "frame": 17,
+   "vx": 3.0
+  },
+  {
+   "decision": 4,
+   "kind": "takeoff",
+   "x": 238,
+   "grounded": true,
+   "macro": "right_run_jump_short",
+   "status": "selected",
+   "frames": 41,
+   "x_after": 344
+  },
+  {
+   "decision": 4,
+   "kind": "apex",
+   "x": 369,
+   "choice": "apex_keep",
+   "frame": 10,
+   "vx": 3.0
+  },
+  {
+   "decision": 5,
+   "kind": "takeoff",
+   "x": 344,
+   "grounded": true,
+   "macro": "right_run_jump_short",
+   "status": "selected",
+   "frames": 19,
+   "x_after": 396
+  },
+  {
+   "decision": 5,
+   "kind": "apex",
+   "x": 462,
+   "choice": "apex_brake",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 6,
+   "kind": "takeoff",
+   "x": 396,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 505
+  },
+  {
+   "decision": 7,
+   "kind": "takeoff",
+   "x": 505,
+   "grounded": true,
+   "macro": "right",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 519
+  },
+  {
+   "decision": 7,
+   "kind": "apex",
+   "x": 577,
+   "choice": "apex_pull_back",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 8,
+   "kind": "takeoff",
+   "x": 519,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 31,
+   "x_after": 600
+  },
+  {
+   "decision": 9,
+   "kind": "takeoff",
+   "x": 600,
+   "grounded": false,
+   "macro": "noop",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 612
+  },
+  {
+   "decision": 10,
+   "kind": "takeoff",
+   "x": 612,
+   "grounded": true,
+   "macro": "right",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 619
+  },
+  {
+   "decision": 11,
+   "kind": "takeoff",
+   "x": 619,
+   "grounded": true,
+   "macro": "right",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 630
+  },
+  {
+   "decision": 12,
+   "kind": "takeoff",
+   "x": 630,
+   "grounded": true,
+   "macro": "right",
+   "status": "selected",
+   "frames": 18,
+   "x_after": 661
+  },
+  {
+   "decision": 12,
+   "kind": "apex",
+   "x": 738,
+   "choice": "apex_pull_back",
+   "frame": 28,
+   "vx": 3.0
+  },
+  {
+   "decision": 13,
+   "kind": "takeoff",
+   "x": 661,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 37,
+   "x_after": 761
+  },
+  {
+   "decision": 14,
+   "kind": "takeoff",
+   "x": 761,
+   "grounded": true,
+   "macro": "right",
+   "status": "selected",
+   "frames": 41,
+   "x_after": 833
+  },
+  {
+   "decision": 14,
+   "kind": "apex",
+   "x": 910,
+   "choice": "apex_pull_back",
+   "frame": 28,
+   "vx": 3.0
+  },
+  {
+   "decision": 15,
+   "kind": "takeoff",
+   "x": 833,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 37,
+   "x_after": 933
+  },
+  {
+   "decision": 15,
+   "kind": "apex",
+   "x": 981,
+   "choice": "apex_brake",
+   "frame": 17,
+   "vx": 3.0
+  },
+  {
+   "decision": 16,
+   "kind": "takeoff",
+   "x": 933,
+   "grounded": true,
+   "macro": "right_run_jump_short",
+   "status": "selected",
+   "frames": 43,
+   "x_after": 1040
+  },
+  {
+   "decision": 17,
+   "kind": "takeoff",
+   "x": 1040,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1059
+  },
+  {
+   "decision": 17,
+   "kind": "apex",
+   "x": 1125,
+   "choice": "apex_brake",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 18,
+   "kind": "takeoff",
+   "x": 1059,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 1167
+  },
+  {
+   "decision": 18,
+   "kind": "apex",
+   "x": 1246,
+   "choice": "apex_pull_back",
+   "frame": 28,
+   "vx": 3.0
+  },
+  {
+   "decision": 19,
+   "kind": "takeoff",
+   "x": 1167,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 37,
+   "x_after": 1269
+  },
+  {
+   "decision": 20,
+   "kind": "takeoff",
+   "x": 1269,
+   "grounded": true,
+   "macro": "right",
+   "status": "selected",
+   "frames": 21,
+   "x_after": 1306
+  },
+  {
+   "decision": 21,
+   "kind": "takeoff",
+   "x": 1306,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1324
+  },
+  {
+   "decision": 22,
+   "kind": "takeoff",
+   "x": 1324,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1347
+  },
+  {
+   "decision": 22,
+   "kind": "apex",
+   "x": 1413,
+   "choice": "apex_pull_back",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 23,
+   "kind": "takeoff",
+   "x": 1347,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 40,
+   "x_after": 1450
+  },
+  {
+   "decision": 23,
+   "kind": "apex",
+   "x": 1497,
+   "choice": "apex_keep",
+   "frame": 28,
+   "vx": 1.75
+  },
+  {
+   "decision": 24,
+   "kind": "takeoff",
+   "x": 1450,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 34,
+   "x_after": 1507
+  },
+  {
+   "decision": 25,
+   "kind": "takeoff",
+   "x": 1507,
+   "grounded": true,
+   "macro": "right",
+   "status": "selected",
+   "frames": 23,
+   "x_after": 1570
+  },
+  {
+   "decision": 26,
+   "kind": "takeoff",
+   "x": 1570,
+   "grounded": true,
+   "macro": "noop",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1582
+  },
+  {
+   "decision": 26,
+   "kind": "apex",
+   "x": 1598,
+   "choice": "apex_keep",
+   "frame": 12,
+   "vx": 1.75
+  },
+  {
+   "decision": 27,
+   "kind": "takeoff",
+   "x": 1582,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 22,
+   "x_after": 1616
+  },
+  {
+   "decision": 27,
+   "kind": "apex",
+   "x": 1693,
+   "choice": "apex_brake",
+   "frame": 28,
+   "vx": 3.0
+  },
+  {
+   "decision": 28,
+   "kind": "takeoff",
+   "x": 1616,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 50,
+   "x_after": 1744
+  },
+  {
+   "decision": 28,
+   "kind": "apex",
+   "x": 1823,
+   "choice": "apex_brake",
+   "frame": 28,
+   "vx": 3.0
+  },
+  {
+   "decision": 29,
+   "kind": "takeoff",
+   "x": 1744,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 50,
+   "x_after": 1874
+  },
+  {
+   "decision": 30,
+   "kind": "takeoff",
+   "x": 1874,
+   "grounded": true,
+   "macro": "noop",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 1887
+  },
+  {
+   "decision": 30,
+   "kind": "apex",
+   "x": 1922,
+   "choice": "apex_keep",
+   "frame": 21,
+   "vx": 1.75
+  },
+  {
+   "decision": 31,
+   "kind": "takeoff",
+   "x": 1887,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 54,
+   "x_after": 1980
+  },
+  {
+   "decision": 31,
+   "kind": "apex",
+   "x": 2039,
+   "choice": "apex_pull_back",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 32,
+   "kind": "takeoff",
+   "x": 1980,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 27,
+   "x_after": 2053
+  },
+  {
+   "decision": 32,
+   "kind": "apex",
+   "x": 2079,
+   "choice": "apex_brake",
+   "frame": 9,
+   "vx": 3.0
+  },
+  {
+   "decision": 33,
+   "kind": "takeoff",
+   "x": 2053,
+   "grounded": false,
+   "macro": "right_run_jump_short",
+   "status": "selected",
+   "frames": 31,
+   "x_after": 2116
+  },
+  {
+   "decision": 33,
+   "kind": "apex",
+   "x": 2150,
+   "choice": "apex_keep",
+   "frame": 21,
+   "vx": 1.75
+  },
+  {
+   "decision": 34,
+   "kind": "takeoff",
+   "x": 2116,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 29,
+   "x_after": 2164
+  },
+  {
+   "decision": 34,
+   "kind": "apex",
+   "x": 2221,
+   "choice": "apex_keep",
+   "frame": 21,
+   "vx": 3.0
+  },
+  {
+   "decision": 35,
+   "kind": "takeoff",
+   "x": 2164,
+   "grounded": false,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 42,
+   "x_after": 2284
+  },
+  {
+   "decision": 36,
+   "kind": "takeoff",
+   "x": 2284,
+   "grounded": true,
+   "macro": "left",
+   "status": "selected",
+   "frames": 11,
+   "x_after": 2310
+  },
+  {
+   "decision": 37,
+   "kind": "takeoff",
+   "x": 2310,
+   "grounded": true,
+   "macro": "right_run",
+   "status": "selected",
+   "frames": 8,
+   "x_after": 2329
+  },
+  {
+   "decision": 37,
+   "kind": "apex",
+   "x": 2394,
+   "choice": "apex_brake",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 38,
+   "kind": "takeoff",
+   "x": 2329,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 27,
+   "x_after": 2408
+  },
+  {
+   "decision": 38,
+   "kind": "apex",
+   "x": 2470,
+   "choice": "apex_keep",
+   "frame": 21,
+   "vx": 3.0
+  },
+  {
+   "decision": 39,
+   "kind": "takeoff",
+   "x": 2408,
+   "grounded": false,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 52,
+   "x_after": 2563
+  },
+  {
+   "decision": 39,
+   "kind": "apex",
+   "x": 2614,
+   "choice": "apex_keep",
+   "frame": 17,
+   "vx": 3.0
+  },
+  {
+   "decision": 40,
+   "kind": "takeoff",
+   "x": 2563,
+   "grounded": true,
+   "macro": "right_run_jump_short",
+   "status": "selected",
+   "frames": 24,
+   "x_after": 2635
+  },
+  {
+   "decision": 40,
+   "kind": "apex",
+   "x": 2644,
+   "choice": "apex_keep",
+   "frame": 3,
+   "vx": 3.0
+  },
+  {
+   "decision": 41,
+   "kind": "takeoff",
+   "x": 2635,
+   "grounded": true,
+   "macro": "right_run_jump_short",
+   "status": "selected",
+   "frames": 11,
+   "x_after": 2668
+  },
+  {
+   "decision": 41,
+   "kind": "apex",
+   "x": 2698,
+   "choice": "apex_pull_back",
+   "frame": 10,
+   "vx": 3.0
+  },
+  {
+   "decision": 42,
+   "kind": "takeoff",
+   "x": 2668,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 33,
+   "x_after": 2731
+  },
+  {
+   "decision": 42,
+   "kind": "apex",
+   "x": 2734,
+   "choice": "apex_keep",
+   "frame": 12,
+   "vx": 0.6875
+  },
+  {
+   "decision": 43,
+   "kind": "takeoff",
+   "x": 2731,
+   "grounded": true,
+   "macro": "right_jump_full",
+   "status": "selected",
+   "frames": 47,
+   "x_after": 2787
+  },
+  {
+   "decision": 43,
+   "kind": "apex",
+   "x": 2845,
+   "choice": "apex_pull_back",
+   "frame": 22,
+   "vx": 3.0
+  },
+  {
+   "decision": 44,
+   "kind": "takeoff",
+   "x": 2787,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 34,
+   "x_after": 2874
+  },
+  {
+   "decision": 44,
+   "kind": "apex",
+   "x": 2951,
+   "choice": "apex_brake",
+   "frame": 28,
+   "vx": 3.0
+  },
+  {
+   "decision": 45,
+   "kind": "takeoff",
+   "x": 2874,
+   "grounded": true,
+   "macro": "right_run_jump_full",
+   "status": "selected",
+   "frames": 37,
+   "x_after": 2974
+  },
+  {
+   "decision": 45,
+   "kind": "apex",
+   "x": 3032,
+   "choice": "apex_keep",
+   "frame": 21,
+   "vx": 3.0
+  },
+  {
+   "decision": 46,
+   "kind": "takeoff",
+   "x": 2974,
+   "grounded": false,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 58,
+   "x_after": 3143
+  },
+  {
+   "decision": 47,
+   "kind": "takeoff",
+   "x": 3143,
+   "grounded": true,
+   "macro": "right_run_jump_mid",
+   "status": "selected",
+   "frames": 5,
+   "x_after": 3161
+  }
+ ],
+ "decisions": [
+  {
+   "action": "right_run_jump_short",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_short",
+    "explored": false,
+    "values": {
+     "left": 0.003507,
+     "noop": 0.003619,
+     "right": 0.003664,
+     "right_jump_full": 0.003667,
+     "right_run": 0.003916,
+     "right_run_jump_full": 0.005709,
+     "right_run_jump_mid": 0.003533,
+     "right_run_jump_short": 0.006099
+    },
+    "counts": {
+     "selected": 1
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_short",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_short",
+    "explored": false,
+    "values": {
+     "left": 0.002672,
+     "noop": 0.002602,
+     "right": 0.003193,
+     "right_jump_full": 0.004764,
+     "right_run": 0.003984,
+     "right_run_jump_full": 0.00382,
+     "right_run_jump_mid": 0.004008,
+     "right_run_jump_short": 0.006999
+    },
+    "counts": {
+     "selected": 2
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_short",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_short",
+    "explored": false,
+    "values": {
+     "left": 0.003139,
+     "noop": 0.002937,
+     "right": 0.003368,
+     "right_jump_full": 0.00387,
+     "right_run": 0.003399,
+     "right_run_jump_full": 0.003411,
+     "right_run_jump_mid": 0.003507,
+     "right_run_jump_short": 0.006608
+    },
+    "counts": {
+     "selected": 3
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_short",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_short",
+    "explored": false,
+    "values": {
+     "left": 0.002595,
+     "noop": 0.005968,
+     "right": 0.002493,
+     "right_jump_full": 0.004878,
+     "right_run": 0.003139,
+     "right_run_jump_full": 0.005595,
+     "right_run_jump_mid": 0.003847,
+     "right_run_jump_short": 0.005841
+    },
+    "counts": {
+     "selected": 4
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_short",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_short",
+    "explored": false,
+    "values": {
+     "left": 0.003633,
+     "noop": 0.003681,
+     "right": 0.003681,
+     "right_jump_full": 0.004112,
+     "right_run": 0.004875,
+     "right_run_jump_full": 0.004304,
+     "right_run_jump_mid": 0.004171,
+     "right_run_jump_short": 0.005686
+    },
+    "counts": {
+     "selected": 5
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.00368,
+     "noop": 0.003606,
+     "right": 0.003764,
+     "right_jump_full": 0.00387,
+     "right_run": 0.00503,
+     "right_run_jump_full": 0.005108,
+     "right_run_jump_mid": 0.005353,
+     "right_run_jump_short": 0.004738
+    },
+    "counts": {
+     "selected": 6
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right",
+    "explored": false,
+    "values": {
+     "left": 0.003132,
+     "noop": 0.003109,
+     "right": 0.004797,
+     "right_jump_full": 0.002781,
+     "right_run": 0.004224,
+     "right_run_jump_full": 0.003404,
+     "right_run_jump_mid": 0.003227,
+     "right_run_jump_short": 0.004124
+    },
+    "counts": {
+     "selected": 7
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.00216,
+     "noop": 0.002186,
+     "right": 0.00358,
+     "right_jump_full": 0.003499,
+     "right_run": 0.003684,
+     "right_run_jump_full": 0.004536,
+     "right_run_jump_mid": 0.005068,
+     "right_run_jump_short": 0.003937
+    },
+    "counts": {
+     "selected": 8
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "noop",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "noop",
+    "explored": false,
+    "values": {
+     "left": 0.002301,
+     "noop": 0.00484,
+     "right": 0.002989,
+     "right_jump_full": 0.003958,
+     "right_run": 0.003223,
+     "right_run_jump_full": 0.004317,
+     "right_run_jump_mid": 0.00371,
+     "right_run_jump_short": 0.003738
+    },
+    "counts": {
+     "selected": 9
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right",
+    "explored": false,
+    "values": {
+     "left": 0.001332,
+     "noop": 0.003463,
+     "right": 0.005223,
+     "right_jump_full": 0.002703,
+     "right_run": 0.004624,
+     "right_run_jump_full": 0.004201,
+     "right_run_jump_mid": 0.003143,
+     "right_run_jump_short": 0.003961
+    },
+    "counts": {
+     "selected": 10
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right",
+    "explored": false,
+    "values": {
+     "left": 0.002357,
+     "noop": 0.003295,
+     "right": 0.005166,
+     "right_jump_full": 0.004092,
+     "right_run": 0.004293,
+     "right_run_jump_full": 0.00401,
+     "right_run_jump_mid": 0.003719,
+     "right_run_jump_short": 0.00415
+    },
+    "counts": {
+     "selected": 11
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right",
+    "explored": false,
+    "values": {
+     "left": 0.001716,
+     "noop": 0.003823,
+     "right": 0.005684,
+     "right_jump_full": 0.003542,
+     "right_run": 0.00488,
+     "right_run_jump_full": 0.004667,
+     "right_run_jump_mid": 0.003607,
+     "right_run_jump_short": 0.004561
+    },
+    "counts": {
+     "selected": 12
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.001571,
+     "noop": 0.002884,
+     "right": 0.003005,
+     "right_jump_full": 0.003676,
+     "right_run": 0.002875,
+     "right_run_jump_full": 0.005879,
+     "right_run_jump_mid": 0.003606,
+     "right_run_jump_short": 0.003449
+    },
+    "counts": {
+     "selected": 13
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right",
+    "explored": false,
+    "values": {
+     "left": 0.001412,
+     "noop": 0.004163,
+     "right": 0.005872,
+     "right_jump_full": 0.004702,
+     "right_run": 0.003825,
+     "right_run_jump_full": 0.004856,
+     "right_run_jump_mid": 0.004398,
+     "right_run_jump_short": 0.004544
+    },
+    "counts": {
+     "selected": 14
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.003621,
+     "noop": 0.002901,
+     "right": 0.0039,
+     "right_jump_full": 0.004966,
+     "right_run": 0.004582,
+     "right_run_jump_full": 0.006581,
+     "right_run_jump_mid": 0.005057,
+     "right_run_jump_short": 0.003917
+    },
+    "counts": {
+     "selected": 15
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_short",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_short",
+    "explored": false,
+    "values": {
+     "left": 0.002613,
+     "noop": 0.001723,
+     "right": 0.003885,
+     "right_jump_full": 0.003561,
+     "right_run": 0.003545,
+     "right_run_jump_full": 0.003828,
+     "right_run_jump_mid": 0.00427,
+     "right_run_jump_short": 0.006559
+    },
+    "counts": {
+     "selected": 16
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.002633,
+     "noop": 0.003085,
+     "right": 0.003023,
+     "right_jump_full": 0.004176,
+     "right_run": 0.006423,
+     "right_run_jump_full": 0.005152,
+     "right_run_jump_mid": 0.004214,
+     "right_run_jump_short": 0.004382
+    },
+    "counts": {
+     "selected": 17
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.002296,
+     "noop": 0.003164,
+     "right": 0.002723,
+     "right_jump_full": 0.005235,
+     "right_run": 0.004489,
+     "right_run_jump_full": 0.005296,
+     "right_run_jump_mid": 0.006427,
+     "right_run_jump_short": 0.005081
+    },
+    "counts": {
+     "selected": 18
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.001795,
+     "noop": 0.003692,
+     "right": 0.001823,
+     "right_jump_full": 0.003007,
+     "right_run": 0.002742,
+     "right_run_jump_full": 0.005294,
+     "right_run_jump_mid": 0.002746,
+     "right_run_jump_short": 0.003497
+    },
+    "counts": {
+     "selected": 19
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right",
+    "explored": false,
+    "values": {
+     "left": 0.002407,
+     "noop": 0.004698,
+     "right": 0.005653,
+     "right_jump_full": 0.005094,
+     "right_run": 0.004184,
+     "right_run_jump_full": 0.005091,
+     "right_run_jump_mid": 0.003451,
+     "right_run_jump_short": 0.004973
+    },
+    "counts": {
+     "selected": 20
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.002206,
+     "noop": 0.001936,
+     "right": 0.002315,
+     "right_jump_full": 0.003746,
+     "right_run": 0.005663,
+     "right_run_jump_full": 0.003967,
+     "right_run_jump_mid": 0.00335,
+     "right_run_jump_short": 0.002858
+    },
+    "counts": {
+     "selected": 21
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.002121,
+     "noop": 0.002704,
+     "right": 0.002661,
+     "right_jump_full": 0.003877,
+     "right_run": 0.005907,
+     "right_run_jump_full": 0.004412,
+     "right_run_jump_mid": 0.003877,
+     "right_run_jump_short": 0.004084
+    },
+    "counts": {
+     "selected": 22
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.001857,
+     "noop": 0.003384,
+     "right": 0.002348,
+     "right_jump_full": 0.004674,
+     "right_run": 0.003315,
+     "right_run_jump_full": 0.004519,
+     "right_run_jump_mid": 0.005632,
+     "right_run_jump_short": 0.004413
+    },
+    "counts": {
+     "selected": 23
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.001508,
+     "noop": 0.003312,
+     "right": 0.001314,
+     "right_jump_full": 0.002347,
+     "right_run": 0.002577,
+     "right_run_jump_full": 0.004496,
+     "right_run_jump_mid": 0.002546,
+     "right_run_jump_short": 0.002849
+    },
+    "counts": {
+     "selected": 24
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right",
+    "explored": false,
+    "values": {
+     "left": 0.001224,
+     "noop": 0.004194,
+     "right": 0.005795,
+     "right_jump_full": 0.004379,
+     "right_run": 0.004683,
+     "right_run_jump_full": 0.004868,
+     "right_run_jump_mid": 0.003339,
+     "right_run_jump_short": 0.004595
+    },
+    "counts": {
+     "selected": 25
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "noop",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "noop",
+    "explored": false,
+    "values": {
+     "left": 0.002565,
+     "noop": 0.005112,
+     "right": 0.002537,
+     "right_jump_full": 0.003977,
+     "right_run": 0.002887,
+     "right_run_jump_full": 0.004303,
+     "right_run_jump_mid": 0.002915,
+     "right_run_jump_short": 0.004122
+    },
+    "counts": {
+     "selected": 26
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.002032,
+     "noop": 0.002127,
+     "right": 0.002104,
+     "right_jump_full": 0.002522,
+     "right_run": 0.00319,
+     "right_run_jump_full": 0.00283,
+     "right_run_jump_mid": 0.004766,
+     "right_run_jump_short": 0.003496
+    },
+    "counts": {
+     "selected": 27
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.001529,
+     "noop": 0.00384,
+     "right": 0.001866,
+     "right_jump_full": 0.003399,
+     "right_run": 0.003096,
+     "right_run_jump_full": 0.006327,
+     "right_run_jump_mid": 0.003863,
+     "right_run_jump_short": 0.003636
+    },
+    "counts": {
+     "selected": 28
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.00174,
+     "noop": 0.003638,
+     "right": 0.001679,
+     "right_jump_full": 0.003375,
+     "right_run": 0.00256,
+     "right_run_jump_full": 0.004737,
+     "right_run_jump_mid": 0.002627,
+     "right_run_jump_short": 0.002956
+    },
+    "counts": {
+     "selected": 29
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "noop",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "noop",
+    "explored": false,
+    "values": {
+     "left": 0.001902,
+     "noop": 0.004533,
+     "right": 0.001907,
+     "right_jump_full": 0.00324,
+     "right_run": 0.002846,
+     "right_run_jump_full": 0.003759,
+     "right_run_jump_mid": 0.002594,
+     "right_run_jump_short": 0.003785
+    },
+    "counts": {
+     "selected": 30
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.001553,
+     "noop": 0.002321,
+     "right": 0.001673,
+     "right_jump_full": 0.002229,
+     "right_run": 0.002532,
+     "right_run_jump_full": 0.002529,
+     "right_run_jump_mid": 0.004368,
+     "right_run_jump_short": 0.003053
+    },
+    "counts": {
+     "selected": 31
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.001772,
+     "noop": 0.002636,
+     "right": 0.00133,
+     "right_jump_full": 0.003049,
+     "right_run": 0.00276,
+     "right_run_jump_full": 0.003321,
+     "right_run_jump_mid": 0.005535,
+     "right_run_jump_short": 0.002769
+    },
+    "counts": {
+     "selected": 32
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_short",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_short",
+    "explored": false,
+    "values": {
+     "left": 0.002561,
+     "noop": 0.002808,
+     "right": 0.002855,
+     "right_jump_full": 0.003551,
+     "right_run": 0.003809,
+     "right_run_jump_full": 0.003522,
+     "right_run_jump_mid": 0.003721,
+     "right_run_jump_short": 0.005474
+    },
+    "counts": {
+     "selected": 33
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.002031,
+     "noop": 0.002908,
+     "right": 0.003413,
+     "right_jump_full": 0.004188,
+     "right_run": 0.004043,
+     "right_run_jump_full": 0.004579,
+     "right_run_jump_mid": 0.005274,
+     "right_run_jump_short": 0.003873
+    },
+    "counts": {
+     "selected": 34
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.002032,
+     "noop": 0.003291,
+     "right": 0.004559,
+     "right_jump_full": 0.005035,
+     "right_run": 0.0046,
+     "right_run_jump_full": 0.00516,
+     "right_run_jump_mid": 0.006722,
+     "right_run_jump_short": 0.004475
+    },
+    "counts": {
+     "selected": 35
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "left",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "left",
+    "explored": false,
+    "values": {
+     "left": 0.006255,
+     "noop": 0.003605,
+     "right": 0.004217,
+     "right_jump_full": 0.003896,
+     "right_run": 0.004103,
+     "right_run_jump_full": 0.004397,
+     "right_run_jump_mid": 0.004328,
+     "right_run_jump_short": 0.004244
+    },
+    "counts": {
+     "selected": 36
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run",
+    "explored": false,
+    "values": {
+     "left": 0.002824,
+     "noop": 0.002995,
+     "right": 0.003445,
+     "right_jump_full": 0.003891,
+     "right_run": 0.006196,
+     "right_run_jump_full": 0.005392,
+     "right_run_jump_mid": 0.004676,
+     "right_run_jump_short": 0.004618
+    },
+    "counts": {
+     "selected": 37
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.001624,
+     "noop": 0.003474,
+     "right": 0.00345,
+     "right_jump_full": 0.004759,
+     "right_run": 0.005334,
+     "right_run_jump_full": 0.005568,
+     "right_run_jump_mid": 0.006062,
+     "right_run_jump_short": 0.005037
+    },
+    "counts": {
+     "selected": 38
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.001658,
+     "noop": 0.003035,
+     "right": 0.002946,
+     "right_jump_full": 0.004276,
+     "right_run": 0.003569,
+     "right_run_jump_full": 0.004243,
+     "right_run_jump_mid": 0.005589,
+     "right_run_jump_short": 0.004441
+    },
+    "counts": {
+     "selected": 39
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_short",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_short",
+    "explored": false,
+    "values": {
+     "left": 0.004664,
+     "noop": 0.003311,
+     "right": 0.003257,
+     "right_jump_full": 0.003575,
+     "right_run": 0.004174,
+     "right_run_jump_full": 0.00456,
+     "right_run_jump_mid": 0.004565,
+     "right_run_jump_short": 0.004711
+    },
+    "counts": {
+     "selected": 40
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_short",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_short",
+    "explored": false,
+    "values": {
+     "left": 0.003334,
+     "noop": 0.00292,
+     "right": 0.003927,
+     "right_jump_full": 0.004243,
+     "right_run": 0.003877,
+     "right_run_jump_full": 0.004055,
+     "right_run_jump_mid": 0.004413,
+     "right_run_jump_short": 0.004763
+    },
+    "counts": {
+     "selected": 41
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.002332,
+     "noop": 0.003627,
+     "right": 0.002179,
+     "right_jump_full": 0.003561,
+     "right_run": 0.002495,
+     "right_run_jump_full": 0.004584,
+     "right_run_jump_mid": 0.003329,
+     "right_run_jump_short": 0.004406
+    },
+    "counts": {
+     "selected": 42
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.001279,
+     "noop": 0.003058,
+     "right": 0.001507,
+     "right_jump_full": 0.004811,
+     "right_run": 0.002956,
+     "right_run_jump_full": 0.00331,
+     "right_run_jump_mid": 0.004622,
+     "right_run_jump_short": 0.003442
+    },
+    "counts": {
+     "selected": 43
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.003045,
+     "noop": 0.002863,
+     "right": 0.003483,
+     "right_jump_full": 0.005047,
+     "right_run": 0.004578,
+     "right_run_jump_full": 0.005096,
+     "right_run_jump_mid": 0.00592,
+     "right_run_jump_short": 0.004184
+    },
+    "counts": {
+     "selected": 44
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_full",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_full",
+    "explored": false,
+    "values": {
+     "left": 0.00328,
+     "noop": 0.003042,
+     "right": 0.004372,
+     "right_jump_full": 0.004294,
+     "right_run": 0.004607,
+     "right_run_jump_full": 0.005864,
+     "right_run_jump_mid": 0.004868,
+     "right_run_jump_short": 0.004403
+    },
+    "counts": {
+     "selected": 45
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.002419,
+     "noop": 0.003202,
+     "right": 0.00446,
+     "right_jump_full": 0.004592,
+     "right_run": 0.004395,
+     "right_run_jump_full": 0.00491,
+     "right_run_jump_mid": 0.006338,
+     "right_run_jump_short": 0.004602
+    },
+    "counts": {
+     "selected": 46
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "action": "right_run_jump_mid",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-takeoff",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5017777936045753,
+    "sample_count": 5446,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "right_run_jump_mid",
+    "explored": false,
+    "values": {
+     "left": 0.0066,
+     "noop": 0.004772,
+     "right": 0.006352,
+     "right_jump_full": 0.006421,
+     "right_run": 0.005347,
+     "right_run_jump_full": 0.006362,
+     "right_run_jump_mid": 0.006514,
+     "right_run_jump_short": 0.006205
+    },
+    "counts": {
+     "selected": 47
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  }
+ ],
+ "apex": [
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.002795,
+     "apex_keep": 0.006755,
+     "apex_pull_back": 0.004054
+    },
+    "counts": {
+     "selected": 1
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.003858,
+     "apex_keep": 0.006897,
+     "apex_pull_back": 0.003218
+    },
+    "counts": {
+     "selected": 2
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004947,
+     "apex_keep": 0.006273,
+     "apex_pull_back": 0.004833
+    },
+    "counts": {
+     "selected": 3
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_brake",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_brake",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.005747,
+     "apex_keep": 0.005306,
+     "apex_pull_back": 0.004335
+    },
+    "counts": {
+     "selected": 4
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004333,
+     "apex_keep": 0.005659,
+     "apex_pull_back": 0.003
+    },
+    "counts": {
+     "selected": 5
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_brake",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_brake",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.005018,
+     "apex_keep": 0.004788,
+     "apex_pull_back": 0.003918
+    },
+    "counts": {
+     "selected": 6
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_pull_back",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_pull_back",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.001802,
+     "apex_keep": 0.002908,
+     "apex_pull_back": 0.004646
+    },
+    "counts": {
+     "selected": 7
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_pull_back",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_pull_back",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004175,
+     "apex_keep": 0.005252,
+     "apex_pull_back": 0.005835
+    },
+    "counts": {
+     "selected": 8
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_pull_back",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_pull_back",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.006102,
+     "apex_keep": 0.005252,
+     "apex_pull_back": 0.006464
+    },
+    "counts": {
+     "selected": 9
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_brake",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_brake",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.00627,
+     "apex_keep": 0.004761,
+     "apex_pull_back": 0.003288
+    },
+    "counts": {
+     "selected": 10
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_brake",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_brake",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.005809,
+     "apex_keep": 0.004827,
+     "apex_pull_back": 0.00438
+    },
+    "counts": {
+     "selected": 11
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_pull_back",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_pull_back",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004646,
+     "apex_keep": 0.005325,
+     "apex_pull_back": 0.005731
+    },
+    "counts": {
+     "selected": 12
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_pull_back",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_pull_back",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004643,
+     "apex_keep": 0.004577,
+     "apex_pull_back": 0.005124
+    },
+    "counts": {
+     "selected": 13
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.001146,
+     "apex_keep": 0.005305,
+     "apex_pull_back": 0.003842
+    },
+    "counts": {
+     "selected": 14
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.001858,
+     "apex_keep": 0.005869,
+     "apex_pull_back": 0.004593
+    },
+    "counts": {
+     "selected": 15
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_brake",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_brake",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.005647,
+     "apex_keep": 0.003923,
+     "apex_pull_back": 0.002851
+    },
+    "counts": {
+     "selected": 16
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_brake",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_brake",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004362,
+     "apex_keep": 0.004277,
+     "apex_pull_back": 0.002493
+    },
+    "counts": {
+     "selected": 17
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.001878,
+     "apex_keep": 0.005123,
+     "apex_pull_back": 0.00412
+    },
+    "counts": {
+     "selected": 18
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_pull_back",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_pull_back",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004476,
+     "apex_keep": 0.004429,
+     "apex_pull_back": 0.0055
+    },
+    "counts": {
+     "selected": 19
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_brake",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_brake",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.005768,
+     "apex_keep": 0.00557,
+     "apex_pull_back": 0.003864
+    },
+    "counts": {
+     "selected": 20
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.002377,
+     "apex_keep": 0.004712,
+     "apex_pull_back": 0.002316
+    },
+    "counts": {
+     "selected": 21
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004431,
+     "apex_keep": 0.006202,
+     "apex_pull_back": 0.002955
+    },
+    "counts": {
+     "selected": 22
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_brake",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_brake",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.005415,
+     "apex_keep": 0.004225,
+     "apex_pull_back": 0.003709
+    },
+    "counts": {
+     "selected": 23
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.003832,
+     "apex_keep": 0.005193,
+     "apex_pull_back": 0.003353
+    },
+    "counts": {
+     "selected": 24
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004915,
+     "apex_keep": 0.005394,
+     "apex_pull_back": 0.004066
+    },
+    "counts": {
+     "selected": 25
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004405,
+     "apex_keep": 0.005524,
+     "apex_pull_back": 0.004309
+    },
+    "counts": {
+     "selected": 26
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_pull_back",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_pull_back",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.002649,
+     "apex_keep": 0.003247,
+     "apex_pull_back": 0.00349
+    },
+    "counts": {
+     "selected": 27
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.002679,
+     "apex_keep": 0.005924,
+     "apex_pull_back": 0.001916
+    },
+    "counts": {
+     "selected": 28
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_pull_back",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_pull_back",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.004313,
+     "apex_keep": 0.004581,
+     "apex_pull_back": 0.006116
+    },
+    "counts": {
+     "selected": 29
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_brake",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_brake",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.005824,
+     "apex_keep": 0.0053,
+     "apex_pull_back": 0.005834
+    },
+    "counts": {
+     "selected": 30
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  },
+  {
+   "choice": "apex_keep",
+   "status": "selected",
+   "telemetry": {
+    "domain": "mario-zero2-apex",
+    "model_type": "extra_trees",
+    "validation_skill": 0.5609716329888701,
+    "sample_count": 3049,
+    "status": "selected",
+    "reason": null,
+    "tie_size": 1,
+    "server_policy": "apex_keep",
+    "explored": false,
+    "values": {
+     "apex_brake": 0.005944,
+     "apex_keep": 0.006764,
+     "apex_pull_back": 0.004291
+    },
+    "counts": {
+     "selected": 31
+    },
+    "episode_id": null,
+    "step": null,
+    "learning": true,
+    "last_feedback": null
+   }
+  }
+ ]
+}

@@ -37,6 +37,22 @@ two domain recipes don't: the server refits its model as rows arrive, and the sa
 differently. Machina sees Mario's position and learns one fixed sequence; the domain recipes see no position and react
 to what's on screen.
 
+## Watch it play
+
+The zero-start learners playing 1-1 with learning switched off (a frozen run on 2026-10-02). At every decision the
+panel shows Adapt-1's score for each of the 8 moves, and at the top of each jump its keep / brake / pull back choice.
+
+<!-- VIDEO: drop dashboard-live-zero-start.mp4 on this line -->
+
+Machina replaying the button sequence it found: the command now playing, how long each button is held, and the whole
+244-command sequence with a playhead.
+
+<!-- VIDEO: drop dashboard-machina.mp4 on this line -->
+
+Both clips render offline from the files in this repo:
+`python scripts/dashboard_live.py --from-evidence runs/dashboard/zero-start-2026-10-02.json --out zero-start.mp4`
+and `python scripts/machina_dashboard.py --journal runs/machina/logs/mario-machina-z7r-frozen-SuperMarioBros-1-1-v0-20261002T044720Z.jsonl.gz --out machina.mp4`.
+
 ## Run it
 
 [`REPRODUCE.md`](REPRODUCE.md) has every command. The short version:
@@ -60,7 +76,7 @@ Offline steps cost nothing. Coding agents: read [`AGENTS.md`](AGENTS.md) first.
 src/typesafe_mario/   harness, parser, features, Adapt-1 client (stdlib only), learning loops
 scripts/              the commands in REPRODUCE.md; historical/ = an exact older generator the warm-start data needs
 tests/                offline tests (no key, no network)
-runs/                 the evidence: machina/, warm-start/, zero-start/stage-1..5/, each with a sha256 index
+runs/                 the evidence: machina/, warm-start/, zero-start/stage-1..5/, dashboard/, each with a sha256 index
 ```
 
 No Nintendo ROM or other game data is included (see [`NOTICE`](NOTICE)). Our code is MIT.
