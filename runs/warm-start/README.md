@@ -1,5 +1,9 @@
 # Warm start: 1-1 cleared on 5/5 seeds (2026-10-01)
 
+Run it: [`REPRODUCE.md` §4](../../REPRODUCE.md#4-warm-start-1017-records) (1,017 Records).
+
+![seed 777 reaches the flag](1-1-seed777.gif)
+
 Two Adapt-1 domains, fed recorded rows and then evaluated frozen:
 
 | domain | decides | features | rows fed |
@@ -17,7 +21,7 @@ the clear.
 
 | file | what |
 |---|---|
-| `w28count-v3-takeoff.jsonl.gz`, `w28count-v3-apex.jsonl.gz` | the exact rows fed (gunzip before ingesting) |
+| `w28count-v3-takeoff.jsonl.gz`, `w28count-v3-apex.jsonl.gz` | the exact rows fed (gunzip before ingesting). Named after the row counts of our first clear |
 | `mario-gate4-takeoff-*.json`, `mario-gate4-apex-*.json` | ingest records: the domain config sent, rows fed, reward field; with provenance |
 | `1-1-seed*.trace.jsonl`, `1-1-seed*.gif`, `eval.log` | the five frozen evaluations, decision by decision |
 | `index.json` | sha256 of every file (`scripts/pub/verify_runs.py`) |
@@ -42,11 +46,14 @@ python scripts/kstep_returns.py --dataset $D/coverage.jsonl --out $D/coverage-r.
 python scripts/assemble_apex_feed.py --demos $D/curated.jsonl --coverage $D/coverage-r.jsonl --out $D/apex-feed.jsonl
 ```
 
-**Takeoff feed.** Every one of its 640 rows is an exact row of these pools: 341 curated demonstration rows, 121
-coverage rows, 55 demonstration rows with a random move, and 123 rows for rarely used macros from a second coverage
-pool (`scripts/historical/apex_coverage_d6faa03_v2.py --follow best --write-mainline --stride 3 --macros $MACROS`,
-then the same returns). Each segment rotates through the macros. The exact choice of coverage rows was not recorded,
-so this file has no assembly script: use the shipped file.
+**Takeoff feed.** All 640 rows come from the same kind of pools, but we did not record exactly which coverage rows were
+picked, so there is no script that rebuilds this file. Use the shipped one. What it contains:
+
+- 341 curated demonstration rows (`curated.jsonl` above);
+- 55 demonstration rows where the teacher made a random move;
+- 121 coverage rows (`coverage-r.jsonl` above);
+- 123 rows for rarely used macros, from a second coverage pool: `scripts/historical/apex_coverage_d6faa03_v2.py
+  --follow best --write-mainline --stride 3 --macros $MACROS`, then the same returns.
 
 ## Caveat
 

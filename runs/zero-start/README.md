@@ -1,10 +1,14 @@
 # Zero start: 1-1 learned from nothing (2026-10-01 → 02)
 
-The same two domains as the warm start (takeoff + apex, `extra_trees`, v3 features), created empty and trained only
-on their own play. Credit: each decision is rewarded with Mario's progress per frame over the next 128 frames. Exploration:
+Run it: [`REPRODUCE.md` §5](../../REPRODUCE.md#5-zero-start--8500-records--15-hours) (≈ 8,500 Records, ≈ 15 hours).
+
+![the first frozen clear, stage 5](stage-5/ep000-seed777.gif)
+
+Two new, empty domains with the same design as the warm start (takeoff + apex, 8 macros, `extra_trees`, v3 features),
+trained only on their own play. Credit: each decision is rewarded with Mario's progress per frame over the next 128 frames. Exploration:
 UCB. Learner row budget (`max_samples`) 16,384, never reached. A frozen evaluation every 25 episodes on seed 777.
 
-| stage | Records | episodes | online clears | frozen reach (start → end of stage) |
+| stage | Records | episodes | online clears | frozen checkpoints (reach) |
 |---|---|---|---|---|
 | 1 | 2,000 | 45 | 1 | 315 → 722 → 2473 |
 | 2 | 2,000 | 27 | 11 | 2020 → 1238 → 2018 |
@@ -29,9 +33,12 @@ the staircase.
 | `console.log` | the loop's console output |
 | `index.json` | sha256 of every file |
 
+Stage 5 also has `confirm-after-refit/` (the five-seed evaluation after the refit) and
+`model-state-after-frozen-clear.json` (the learners' state right after the clear).
+
 ## Reading the numbers
 
 - Frozen reads move by hundreds of pixels between checkpoints even when little has changed. The server refits on every
   new batch of rows. Judge the trend and the online clear rate, not one read.
-- The stage-5 clear is narrow: in stage 4 the same macro chain died one pixel short. The confirmation after the refit
-  is what shows it holds.
+- The first clear was narrow: in stage 4 the same moves died just short. The five-seed confirmation after the refit
+  shows it holds.
