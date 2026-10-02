@@ -42,7 +42,9 @@ to what's on screen.
 The zero-start learners playing 1-1 with learning switched off (a frozen run on 2026-10-02). At every decision the
 panel shows Adapt-1's score for each of the 8 moves, and at the top of each jump its keep / brake / pull back choice.
 
-https://github.com/user-attachments/assets/bfbaba97-368e-41a4-885e-126d177acde0
+
+https://github.com/user-attachments/assets/a659fabd-6d9e-4ef1-aa6c-6358b53d047f
+
 
 Machina replaying the button sequence it found: the command now playing, how long each button is held, and the whole
 244-command sequence with a playhead.
