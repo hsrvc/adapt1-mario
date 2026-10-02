@@ -42,16 +42,12 @@ to what's on screen.
 The zero-start learners playing 1-1 with learning switched off (a frozen run on 2026-10-02). At every decision the
 panel shows Adapt-1's score for each of the 8 moves, and at the top of each jump its keep / brake / pull back choice.
 
-
 https://github.com/user-attachments/assets/bfbaba97-368e-41a4-885e-126d177acde0
-
 
 Machina replaying the button sequence it found: the command now playing, how long each button is held, and the whole
 244-command sequence with a playhead.
 
-
 https://github.com/user-attachments/assets/f6627986-1d24-4e72-b0b5-286f242b9384
-
 
 Both clips render offline from the files in this repo:
 `python scripts/dashboard_live.py --from-evidence runs/dashboard/zero-start-2026-10-02.json --out zero-start.mp4`

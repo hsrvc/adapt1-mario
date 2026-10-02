@@ -229,6 +229,13 @@ def main() -> int:
     ap.add_argument("--hold", type=float, default=2.5)
     ap.add_argument("--evidence-dir", type=Path, default=Path("artifacts/dashboard-live"))
     ap.add_argument(
+        "--wait-installed",
+        type=float,
+        default=900,
+        metavar="SECONDS",
+        help="live runs: wait up to SECONDS while a learner is retraining (default 900)",
+    )
+    ap.add_argument(
         "--from-evidence",
         type=Path,
         default=None,
@@ -247,6 +254,17 @@ def main() -> int:
         apex_policy = Recorder(Recorded(e["apex"], "apex"), looks)
     else:
         client = Adapt1Client()
+        from typesafe_mario.online_duo import wait_installed
+
+        # a learner that is retraining serves a fallback without saying so: film only an installed model
+        waited = wait_installed(
+            client, [args.domain_id, args.apex_domain], timeout_s=args.wait_installed
+        )
+        for dom, st in waited.items():
+            print(
+                f"  {dom}: installed={st.get('installed')} status={st.get('model_status')}",
+                flush=True,
+            )
         policy = Recorder(
             Adapt1Policy(
                 client,

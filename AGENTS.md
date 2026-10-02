@@ -31,4 +31,5 @@ cheap and valid:
 | the numbers sent per decision | `src/typesafe_mario/adapt1_policy.py` (feature sets), `src/typesafe_mario/cadence.py` |
 | feed recorded rows to a domain | `scripts/ingest_demos.py` |
 | evaluate with learning off | `scripts/frozen_eval.py`, `scripts/machina_frozen.py` |
+| film a run on the dashboard | `scripts/dashboard_live.py` (live: about 80 Queries; `--from-evidence`: free), `scripts/machina_dashboard.py` (free) |
 | the warm-start rows | `runs/warm-start/*.jsonl.gz` (rebuild: `runs/warm-start/README.md`) |

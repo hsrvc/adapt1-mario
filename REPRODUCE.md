@@ -95,6 +95,25 @@ and use a new `--out-dir` and `--run-id`. Each stage's settings are in `runs/zer
 18/26 → 19/24 clears per stage, with the first frozen clear at the start of stage 5. Your exact numbers will differ
 (see the note on refits above).
 
+## 6. Watch your run
+
+Film a run on the dashboard, with Adapt-1's score for every move at every decision:
+
+```bash
+python scripts/dashboard_live.py --domain-id my-takeoff-1 --apex-domain my-apex-1 --out my-run.mp4
+```
+
+It plays one frozen run (learning off, no feedback) on your two domains, waits until both models are installed, and
+saves every decision with its scores to `artifacts/dashboard-live/`. Cost: about 80 Queries, 0 Records. To render a
+saved run again for free, pass `--from-evidence <that file>` instead of the domain names.
+
+For Machina, after `machina_frozen.py`, film the sequence it played (offline, nothing spent):
+
+```bash
+python scripts/machina_dashboard.py \
+  --journal "$(ls -t artifacts/machina/my-machina-1-frozen-SuperMarioBros-1-1-v0-*.jsonl | head -1)" --out machina.mp4
+```
+
 ## Regenerating the datasets
 
 Every dataset regenerates from the code, except the warm-start takeoff file (see
