@@ -1,0 +1,51 @@
+=== zero2 stage 3 (hsc, same fresh pair, seeds 72-, caffeinate -i) 2026年10月 1日 週四 22時54分41秒 CST
+  mario-zero2-takeoff: 2571 rows held, budget 16384 — a 2000-Record stage fits
+  mario-zero2-apex: 1430 rows held, budget 16384 — a 2000-Record stage fits
+credit=CreditConfig(kind='frame_horizon', horizon=128, k=6, gamma=0.9) macros=['noop', 'right', 'right_run', 'left', 'right_run_jump_short', 'right_run_jump_mid', 'right_run_jump_full', 'right_jump_full'] cap=2000 Records eval every 25 on seeds (777,)
+[eval ep000] reach=2018 (best 2018 @ep0) flag=[False] records=0 takeoff model=extra_trees consumed=2571/0 apex model=extra_trees consumed=1430/0 server=[{'selected': 47}]
+ep0001 seed=72 x=3161 FLAG dec=52 looks=35 sent=87/87 spent=87/2000 takeoff={'selected': 52} apex={'selected': 35} model=None/None
+ep0002 seed=73 x=705 dead dec=39 looks=7 sent=46/46 spent=133/2000 takeoff={'selected': 39} apex={'selected': 7} model=None/None
+ep0003 seed=74 x=2473 dead dec=45 looks=26 sent=71/71 spent=204/2000 takeoff={'selected': 45} apex={'selected': 26} model=None/None
+ep0004 seed=75 x=3161 FLAG dec=58 looks=38 sent=96/96 spent=300/2000 takeoff={'selected': 58} apex={'selected': 38} model=None/None
+ep0005 seed=76 x=2752 dead dec=45 looks=29 sent=74/74 spent=374/2000 takeoff={'selected': 45} apex={'selected': 29} model=None/None
+ep0006 seed=77 x=3161 FLAG dec=48 looks=35 sent=83/83 spent=457/2000 takeoff={'selected': 48} apex={'selected': 35} model=None/None
+ep0007 seed=78 x=3161 FLAG dec=48 looks=35 sent=83/83 spent=540/2000 takeoff={'selected': 48} apex={'selected': 35} model=None/None
+ep0008 seed=79 x=3161 FLAG dec=62 looks=37 sent=99/99 spent=639/2000 takeoff={'selected': 62} apex={'selected': 37} model=None/None
+ep0009 seed=80 x=3161 FLAG dec=65 looks=33 sent=98/98 spent=737/2000 takeoff={'selected': 65} apex={'selected': 33} model=None/None
+ep0010 seed=81 x=2473 dead dec=44 looks=26 sent=70/70 spent=807/2000 takeoff={'selected': 44} apex={'selected': 26} model=None/None
+ep0011 seed=82 x=3161 FLAG dec=61 looks=33 sent=94/94 spent=901/2000 takeoff={'selected': 61} apex={'selected': 33} model=None/None
+ep0012 seed=83 x=3161 FLAG dec=52 looks=32 sent=84/84 spent=985/2000 takeoff={'selected': 52} apex={'selected': 32} model=None/None
+ep0013 seed=84 x=3161 FLAG dec=49 looks=32 sent=81/81 spent=1066/2000 takeoff={'selected': 49} apex={'selected': 32} model=None/None
+ep0014 seed=85 x=3161 FLAG dec=48 looks=31 sent=79/79 spent=1145/2000 takeoff={'selected': 48} apex={'selected': 31} model=None/None
+ep0015 seed=86 x=3161 FLAG dec=48 looks=31 sent=79/79 spent=1224/2000 takeoff={'selected': 48} apex={'selected': 31} model=None/None
+ep0016 seed=87 x=3161 FLAG dec=48 looks=31 sent=79/79 spent=1303/2000 takeoff={'selected': 48} apex={'selected': 31} model=None/None
+ep0017 seed=88 x=1736 dead dec=52 looks=19 sent=71/71 spent=1374/2000 takeoff={'selected': 52} apex={'selected': 19} model=None/None
+ep0018 seed=89 x=1788 dead dec=30 looks=19 sent=49/49 spent=1423/2000 takeoff={'selected': 30} apex={'selected': 19} model=None/None
+ep0019 seed=90 x=2001 dead dec=46 looks=21 sent=67/67 spent=1490/2000 takeoff={'selected': 46} apex={'selected': 21} model=None/None
+ep0020 seed=91 x=3161 FLAG dec=68 looks=40 sent=108/108 spent=1598/2000 takeoff={'selected': 68} apex={'selected': 40} model=None/None
+ep0021 seed=92 x=3161 FLAG dec=48 looks=31 sent=79/79 spent=1677/2000 takeoff={'selected': 48} apex={'selected': 31} model=None/None
+ep0022 seed=93 x=3161 FLAG dec=48 looks=31 sent=79/79 spent=1756/2000 takeoff={'selected': 48} apex={'selected': 31} model=None/None
+ep0023 seed=94 x=3161 FLAG dec=48 looks=31 sent=79/79 spent=1835/2000 takeoff={'selected': 48} apex={'selected': 31} model=None/None
+ep0024 seed=95 x=3161 FLAG dec=48 looks=31 sent=79/79 spent=1914/2000 takeoff={'selected': 48} apex={'selected': 31} model=None/None
+ep0025 seed=96 x=3161 FLAG dec=48 looks=31 sent=79/79 spent=1993/2000 takeoff={'selected': 48} apex={'selected': 31} model=None/None
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+[eval ep025] reach=2017 (best 2018 @ep0) flag=[False] records=1993 takeoff model=extra_trees consumed=3819/1248 apex model=extra_trees consumed=2175/745 server=[{'selected': 31}]
+ep0026 seed=97 x=2756 dead dec=58 looks=31 sent=7/89 spent=2000/2000 takeoff={'selected': 58} apex={'selected': 31} model=extra_trees/extra_trees
+Records cap 2000 reached — stopping
+[eval ep026-final] reach=2017 (best 2018 @ep0) flag=[False] records=2000 takeoff model=extra_trees consumed=3823/1252 apex model=extra_trees consumed=2178/748 server=[{'selected': 31}]
+
+done: episodes=26 records=2000 best_reach=2018 (ep0) stop=records_cap
+run log: artifacts/zero2-start-s3/run-20261001T145449Z.jsonl
+zero2 s3 exit 0 2026年10月 2日 週五 03時07分30秒 CST

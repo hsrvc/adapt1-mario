@@ -1,0 +1,94 @@
+{
+ "kind": "zero-run-log",
+ "target": "../runs/2026-10-02-zero2-stage5-frozen-clear/run-20261001T235336Z.jsonl",
+ "target_sha256": "f03daeb287ed6da3b052d655c8522b14bd695d958529c17a8156bd7ed77e319d",
+ "written_at": "2026-10-02T01:09:39+00:00",
+ "command": [
+  "-"
+ ],
+ "script_sha256": null,
+ "cwd": "/Users/hsrvc/Documents/playground/rei/mario/agent",
+ "git": {
+  "commit": "cc5e721528686ebde72b3d517153deef49c09261",
+  "dirty": true,
+  "dirty_files": [
+   "ario/agent/scripts/plot_zero_curve.py",
+   "mario/artifacts-src/zero-learning-curve.build.py",
+   "mario/artifacts-src/zero-learning-curve.html",
+   "mario/runs/zero-learning-curve.png",
+   "mario/runs/zero-learning-curve.svg"
+  ],
+  "diff_sha256": "e162d8cb62fd2fb9b40d95939e5fb413c267e060c9a41069b6ba6d8076dd79f5",
+  "diff": "[omitted in the public copy; diff_sha256 identifies it]"
+ },
+ "environment": {
+  "python": "3.13.15",
+  "platform": "macOS-14.4.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+   "gym-super-mario-bros": "9.1.0",
+   "nes-py": "9.0.1",
+   "gymnasium": "1.3.0",
+   "numpy": "2.5.3",
+   "pillow": "12.3.0"
+  }
+ },
+ "inputs": {},
+ "extra": {
+  "config": {
+   "takeoff_domain": "mario-zero2-takeoff",
+   "apex_domain": "mario-zero2-apex",
+   "features": "full_v3",
+   "apex_features": "apex_v3",
+   "env": "SuperMarioBros-1-1-v0",
+   "episodes": 1000,
+   "seed": 122,
+   "max_records": 2000,
+   "credit": "frame_horizon",
+   "horizon": 128,
+   "k": 6,
+   "gamma": 0.9,
+   "epsilon": 0.0,
+   "model_type": "extra_trees",
+   "exploration_mode": "ucb",
+   "max_samples": 16384,
+   "max_decisions": 200,
+   "stall_timeout": 20,
+   "eval_every": 25,
+   "eval_seeds": "777",
+   "stop_flat": 100,
+   "out_dir": "artifacts/zero2-start-s5",
+   "run_id": "zero2-v3-fh-s5",
+   "recreate": false,
+   "dry_run": false,
+   "allow_dirty": false
+  },
+  "macros": [
+   "noop",
+   "right",
+   "right_run",
+   "left",
+   "right_run_jump_short",
+   "right_run_jump_mid",
+   "right_run_jump_full",
+   "right_jump_full"
+  ],
+  "git_at_start": {
+   "commit": "cc5e721528686ebde72b3d517153deef49c09261",
+   "dirty": false,
+   "dirty_files": [],
+   "diff_sha256": null,
+   "diff": null
+  },
+  "status": "stopped by the standing rule: the ep000 frozen checkpoint reached the flag (3161); 5 online episodes (all clears, 431 Records) had been played when the loop was killed at 09:08 SGT 2026-10-02; the in-flight episode's pending rows were not sent",
+  "summary": {
+   "episodes": 5,
+   "records_spent": 431,
+   "online_clears": 5,
+   "frozen": {
+    "ep000": 3161,
+    "flag": true
+   },
+   "stop_reason": "rule: frozen clear"
+  }
+ }
+}

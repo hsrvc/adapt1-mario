@@ -1,0 +1,237 @@
+{
+ "online": [
+  {
+   "episode": 1,
+   "reach": 1786,
+   "records": 48,
+   "decisions": 32,
+   "looks": 16
+  },
+  {
+   "episode": 2,
+   "reach": 1637,
+   "records": 96,
+   "decisions": 29,
+   "looks": 19
+  },
+  {
+   "episode": 3,
+   "reach": 3161,
+   "records": 183,
+   "decisions": 52,
+   "looks": 35
+  },
+  {
+   "episode": 4,
+   "reach": 2015,
+   "records": 247,
+   "decisions": 44,
+   "looks": 20
+  },
+  {
+   "episode": 5,
+   "reach": 2012,
+   "records": 296,
+   "decisions": 31,
+   "looks": 18
+  },
+  {
+   "episode": 6,
+   "reach": 1634,
+   "records": 346,
+   "decisions": 32,
+   "looks": 18
+  },
+  {
+   "episode": 7,
+   "reach": 3161,
+   "records": 432,
+   "decisions": 53,
+   "looks": 33
+  },
+  {
+   "episode": 8,
+   "reach": 1778,
+   "records": 495,
+   "decisions": 44,
+   "looks": 19
+  },
+  {
+   "episode": 9,
+   "reach": 1646,
+   "records": 539,
+   "decisions": 26,
+   "looks": 18
+  },
+  {
+   "episode": 10,
+   "reach": 3161,
+   "records": 655,
+   "decisions": 76,
+   "looks": 40
+  },
+  {
+   "episode": 11,
+   "reach": 1231,
+   "records": 687,
+   "decisions": 20,
+   "looks": 12
+  },
+  {
+   "episode": 12,
+   "reach": 2750,
+   "records": 777,
+   "decisions": 55,
+   "looks": 35
+  },
+  {
+   "episode": 13,
+   "reach": 714,
+   "records": 795,
+   "decisions": 10,
+   "looks": 8
+  },
+  {
+   "episode": 14,
+   "reach": 3161,
+   "records": 904,
+   "decisions": 69,
+   "looks": 40
+  },
+  {
+   "episode": 15,
+   "reach": 3161,
+   "records": 1002,
+   "decisions": 59,
+   "looks": 39
+  },
+  {
+   "episode": 16,
+   "reach": 3161,
+   "records": 1110,
+   "decisions": 71,
+   "looks": 37
+  },
+  {
+   "episode": 17,
+   "reach": 3128,
+   "records": 1227,
+   "decisions": 80,
+   "looks": 37
+  },
+  {
+   "episode": 18,
+   "reach": 2003,
+   "records": 1283,
+   "decisions": 35,
+   "looks": 21
+  },
+  {
+   "episode": 19,
+   "reach": 2428,
+   "records": 1363,
+   "decisions": 52,
+   "looks": 28
+  },
+  {
+   "episode": 20,
+   "reach": 3161,
+   "records": 1452,
+   "decisions": 52,
+   "looks": 37
+  },
+  {
+   "episode": 21,
+   "reach": 3154,
+   "records": 1562,
+   "decisions": 73,
+   "looks": 37
+  },
+  {
+   "episode": 22,
+   "reach": 1214,
+   "records": 1596,
+   "decisions": 22,
+   "looks": 12
+  },
+  {
+   "episode": 23,
+   "reach": 3161,
+   "records": 1679,
+   "decisions": 48,
+   "looks": 35
+  },
+  {
+   "episode": 24,
+   "reach": 3161,
+   "records": 1762,
+   "decisions": 48,
+   "looks": 35
+  },
+  {
+   "episode": 25,
+   "reach": 3161,
+   "records": 1858,
+   "decisions": 61,
+   "looks": 35
+  },
+  {
+   "episode": 26,
+   "reach": 2471,
+   "records": 1928,
+   "decisions": 43,
+   "looks": 27
+  },
+  {
+   "episode": 27,
+   "reach": 3161,
+   "records": 2000,
+   "decisions": 72,
+   "looks": 36
+  }
+ ],
+ "frozen": [
+  {
+   "tag": "ep000",
+   "episode": 0,
+   "reach": 2020,
+   "records": 0,
+   "takeoff_skill": 0.5910408265923522,
+   "takeoff_model": "extra_trees",
+   "takeoff_installed": true,
+   "consumed": 1308,
+   "sent": {
+    "mario-zero2-takeoff": 0,
+    "mario-zero2-apex": 0
+   }
+  },
+  {
+   "tag": "ep025",
+   "episode": 25,
+   "reach": 1238,
+   "records": 1858,
+   "takeoff_skill": 0.3193048855183439,
+   "takeoff_model": "extra_trees",
+   "takeoff_installed": true,
+   "consumed": 2482,
+   "sent": {
+    "mario-zero2-takeoff": 1174,
+    "mario-zero2-apex": 684
+   }
+  },
+  {
+   "tag": "ep027-final",
+   "episode": 27,
+   "reach": 2018,
+   "records": 2000,
+   "takeoff_skill": 0.36600572277002397,
+   "takeoff_model": "extra_trees",
+   "takeoff_installed": true,
+   "consumed": 2571,
+   "sent": {
+    "mario-zero2-takeoff": 1263,
+    "mario-zero2-apex": 737
+   }
+  }
+ ]
+}

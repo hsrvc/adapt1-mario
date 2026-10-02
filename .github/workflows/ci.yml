@@ -3,6 +3,7 @@ name: CI
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,7 +18,11 @@ jobs:
           python-version: "3.13"
           cache: pip
       - run: python -m pip install --upgrade pip
-      - run: python -m pip install -e ".[dev]"
+      # exact versions the runs used; the [mario] extra brings the emulator the tests drive
+      - run: python -m pip install -r requirements.lock.txt
+      - run: python -m pip install -e ".[mario,dev]"
       - run: ruff format --check src tests
       - run: ruff check src tests
       - run: pytest -q
+      # every evidence bundle against its sha256 index (offline, no key)
+      - run: python scripts/pub/verify_runs.py runs

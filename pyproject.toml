@@ -5,12 +5,12 @@ build-backend = "hatchling.build"
 [project]
 name = "typesafe-mario"
 version = "0.1.0"
-description = "A direct-control TypeSafe/Jev agent for Super Mario Bros."
+description = "Adapt-1 (Rei Labs) learns to play Super Mario Bros 1-1: three recipes, with their evidence."
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-  "typesafe-sdk",
-]
+# Base install has no third-party deps: the Adapt-1 client is stdlib-only. The Jev
+# baseline and the emulator are opt-in extras.
+dependencies = []
 
 [project.optional-dependencies]
 mario = [
@@ -19,6 +19,10 @@ mario = [
   "nes-py>=9.0.1",
   "numpy>=2.1",
   "pygame>=2.6",
+  "pillow>=10",
+]
+jev = [
+  "typesafe-sdk",
 ]
 dev = [
   "pytest>=8",
@@ -37,3 +41,7 @@ packages = ["src/typesafe_mario"]
 [tool.ruff]
 line-length = 100
 target-version = "py313"
+
+[tool.pytest.ini_options]
+# scripts/historical keeps exact copies of old code, including a test_machina.py that would shadow tests/
+testpaths = ["tests"]

@@ -1,0 +1,139 @@
+{
+ "domain_id": "mario-gate3-apex",
+ "fed": 788,
+ "skip": 0,
+ "kind": "apex",
+ "features": "apex_v3",
+ "macros": [
+  "apex_keep",
+  "apex_brake",
+  "apex_pull_back"
+ ],
+ "reward_field": "reward",
+ "reward_max": 1.0,
+ "recreate": true,
+ "learner_after": {
+  "installed": false,
+  "model_type": null,
+  "candidate_model_type": null,
+  "model_status": "running",
+  "reason": null,
+  "episode_count": null,
+  "validation_skill": null,
+  "sample_count": 788
+ },
+ "domain_config": {
+  "domain_id": "mario-gate3-apex",
+  "schema": {
+   "event_types": [
+    "frame"
+   ],
+   "relations": [
+    "controls"
+   ],
+   "signals": [
+    "reward",
+    "speed_x",
+    "speed_y",
+    "grounded",
+    "jump_phase",
+    "airborne_frames",
+    "enemy_ahead",
+    "enemy_dist",
+    "obstacle_dist",
+    "gap_dist",
+    "clear_forward",
+    "stalled",
+    "drop_dist",
+    "drop_depth",
+    "floor_below",
+    "apex_vx",
+    "apex_rise",
+    "apex_height",
+    "obstacle_height"
+   ]
+  },
+  "hypotheses": [
+   {
+    "name": "apex_keep",
+    "relation": "controls",
+    "policy": "apex_keep",
+    "predicts": [
+     "advanced"
+    ]
+   },
+   {
+    "name": "apex_brake",
+    "relation": "controls",
+    "policy": "apex_brake",
+    "predicts": [
+     "advanced"
+    ]
+   },
+   {
+    "name": "apex_pull_back",
+    "relation": "controls",
+    "policy": "apex_pull_back",
+    "predicts": [
+     "advanced"
+    ]
+   }
+  ],
+  "learning": {
+   "enabled": true,
+   "context": {
+    "feature_paths": [
+     "values.speed_x",
+     "values.speed_y",
+     "values.grounded",
+     "values.jump_phase",
+     "values.airborne_frames",
+     "values.enemy_ahead",
+     "values.enemy_dist",
+     "values.obstacle_dist",
+     "values.gap_dist",
+     "values.clear_forward",
+     "values.stalled",
+     "values.drop_dist",
+     "values.drop_depth",
+     "values.floor_below",
+     "values.apex_vx",
+     "values.apex_rise",
+     "values.apex_height",
+     "values.obstacle_height"
+    ],
+    "max_samples": 4096
+   },
+   "training": {
+    "enabled": true,
+    "model_type": "extra_trees"
+   },
+   "reward": {
+    "aggregation": "weighted_mean",
+    "components": [
+     {
+      "field": "values.reward",
+      "goal": "maximize",
+      "weight": 1.0,
+      "min": 0.0,
+      "max": 1.0
+     }
+    ]
+   },
+   "policy": {
+    "exploration_mode": "ucb",
+    "min_context_observations": 16,
+    "model_max_weight": 0.9
+   }
+  },
+  "query_templates": {
+   "feedback_outcomes": [
+    "advanced",
+    "setback",
+    "no_progress",
+    "died",
+    "cleared"
+   ]
+  }
+ }
+}

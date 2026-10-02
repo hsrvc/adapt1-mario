@@ -1,0 +1,38 @@
+[
+ {
+  "file": "console.log",
+  "sha256": "eecef66ab3622fd92e1bdfc06c31fb3b947b0ac0c7a64d08c72dcc2553a107dd",
+  "bytes": 5115,
+  "note": ""
+ },
+ {
+  "file": "curve.json",
+  "sha256": "9abc357ea0d79b2dcc53761d3c4687d1ab9f1b03d34e6f94ffc89a480e909b23",
+  "bytes": 2990,
+  "note": ""
+ },
+ {
+  "file": "ep000-seed777.gif",
+  "sha256": "4b35bd769c2adfc957bd644119c68be68897af58b91cb2368c9ba9177fbc95d3",
+  "bytes": 1387962,
+  "note": ""
+ },
+ {
+  "file": "ep024-final-seed777.gif",
+  "sha256": "74bb7bda3f9e6e615294f4c48a8159ff36110027e7855182aebf9b2d6cbaefa4",
+  "bytes": 1784483,
+  "note": ""
+ },
+ {
+  "file": "run-20261001T191018Z.jsonl",
+  "sha256": "d8e42d341d2e0a612d9dce63a6f789af44885194fab9c5cd8d510fb5148f4702",
+  "bytes": 1311799,
+  "note": ""
+ },
+ {
+  "file": "run-20261001T191018Z.jsonl.provenance.json",
+  "sha256": "709b17fe2e0d1666d26ff2d88928aecb708c6dd2dfa908eaef56de795f0c214d",
+  "bytes": 2673,
+  "note": ""
+ }
+]

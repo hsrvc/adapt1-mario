@@ -61,7 +61,7 @@ class MarioStateParserTests(unittest.TestCase):
         self.assertEqual(state["hazard"]["nearest_enemy_distance_pixels"], 42)
         self.assertEqual(len(state["hazard"]["upcoming_enemies"]), 2)
         self.assertEqual(state["hazard"]["spacing_to_second_enemy_pixels"], 38)
-        self.assertEqual(len(debug["local_grid"]["rows"]), 9)
+        self.assertEqual(len(debug["local_grid"]["rows"]), 13)  # whole tile-buffer height
         self.assertIn("M", "".join(debug["local_grid"]["rows"]))
         self.assertIn("goomba 42px ahead", snapshot.to_text())
 
@@ -117,6 +117,77 @@ class MarioStateParserTests(unittest.TestCase):
         self.assertEqual(terrain["obstacle_height_tiles"], 2)
         self.assertNotIn("summary", terrain)
 
+    # --- findings #21 (2026-09-21): floor profile — a drop is not a pit -------------------
+    # Fixture geometry (Mario at x_pos=100 → tile column 6, y_pixel=80 → tile row 3):
+    #   * a 2-wide "pipe" at columns 6–7 whose top is row 5 (two rows under Mario, the same
+    #     support offset real play shows) and which is solid down to the bottom of the buffer
+    #   * the real floor at rows 9–10, i.e. 4 tiles below the pipe top
+    #   * a 2-wide bottomless pit at columns 11–12 (5 tiles ahead)
+    def pipe_top_ram(self, *, hidden_block: bool = False) -> bytearray:
+        ram = bytearray(0x0800)
+        for column in range(16):
+            if column in (11, 12):
+                continue
+            ram[0x0500 + 9 * 16 + column] = 0x54
+            ram[0x0500 + 10 * 16 + column] = 0x54
+        for column in (6, 7):
+            for row in range(5, 13):
+                ram[0x0500 + row * 16 + column] = 0x14
+        if hidden_block:
+            ram[0x0500 + 4 * 16 + 9] = 0x60  # the 1-1 hidden 1-UP metatile, 3 tiles ahead
+        return ram
+
+    def test_drop_off_a_pipe_top_is_not_a_gap(self) -> None:
+        terrain = (
+            MarioStateParser().parse(self.base_info(), self.pipe_top_ram()).to_state()["terrain"]
+        )
+
+        # The old parser read this state as "gap 2 tiles ahead, 7 wide" — the phantom gap that
+        # made the teacher max-jump off pipe 4 into the real pit (x=1153 death).
+        self.assertFalse(terrain["gap_ahead"])
+        self.assertEqual(terrain["drop_distance_tiles"], 2)
+        self.assertEqual(terrain["drop_depth_tiles"], 4)
+        self.assertEqual(terrain["floor_below_tiles"], 0)
+        self.assertIsNone(terrain["obstacle_distance_tiles"])
+        self.assertEqual(terrain["floor_profile_tiles"], [0, 0, 4, 4, 4, None, None, 4, 4])
+
+    def test_real_pit_is_reported_with_its_width(self) -> None:
+        terrain = (
+            MarioStateParser().parse(self.base_info(), self.pipe_top_ram()).to_state()["terrain"]
+        )
+
+        self.assertEqual(terrain["gap_distance_tiles"], 5)
+        self.assertEqual(terrain["gap_width_tiles_visible"], 2)
+        self.assertEqual(terrain["clear_forward_tiles"], 4)
+
+    def test_hidden_blocks_are_invisible(self) -> None:
+        # With the hidden 1-UP left in, obstacle_distance would read 3 — and that byte was the
+        # only feature separating "top of pipe 3" from "top of pipe 4" in 1-1.
+        terrain = (
+            MarioStateParser()
+            .parse(self.base_info(), self.pipe_top_ram(hidden_block=True))
+            .to_state()["terrain"]
+        )
+
+        self.assertIsNone(terrain["obstacle_distance_tiles"])
+        self.assertFalse(terrain["obstacle_ahead"])
+
+    def test_enemy_horizon_is_the_visible_screen(self) -> None:
+        ram = bytearray(0x0800)
+        ram[0x03AD] = 128  # Mario at screen centre → 128 px visible ahead
+        for slot, enemy_x in enumerate(
+            (100 + 120, 100 + 200)
+        ):  # 120 px ahead (on screen), 200 (off)
+            ram[0x000F + slot] = 1
+            ram[0x0016 + slot] = 0x06
+            ram[0x006E + slot] = enemy_x // 256
+            ram[0x0087 + slot] = enemy_x % 256
+            ram[0x00CF + slot] = 80
+
+        snapshot = MarioStateParser().parse(self.base_info(), ram)
+
+        self.assertEqual([e.dx_pixels for e in snapshot.enemies], [120])
+
     def test_recent_control_tracks_macro_outcome(self) -> None:
         parser = MarioStateParser()
         parser.parse(self.base_info(), previous_action="right_run")
@@ -136,6 +207,7 @@ class MarioStateParserTests(unittest.TestCase):
         parser = MarioStateParser()
         parser.parse(self.base_info(), ram)
 
+        ram[0x001D] = 1  # the game's float state: airborne (grounded now reads this byte)
         state = parser.parse(self.base_info(x_pos=106, y_pos=90, progress=106), ram).to_state()
 
         self.assertEqual(state["trajectory"]["airborne_frames"], 1)

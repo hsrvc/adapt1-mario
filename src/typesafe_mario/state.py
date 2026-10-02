@@ -4,8 +4,30 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field, replace
 from typing import Any
 
+# Tiles to strip from the RAM tile buffer because a player cannot see them until they are
+# hit. Measured 2026-09-21: the 1-1 hidden 1-UP block (column 64) is metatile 0x60 and it was
+# the ONLY feature separating "top of pipe 3" from "top of pipe 4" (findings #21). 0x5F is the
+# hidden coin block per the SMB disassembly metatile table (not exercised in 1-1).
+HIDDEN_METATILES: frozenset[int] = frozenset({0x5F, 0x60})
+
+# Forward window in tiles. Measured: while running the camera holds Mario at screen-x ≈ 128
+# of 256, so the rendered screen shows ~8 tiles ahead. Reading further would see past the
+# screen edge (RAM has 32 columns buffered) — that is the "no more than the screen" line.
+FORWARD_TILES = 8
+BACKWARD_TILES = 2
+# Rows above / below Mario in the local grid. 13 rows = the whole tile buffer height, so a
+# 4-tile drop off a pipe top still shows the floor (the old 4-down window did not).
+ROWS_ABOVE = 4
+ROWS_BELOW = 8
+TILE_BUFFER_ROWS = 13
+SCREEN_WIDTH_PX = 256
+
 ENEMY_NAMES: dict[int, str] = {
-    0x00: "none",
+    # 0x00 is the GREEN KOOPA TROOPA in SMB's enemy table, not "none". The upstream parser
+    # mapped it to "none" and skipped kind_id == 0, so every green koopa was invisible — the
+    # 1-1 koopa at x≈1700 killed both the grounded-cadence teacher (1682) and Jev (1670).
+    # Presence is the slot's active byte (0x000F+slot), never the kind id. Measured 2026-09-21.
+    0x00: "koopa_green",
     0x06: "goomba",
     0x05: "hammer_bro",
     0x07: "bloober",
@@ -80,8 +102,31 @@ class MarioSnapshot:
     last_grounded_gap_width_tiles: int = 0
     last_grounded_obstacle_distance_tiles: int | None = None
     last_grounded_obstacle_height_tiles: int = 0
+    # Floor profile (2026-09-21, findings #21): for dx = 0..FORWARD_TILES, the floor offset in
+    # tiles relative to the ground Mario stands on (0 = level, +k = k tiles LOWER = a drop you
+    # can walk off, -k = higher = a step/wall), or None = no floor anywhere below within the
+    # tile buffer = a real, bottomless pit. Empty when RAM is unavailable.
+    floor_profile: tuple[int | None, ...] = field(default_factory=tuple)
 
     def navigation_features(self) -> dict[str, Any]:
+        """Terrain geometry ahead, from the RAM tile buffer.
+
+        ⚠️ Semantics changed 2026-09-21 (findings #21). The old version called any column
+        ahead with no solid tile *in Mario's own ground row* a "gap", so standing on top of a
+        4-tall pipe read as "gap 2 tiles ahead, 7 wide" — a phantom. The teacher jumped on it
+        at full speed and that max jump landed exactly in the real 2-tile pit 12 tiles on
+        (x=1104–1135), the x=1153 death. Now:
+
+        - ``gap_*`` means a **real pit**: a column with no floor at any row below, down to the
+          bottom of the tile buffer (``floor_profile`` is None there).
+        - ``drop_*`` is new: the floor continues but lower (walk-off-able).
+        - ``obstacle_*`` is unchanged: solid tiles rising above Mario's ground row.
+        - ``floor_below_tiles`` is the offset under Mario (None = airborne over a pit).
+
+        The forward window stays 8 tiles: measured, the rendered screen shows ~8 tiles ahead
+        of Mario while running (screen-x byte 0x03AD ≈ 128 of 256), so 8 is what a player
+        sees. Hidden blocks are stripped from the buffer read (see ``HIDDEN_METATILES``).
+        """
         rows = self.local_grid
         if not rows:
             return {
@@ -105,10 +150,13 @@ class MarioSnapshot:
             (row for row in range(mario_row + 1, len(rows)) if rows[row][mario_col] == "#"),
             None,
         )
+        profile = self.floor_profile
         obstacle_distance: int | None = None
         obstacle_height = 0
-        gap_distance: int | None = None
-        gap_width = 0
+        pit_distance: int | None = None
+        pit_width = 0
+        drop_distance: int | None = None
+        drop_depth = 0
         clear_forward = 0
 
         for column in range(mario_col + 1, len(rows[0])):
@@ -122,23 +170,32 @@ class MarioSnapshot:
                 if height and obstacle_distance is None:
                     obstacle_distance = distance
                     obstacle_height = height
-                supported = rows[ground_row][column] == "#"
-                if not supported and gap_distance is None:
-                    gap_distance = distance
-                if gap_distance is not None and not supported:
-                    gap_width += 1
-            if obstacle_distance is None and gap_distance is None:
+            floor = profile[distance] if distance < len(profile) else 0
+            if floor is None:
+                if pit_distance is None:
+                    pit_distance = distance
+                if pit_distance is not None and distance - pit_distance == pit_width:
+                    pit_width += 1  # contiguous bottomless columns only
+            elif floor > 0 and drop_distance is None and pit_distance is None:
+                drop_distance = distance
+                drop_depth = floor
+            if obstacle_distance is None and pit_distance is None:
                 clear_forward = distance
 
         obstacle_ahead = obstacle_distance is not None and obstacle_distance <= 3
-        gap_ahead = gap_distance is not None and gap_distance <= 3
+        gap_ahead = pit_distance is not None and pit_distance <= 3
         if obstacle_ahead:
             summary = (
                 f"Blocking obstacle {obstacle_distance} tile(s) ahead, "
                 f"{obstacle_height} tile(s) high. A forward jump is required."
             )
         elif gap_ahead:
-            summary = f"Gap begins {gap_distance} tile(s) ahead. A forward jump is required."
+            summary = f"Pit begins {pit_distance} tile(s) ahead. A forward jump is required."
+        elif drop_distance is not None and drop_distance <= 3:
+            summary = (
+                f"Floor drops {drop_depth} tile(s) lower {drop_distance} tile(s) ahead; "
+                "it can be walked off."
+            )
         else:
             summary = f"Forward path is clear for at least {clear_forward} tile(s)."
         return {
@@ -147,8 +204,12 @@ class MarioSnapshot:
             "obstacle_distance_tiles": obstacle_distance,
             "obstacle_height_tiles": obstacle_height,
             "gap_ahead": gap_ahead,
-            "gap_distance_tiles": gap_distance,
-            "gap_width_tiles_visible": gap_width,
+            "gap_distance_tiles": pit_distance,
+            "gap_width_tiles_visible": pit_width,
+            "drop_distance_tiles": drop_distance,
+            "drop_depth_tiles": drop_depth,
+            "floor_below_tiles": profile[0] if profile else 0,
+            "floor_profile_tiles": list(profile),
             "clear_forward_tiles": clear_forward,
             "summary": summary,
         }
@@ -455,8 +516,16 @@ class MarioStateParser:
 
         enemies = self._extract_enemies(info, ram, x, screen_y)
         grid = self._extract_local_grid(ram, x, screen_y, enemies)
+        floor_profile = self._extract_floor_profile(ram, x, screen_y)
         support_below = self._has_support_below(grid)
-        grounded = abs(dy) <= 1 and support_below
+        # Grounded = the game's own float state (RAM 0x001D == 0), when RAM is available. The
+        # old dy-heuristic breaks at the grounded cadence (macros.py): dy is then the y change
+        # over a whole macro, so landing ON a pipe top (dy = 64) read as "airborne". Without
+        # RAM (unit fixtures) fall back to the heuristic.
+        if ram is not None:
+            grounded = self._ram_byte(ram, 0x001D, 0) == 0 and support_below
+        else:
+            grounded = abs(dy) <= 1 and support_below
         if grounded:
             jump_phase = "grounded"
         elif dy > 1:
@@ -537,6 +606,7 @@ class MarioStateParser:
             last_grounded_gap_width_tiles=self._last_grounded_gap_width,
             last_grounded_obstacle_distance_tiles=self._last_grounded_obstacle_distance,
             last_grounded_obstacle_height_tiles=self._last_grounded_obstacle_height,
+            floor_profile=tuple(floor_profile),
         )
         navigation = snapshot.navigation_features()
         if grounded:
@@ -562,6 +632,69 @@ class MarioStateParser:
         self._last_y = y
         self._last_jump_phase = jump_phase
         return snapshot
+
+    @classmethod
+    def _tile_solid(cls, ram: Sequence[int], sample_x: int, sample_y: int) -> bool:
+        """Whether the SMB tile buffer (0x0500, two 13×16 pages) holds a *visible* solid tile
+        at level pixel x / screen pixel y. Hidden blocks read as empty (a player can't see
+        them, and they were the only thing separating pipe 3's top from pipe 4's top)."""
+        sub_y = (sample_y - 32) // 16
+        if not 0 <= sub_y < TILE_BUFFER_ROWS:
+            return False
+        page = (sample_x // 256) % 2
+        sub_x = (sample_x % 256) // 16
+        value = cls._ram_byte(ram, 0x0500 + page * TILE_BUFFER_ROWS * 16 + sub_y * 16 + sub_x)
+        return value != 0 and value not in HIDDEN_METATILES
+
+    def _extract_floor_profile(
+        self, ram: Sequence[int] | None, mario_x: int, mario_screen_y: int
+    ) -> list[int | None]:
+        """Floor offset per column for dx = 0..FORWARD_TILES (findings #21).
+
+        For each column, scan **downward from the row below Mario to the bottom of the tile
+        buffer** for the first solid tile. Offsets are in tiles relative to the floor under
+        Mario's own column (0 = level, +k = lower, -k = higher); ``None`` = nothing solid all
+        the way down = a real pit. Scanning the whole buffer, not a 4-row window, is what
+        makes a 4-tile drop off a pipe top read as a drop instead of a bottomless gap.
+        """
+        if ram is None:
+            return []
+        first_row = mario_screen_y + 16  # the row below Mario's own tile
+        last_row = 32 + TILE_BUFFER_ROWS * 16  # bottom of the buffer, screen px (exclusive)
+
+        def floor_row(dx_tiles: int) -> int | None:
+            sample_x = mario_x + dx_tiles * 16
+            sample_y = first_row
+            while sample_y < last_row:
+                if self._tile_solid(ram, sample_x, sample_y):
+                    return (sample_y - first_row) // 16
+                sample_y += 16
+            return None
+
+        own = floor_row(0)
+        reference = 0 if own is None else own
+        profile: list[int | None] = []
+        for dx in range(FORWARD_TILES + 1):
+            row = floor_row(dx)
+            profile.append(None if row is None else row - reference)
+        return profile
+
+    def floor_height_tiles(
+        self, ram: Sequence[int] | None, mario_x: int, mario_screen_y: int
+    ) -> int | None:
+        """Tiles from the row below Mario down to the first solid tile in his own column
+        (0 = standing on it), or None when nothing solid is below (over a pit). The apex
+        decision (design-notes §14a) uses it as the height of the arc still to fall."""
+        if ram is None:
+            return None
+        first_row = mario_screen_y + 16
+        last_row = 32 + TILE_BUFFER_ROWS * 16
+        sample_y = first_row
+        while sample_y < last_row:
+            if self._tile_solid(ram, mario_x, sample_y):
+                return (sample_y - first_row) // 16
+            sample_y += 16
+        return None
 
     @staticmethod
     def _has_support_below(grid: Sequence[str]) -> bool:
@@ -593,8 +726,8 @@ class MarioStateParser:
             )
             if ram is not None and active == 0:
                 continue
-            if kind_id == 0:
-                continue
+            if ram is None and kind_id == 0:
+                continue  # no RAM → only the info fallback list, where 0 means empty
             if ram is None:
                 enemy_x = mario_x
                 enemy_y = mario_screen_y
@@ -608,7 +741,16 @@ class MarioStateParser:
             previous_dx = self._last_enemy_dx.get(slot)
             relative_velocity_x = 0 if previous_dx is None else dx - previous_dx
             self._last_enemy_dx[slot] = dx
-            if -192 <= dx <= 320:
+            # Visible-screen horizon (2026-09-21): the old fixed -192..320 px reached ~4 tiles
+            # past the rendered right edge. Cap to what is on screen, from Mario's on-screen
+            # x (RAM 0x03AD): behind to the left edge, ahead to the right edge (+1 sprite).
+            if ram is not None:
+                screen_x = self._ram_byte(ram, 0x03AD, 128)
+                behind_limit = -(screen_x + 16)
+                ahead_limit = SCREEN_WIDTH_PX - screen_x
+            else:
+                behind_limit, ahead_limit = -192, 320
+            if behind_limit <= dx <= ahead_limit:
                 enemies.append(
                     EnemyObservation(
                         slot=slot,
@@ -631,27 +773,20 @@ class MarioStateParser:
         if ram is None:
             return []
 
-        width, height = 11, 9
-        x_offsets = range(-2, 9)
-        y_offsets = range(-4, 5)
+        x_offsets = range(-BACKWARD_TILES, FORWARD_TILES + 1)
+        y_offsets = range(-ROWS_ABOVE, ROWS_BELOW + 1)
+        width, height = len(x_offsets), len(y_offsets)
         cells = [["." for _ in range(width)] for _ in range(height)]
 
         for row, dy_tiles in enumerate(y_offsets):
             for col, dx_tiles in enumerate(x_offsets):
-                box_x = dx_tiles * 16
-                box_y = dy_tiles * 16
-                sample_x = mario_x + box_x
-                sample_y = mario_screen_y + box_y
-                page = (sample_x // 256) % 2
-                sub_x = (sample_x % 256) // 16
-                sub_y = (sample_y - 32) // 16
-                if 0 <= sub_y < 13:
-                    address = 0x0500 + page * 13 * 16 + sub_y * 16 + sub_x
-                    if self._ram_byte(ram, address) != 0:
-                        cells[row][col] = "#"
+                sample_x = mario_x + dx_tiles * 16
+                sample_y = mario_screen_y + dy_tiles * 16
+                if self._tile_solid(ram, sample_x, sample_y):
+                    cells[row][col] = "#"
 
-        mario_col = 2
-        mario_row = 4
+        mario_col = BACKWARD_TILES
+        mario_row = ROWS_ABOVE
         cells[mario_row][mario_col] = "M"
         for enemy in enemies:
             col = mario_col + round(enemy.dx_pixels / 16)

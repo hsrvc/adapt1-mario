@@ -1,0 +1,44 @@
+[
+ {
+  "file": "console.log",
+  "sha256": "fa65d08e7dc22b08452273d65db547e05281c0e72517513b3fce8fa3e675f6b1",
+  "bytes": 6018,
+  "note": ""
+ },
+ {
+  "file": "curve.json",
+  "sha256": "81177a0619d0ec11ff713ef754d9e8536b43d996a2ebe3c0b9704ef6f42595b2",
+  "bytes": 3573,
+  "note": ""
+ },
+ {
+  "file": "ep000-seed777.gif",
+  "sha256": "5efc1724813484b0b771def010d21bfc8988ede99723d7e070fa9341b00e6de0",
+  "bytes": 1249319,
+  "note": ""
+ },
+ {
+  "file": "ep025-seed777.gif",
+  "sha256": "bcb7f7a99d2e175395bf4fbf3d6ffad984984616ccefe257dd15c4ad2041962b",
+  "bytes": 737989,
+  "note": ""
+ },
+ {
+  "file": "ep027-final-seed777.gif",
+  "sha256": "58df233fd9df1715a788f715e859614464d252114d8dbbb53b4db1934bc10991",
+  "bytes": 1883593,
+  "note": ""
+ },
+ {
+  "file": "run-20261001T111503Z.jsonl",
+  "sha256": "2f9d0e2f5902bc068187f80bcaa4528a2d845ff3f575f6bfdf438d219929d1c2",
+  "bytes": 1263935,
+  "note": ""
+ },
+ {
+  "file": "run-20261001T111503Z.jsonl.provenance.json",
+  "sha256": "a74218e7e60aac633e5885127475c107c1072c4d29a2b0ded38a31c22f976f7c",
+  "bytes": 2672,
+  "note": ""
+ }
+]

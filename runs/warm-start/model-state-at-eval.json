@@ -1,0 +1,21 @@
+{
+ "mario-gate4-takeoff": {
+  "model_type": "extra_trees",
+  "validation_skill": 0.1548980261434979,
+  "version": 640,
+  "status": "retained",
+  "sample_count": 640,
+  "event_count": 640
+ },
+ "mario-gate3-apex": {
+  "model_type": "extra_trees",
+  "validation_skill": 0.0840021575450498,
+  "version": 788,
+  "status": "retained",
+  "sample_count": 788,
+  "event_count": 788
+ },
+ "eval_time_sgt": "2026-10-01 02:38-02:58",
+ "account": "hsc",
+ "server": "Rei's model-validation fix live (build pushed before 2026-09-30 21:40 SGT); learning.training.model_type = extra_trees pinned on both domains"
+}

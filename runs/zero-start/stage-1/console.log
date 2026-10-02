@@ -1,0 +1,60 @@
+=== zero2 stage 1 (hsc, FRESH pair mario-zero2-*, max_samples 16384, seeds 0-) 2026年10月 1日 週四 15時44分06秒 CST
+created bandit domains mario-zero2-takeoff (full_v3, 8 macros) and mario-zero2-apex (apex_v3, 3 choices), exploration_mode=ucb, reward max 1.0, model_type=extra_trees
+  mario-zero2-takeoff: engine ready after 2s
+  mario-zero2-apex: engine ready after 1s
+credit=CreditConfig(kind='frame_horizon', horizon=128, k=6, gamma=0.9) macros=['noop', 'right', 'right_run', 'left', 'right_run_jump_short', 'right_run_jump_mid', 'right_run_jump_full', 'right_jump_full'] cap=2000 Records eval every 25 on seeds (777,)
+[eval ep000] reach=315 (best 315 @ep0) flag=[False] records=0 takeoff model=None consumed=0/0 apex model=None consumed=0/0 server=[{'abstained': 14}]
+ep0001 seed=0 x=315 dead dec=14 looks=4 sent=18/18 spent=18/2000 takeoff={'selected': 14} apex={'selected': 4} model=None/None
+ep0002 seed=1 x=722 dead dec=13 looks=9 sent=22/22 spent=40/2000 takeoff={'selected': 13} apex={'selected': 9} model=None/None
+ep0003 seed=2 x=315 dead dec=14 looks=0 sent=14/14 spent=54/2000 takeoff={'selected': 14} apex={} model=None/None
+ep0004 seed=3 x=269 dead dec=8 looks=7 sent=15/15 spent=69/2000 takeoff={'selected': 8} apex={'selected': 7} model=None/None
+ep0005 seed=4 x=1271 dead dec=39 looks=26 sent=65/65 spent=134/2000 takeoff={'selected': 39} apex={'selected': 26} model=extra_trees/extra_trees
+ep0006 seed=5 x=1211 dead dec=29 looks=17 sent=46/46 spent=180/2000 takeoff={'selected': 29} apex={'selected': 17} model=extra_trees/extra_trees
+ep0007 seed=6 x=1415 dead dec=44 looks=15 sent=59/59 spent=239/2000 takeoff={'selected': 44} apex={'selected': 15} model=extra_trees/extra_trees
+ep0008 seed=7 x=722 dead dec=12 looks=8 sent=20/20 spent=259/2000 takeoff={'selected': 12} apex={'selected': 8} model=extra_trees/None
+ep0009 seed=8 x=699 dead dec=20 looks=10 sent=30/30 spent=289/2000 takeoff={'selected': 20} apex={'selected': 10} model=None/None
+ep0010 seed=9 x=1405 dead dec=24 looks=20 sent=44/44 spent=333/2000 takeoff={'selected': 24} apex={'selected': 20} model=None/None
+ep0011 seed=10 x=680 dead dec=37 looks=8 sent=45/45 spent=378/2000 takeoff={'selected': 37} apex={'selected': 8} model=extra_trees/None
+ep0012 seed=11 x=1108 dead dec=24 looks=17 sent=41/41 spent=419/2000 takeoff={'selected': 24} apex={'selected': 17} model=extra_trees/extra_trees
+ep0013 seed=12 x=1113 dead dec=25 looks=17 sent=42/42 spent=461/2000 takeoff={'selected': 25} apex={'selected': 17} model=None/None
+ep0014 seed=13 x=1410 dead dec=34 looks=18 sent=52/52 spent=513/2000 takeoff={'selected': 34} apex={'selected': 18} model=extra_trees/None
+ep0015 seed=14 x=722 dead dec=11 looks=7 sent=18/18 spent=531/2000 takeoff={'selected': 11} apex={'selected': 7} model=None/extra_trees
+ep0016 seed=15 x=1411 dead dec=42 looks=23 sent=65/65 spent=596/2000 takeoff={'selected': 42} apex={'selected': 23} model=None/extra_trees
+ep0017 seed=16 x=686 dead dec=11 looks=8 sent=19/19 spent=615/2000 takeoff={'selected': 11} apex={'selected': 8} model=extra_trees/extra_trees
+ep0018 seed=17 x=1229 dead dec=36 looks=16 sent=52/52 spent=667/2000 takeoff={'selected': 36} apex={'selected': 16} model=None/extra_trees
+ep0019 seed=18 x=1514 dead dec=28 looks=17 sent=45/45 spent=712/2000 takeoff={'selected': 28} apex={'selected': 17} model=None/None
+ep0020 seed=19 x=821 dead dec=17 looks=10 sent=27/27 spent=739/2000 takeoff={'selected': 17} apex={'selected': 10} model=None/extra_trees
+ep0021 seed=20 x=1219 dead dec=27 looks=15 sent=42/42 spent=781/2000 takeoff={'selected': 27} apex={'selected': 15} model=extra_trees/extra_trees
+ep0022 seed=21 x=1212 dead dec=26 looks=17 sent=43/43 spent=824/2000 takeoff={'selected': 26} apex={'selected': 17} model=extra_trees/extra_trees
+ep0023 seed=22 x=2474 dead dec=62 looks=36 sent=98/98 spent=922/2000 takeoff={'selected': 62} apex={'selected': 36} model=None/extra_trees
+ep0024 seed=23 x=692 dead dec=13 looks=7 sent=20/20 spent=942/2000 takeoff={'selected': 13} apex={'selected': 7} model=extra_trees/None
+ep0025 seed=24 x=692 dead dec=13 looks=7 sent=20/20 spent=962/2000 takeoff={'selected': 13} apex={'selected': 7} model=extra_trees/extra_trees
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+[eval ep025] reach=722 (best 722 @ep25) flag=[False] records=962 takeoff model=extra_trees consumed=623/623 apex model=extra_trees consumed=339/339 server=[{'selected': 10}]
+ep0026 seed=25 x=671 dead dec=21 looks=10 sent=31/31 spent=993/2000 takeoff={'selected': 21} apex={'selected': 10} model=extra_trees/None
+ep0027 seed=26 x=1940 dead dec=40 looks=22 sent=62/62 spent=1055/2000 takeoff={'selected': 40} apex={'selected': 22} model=None/extra_trees
+ep0028 seed=27 x=796 dead dec=16 looks=7 sent=23/23 spent=1078/2000 takeoff={'selected': 16} apex={'selected': 7} model=None/extra_trees
+ep0029 seed=28 x=2469 dead dec=81 looks=40 sent=121/121 spent=1199/2000 takeoff={'selected': 81} apex={'selected': 40} model=extra_trees/extra_trees
+ep0030 seed=29 x=1122 dead dec=24 looks=14 sent=38/38 spent=1237/2000 takeoff={'selected': 24} apex={'selected': 14} model=None/extra_trees
+ep0031 seed=30 x=776 dead dec=10 looks=8 sent=18/18 spent=1255/2000 takeoff={'selected': 10} apex={'selected': 8} model=None/extra_trees
+ep0032 seed=31 x=302 dead dec=6 looks=4 sent=10/10 spent=1265/2000 takeoff={'selected': 6} apex={'selected': 4} model=None/None
+ep0033 seed=32 x=1403 dead dec=29 looks=21 sent=50/50 spent=1315/2000 takeoff={'selected': 29} apex={'selected': 21} model=extra_trees/None
+ep0034 seed=33 x=2012 dead dec=42 looks=21 sent=63/63 spent=1378/2000 takeoff={'selected': 42} apex={'selected': 21} model=None/None
+ep0035 seed=34 x=2472 dead dec=62 looks=27 sent=89/89 spent=1467/2000 takeoff={'selected': 62} apex={'selected': 27} model=None/extra_trees
+ep0036 seed=35 x=1521 dead dec=25 looks=14 sent=39/39 spent=1506/2000 takeoff={'selected': 25} apex={'selected': 14} model=None/extra_trees
+ep0037 seed=36 x=1651 dead dec=42 looks=18 sent=60/60 spent=1566/2000 takeoff={'selected': 42} apex={'selected': 18} model=None/extra_trees
+ep0038 seed=37 x=1995 dead dec=40 looks=22 sent=62/62 spent=1628/2000 takeoff={'selected': 40} apex={'selected': 22} model=None/None
+ep0039 seed=38 x=1405 dead dec=21 looks=13 sent=34/34 spent=1662/2000 takeoff={'selected': 21} apex={'selected': 13} model=None/None
+ep0040 seed=39 x=1397 dead dec=20 looks=13 sent=33/33 spent=1695/2000 takeoff={'selected': 20} apex={'selected': 13} model=None/extra_trees
+ep0041 seed=40 x=1517 dead dec=25 looks=14 sent=39/39 spent=1734/2000 takeoff={'selected': 25} apex={'selected': 14} model=None/extra_trees
+ep0042 seed=41 x=2742 dead dec=71 looks=33 sent=104/104 spent=1838/2000 takeoff={'selected': 71} apex={'selected': 33} model=None/extra_trees
+ep0043 seed=42 x=896 dead dec=28 looks=10 sent=38/38 spent=1876/2000 takeoff={'selected': 28} apex={'selected': 10} model=None/extra_trees
+ep0044 seed=43 x=3161 FLAG dec=79 looks=39 sent=118/118 spent=1994/2000 takeoff={'selected': 79} apex={'selected': 39} model=None/extra_trees
+ep0045 seed=44 x=1230 dead dec=19 looks=12 sent=6/31 spent=2000/2000 takeoff={'selected': 19} apex={'selected': 12} model=extra_trees/extra_trees
+Records cap 2000 reached — stopping
+[eval ep045-final] reach=2473 (best 2473 @ep45) flag=[False] records=2000 takeoff model=extra_trees consumed=1308/1308 apex model=extra_trees consumed=693/692 server=[{'selected': 38}]
+
+done: episodes=45 records=2000 best_reach=2473 (ep45) stop=records_cap
+run log: artifacts/zero2-start-s1/run-20261001T074411Z.jsonl
+zero2 s1 exit 0 2026年10月 1日 週四 19時13分45秒 CST

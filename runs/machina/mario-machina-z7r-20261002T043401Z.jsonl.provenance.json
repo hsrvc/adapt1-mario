@@ -1,0 +1,50 @@
+{
+ "kind": "machina-journal",
+ "target": "artifacts/machina/mario-machina-z7r-20261002T043401Z.jsonl",
+ "target_sha256": "014a7e0a6f69ce94c5103ffe53ff5c8056b51be620b22fe1d2bac90b9eae7da0",
+ "written_at": "2026-10-02T04:47:05+00:00",
+ "command": [
+  "machina_acquire.py",
+  "--domain-id",
+  "mario-machina-z7r",
+  "--attempts",
+  "1024",
+  "--horizon",
+  "256",
+  "--capacity",
+  "96",
+  "--profile",
+  "coherent_edits,global_recall,progress_guided_mutation,sequence_compaction,outcome_tier_exploration,retain_prefix_failures=false"
+ ],
+ "script_sha256": "92d5f7501763489fbca3698fa0aa32548d30f7083e8a688f1e1856da90958ecb",
+ "cwd": "/Users/hsrvc/Documents/playground/rei/mario/agent",
+ "git": {
+  "commit": "412aa8b5a2dd3a95f990893ec293b654927bc4ce",
+  "dirty": false,
+  "dirty_files": [],
+  "diff_sha256": null,
+  "diff": null
+ },
+ "environment": {
+  "python": "3.13.15",
+  "platform": "macOS-14.4.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+   "gym-super-mario-bros": "9.1.0",
+   "nes-py": "9.0.1",
+   "gymnasium": "1.3.0",
+   "numpy": "2.5.3",
+   "pillow": "12.3.0"
+  }
+ },
+ "inputs": {},
+ "extra": {
+  "domain_id": "mario-machina-z7r",
+  "dry_run": false,
+  "env": "SuperMarioBros-1-1-v0",
+  "status": "finished",
+  "spent": 467,
+  "best_max_x": 3161,
+  "flags": 42,
+  "first_flag": 403
+ }
+}

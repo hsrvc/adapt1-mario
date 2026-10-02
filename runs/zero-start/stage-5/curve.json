@@ -1,0 +1,55 @@
+{
+ "online": [
+  {
+   "episode": 1,
+   "reach": 3161,
+   "records": 84,
+   "decisions": 53,
+   "looks": 31
+  },
+  {
+   "episode": 2,
+   "reach": 3161,
+   "records": 168,
+   "decisions": 53,
+   "looks": 31
+  },
+  {
+   "episode": 3,
+   "reach": 3161,
+   "records": 252,
+   "decisions": 53,
+   "looks": 31
+  },
+  {
+   "episode": 4,
+   "reach": 3161,
+   "records": 336,
+   "decisions": 53,
+   "looks": 31
+  },
+  {
+   "episode": 5,
+   "reach": 3161,
+   "records": 431,
+   "decisions": 61,
+   "looks": 34
+  }
+ ],
+ "frozen": [
+  {
+   "tag": "ep000",
+   "episode": 0,
+   "reach": 3161,
+   "records": 0,
+   "takeoff_skill": 0.5225687386696303,
+   "takeoff_model": "extra_trees",
+   "takeoff_installed": true,
+   "consumed": 5134,
+   "sent": {
+    "mario-zero2-takeoff": 0,
+    "mario-zero2-apex": 0
+   }
+  }
+ ]
+}

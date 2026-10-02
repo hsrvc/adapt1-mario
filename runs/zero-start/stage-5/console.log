@@ -1,0 +1,10 @@
+=== zero2 stage 5 (hsc, same fresh pair, seeds 122-, caffeinate -i) 2026年10月 2日 週五 07時53分26秒 CST
+  mario-zero2-takeoff: 5134 rows held, budget 16384 — a 2000-Record stage fits
+  mario-zero2-apex: 2867 rows held, budget 16384 — a 2000-Record stage fits
+credit=CreditConfig(kind='frame_horizon', horizon=128, k=6, gamma=0.9) macros=['noop', 'right', 'right_run', 'left', 'right_run_jump_short', 'right_run_jump_mid', 'right_run_jump_full', 'right_jump_full'] cap=2000 Records eval every 25 on seeds (777,)
+[eval ep000] reach=3161 (best 3161 @ep0) flag=[True] records=0 takeoff model=extra_trees consumed=5134/0 apex model=extra_trees consumed=2867/0 server=[{'selected': 44}]
+ep0001 seed=122 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=84/2000 takeoff={'selected': 53} apex={'selected': 31} model=None/None
+ep0002 seed=123 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=168/2000 takeoff={'selected': 53} apex={'selected': 31} model=None/None
+ep0003 seed=124 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=252/2000 takeoff={'selected': 53} apex={'selected': 31} model=None/None
+ep0004 seed=125 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=336/2000 takeoff={'selected': 53} apex={'selected': 31} model=None/None
+ep0005 seed=126 x=3161 FLAG dec=61 looks=34 sent=95/95 spent=431/2000 takeoff={'selected': 61} apex={'selected': 34} model=None/None

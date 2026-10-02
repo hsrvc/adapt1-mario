@@ -1,0 +1,11 @@
+This repository is a fork of fhshaik/typesafe-mario (https://github.com/fhshaik/typesafe-mario).
+The emulator harness, the action set and the original RAM/telemetry state parser come from
+upstream: src/typesafe_mario/state.py, actions.py, runner.py, dashboard.py, policy.py and cli.py
+started as upstream files and have since been changed here (enemy table, floor profile, hidden
+tiles, frame-cadence teacher, Adapt-1 hooks).
+
+Adapt-1 / NeuroAdapt is a product of Rei Labs (https://docs.reilabs.org). This project is an
+independent test of its public API and is not affiliated with Rei Labs.
+
+This repository contains no Nintendo ROM or other copyrighted game data. Super Mario Bros. is a
+trademark of Nintendo. You are responsible for obtaining and using game files lawfully.

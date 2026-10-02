@@ -1,0 +1,194 @@
+{
+ "domain_id": "mario-gate4-takeoff",
+ "fed": 640,
+ "skip": 0,
+ "kind": "takeoff",
+ "features": "full_v3",
+ "macros": [
+  "noop",
+  "right",
+  "right_run",
+  "left",
+  "right_run_jump_short",
+  "right_run_jump_mid",
+  "right_run_jump_full",
+  "right_jump_full"
+ ],
+ "reward_field": "reward_rate",
+ "reward_max": 1.0,
+ "recreate": true,
+ "learner_after": {
+  "installed": false,
+  "model_type": null,
+  "candidate_model_type": null,
+  "model_status": "running",
+  "reason": null,
+  "episode_count": null,
+  "validation_skill": null,
+  "sample_count": 640
+ },
+ "domain_config": {
+  "domain_id": "mario-gate4-takeoff",
+  "schema": {
+   "event_types": [
+    "frame"
+   ],
+   "relations": [
+    "controls"
+   ],
+   "signals": [
+    "reward",
+    "speed_x",
+    "speed_y",
+    "grounded",
+    "jump_phase",
+    "airborne_frames",
+    "crossing_gap",
+    "enemy_ahead",
+    "enemy_dist",
+    "contact_frames",
+    "takeoff_deadline",
+    "must_jump",
+    "obstacle_ahead",
+    "obstacle_dist",
+    "gap_ahead",
+    "gap_dist",
+    "clear_forward",
+    "outcome",
+    "stalled",
+    "drop_dist",
+    "drop_depth",
+    "floor_below",
+    "last_frames",
+    "obstacle_height"
+   ]
+  },
+  "hypotheses": [
+   {
+    "name": "noop",
+    "relation": "controls",
+    "policy": "noop",
+    "predicts": [
+     "advanced"
+    ]
+   },
+   {
+    "name": "right",
+    "relation": "controls",
+    "policy": "right",
+    "predicts": [
+     "advanced"
+    ]
+   },
+   {
+    "name": "right_run",
+    "relation": "controls",
+    "policy": "right_run",
+    "predicts": [
+     "advanced"
+    ]
+   },
+   {
+    "name": "left",
+    "relation": "controls",
+    "policy": "left",
+    "predicts": [
+     "advanced"
+    ]
+   },
+   {
+    "name": "right_run_jump_short",
+    "relation": "controls",
+    "policy": "right_run_jump_short",
+    "predicts": [
+     "advanced"
+    ]
+   },
+   {
+    "name": "right_run_jump_mid",
+    "relation": "controls",
+    "policy": "right_run_jump_mid",
+    "predicts": [
+     "advanced"
+    ]
+   },
+   {
+    "name": "right_run_jump_full",
+    "relation": "controls",
+    "policy": "right_run_jump_full",
+    "predicts": [
+     "advanced"
+    ]
+   },
+   {
+    "name": "right_jump_full",
+    "relation": "controls",
+    "policy": "right_jump_full",
+    "predicts": [
+     "advanced"
+    ]
+   }
+  ],
+  "learning": {
+   "enabled": true,
+   "context": {
+    "feature_paths": [
+     "values.speed_x",
+     "values.speed_y",
+     "values.grounded",
+     "values.jump_phase",
+     "values.airborne_frames",
+     "values.crossing_gap",
+     "values.enemy_ahead",
+     "values.enemy_dist",
+     "values.contact_frames",
+     "values.takeoff_deadline",
+     "values.must_jump",
+     "values.obstacle_ahead",
+     "values.obstacle_dist",
+     "values.gap_ahead",
+     "values.gap_dist",
+     "values.clear_forward",
+     "values.outcome",
+     "values.stalled",
+     "values.drop_dist",
+     "values.drop_depth",
+     "values.floor_below",
+     "values.last_frames",
+     "values.obstacle_height"
+    ],
+    "max_samples": 4096
+   },
+   "training": {
+    "enabled": true,
+    "model_type": "extra_trees"
+   },
+   "reward": {
+    "aggregation": "weighted_mean",
+    "components": [
+     {
+      "field": "values.reward",
+      "goal": "maximize",
+      "weight": 1.0,
+      "min": 0.0,
+      "max": 1.0
+     }
+    ]
+   },
+   "policy": {
+    "exploration_mode": "ucb",
+    "min_context_observations": 16,
+    "model_max_weight": 0.9
+   }
+  },
+  "query_templates": {
+   "feedback_outcomes": [
+    "advanced",
+    "setback",
+    "no_progress",
+    "died",
+    "cleared"
+   ]
+  }
+ }
+}

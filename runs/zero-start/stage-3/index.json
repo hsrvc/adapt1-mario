@@ -1,0 +1,44 @@
+[
+ {
+  "file": "console.log",
+  "sha256": "275f59fd2e2088415a97abeb19732bba1a367cbc38bdd31d54e69d8fdd7dfc76",
+  "bytes": 6020,
+  "note": ""
+ },
+ {
+  "file": "curve.json",
+  "sha256": "47623c0f51afb48acf553526da9752f3cbe9ed86b610c213381bdf5d1934e2d5",
+  "bytes": 3476,
+  "note": ""
+ },
+ {
+  "file": "ep000-seed777.gif",
+  "sha256": "58df233fd9df1715a788f715e859614464d252114d8dbbb53b4db1934bc10991",
+  "bytes": 1883593,
+  "note": ""
+ },
+ {
+  "file": "ep025-seed777.gif",
+  "sha256": "4b35bd769c2adfc957bd644119c68be68897af58b91cb2368c9ba9177fbc95d3",
+  "bytes": 1387962,
+  "note": ""
+ },
+ {
+  "file": "ep026-final-seed777.gif",
+  "sha256": "4b35bd769c2adfc957bd644119c68be68897af58b91cb2368c9ba9177fbc95d3",
+  "bytes": 1387962,
+  "note": ""
+ },
+ {
+  "file": "run-20261001T145449Z.jsonl",
+  "sha256": "cd4bcc8c66e86934cf85980163608a6902cc486e220635688410ea5c0390f941",
+  "bytes": 1267952,
+  "note": ""
+ },
+ {
+  "file": "run-20261001T145449Z.jsonl.provenance.json",
+  "sha256": "0cbae21d0261231388838e9beaae33256edc57682fd7b111c3f071d5a13ac2b0",
+  "bytes": 2672,
+  "note": ""
+ }
+]

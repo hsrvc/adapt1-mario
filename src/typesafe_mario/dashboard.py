@@ -47,12 +47,17 @@ def clamp01(value: float | None) -> float:
 
 
 class LiveDashboard:
-    """One-window game feed and TypeSafe telemetry display."""
+    """One-window game feed and decision-model telemetry display.
+
+    ``brain`` labels which model is driving (default "Adapt-1"); it sets the window
+    title, header, and the "querying" status text.
+    """
 
     def __init__(
         self,
         config: DashboardConfig | None = None,
         theme: DashboardTheme | None = None,
+        brain: str = "Adapt-1",
     ) -> None:
         try:
             import pygame
@@ -64,16 +69,28 @@ class LiveDashboard:
         self.pg = pygame
         self.config = config or DashboardConfig()
         self.theme = theme or DashboardTheme()
+        self.brain = brain
         pygame.init()
-        pygame.display.set_caption("TypeSafe plays Super Mario Bros.")
-        self.screen = pygame.display.set_mode((self.config.width, self.config.height))
+        pygame.display.set_caption(f"{brain} plays Super Mario Bros.")
+        size = (self.config.width, self.config.height)
+        try:
+            # High-DPI (Retina): SCALED lets SDL render at the display's native pixel density
+            # instead of drawing at 1x and letting macOS upscale (the "blurry text" problem).
+            self.screen = pygame.display.set_mode(size, pygame.SCALED, vsync=1)
+        except (pygame.error, TypeError):
+            self.screen = pygame.display.set_mode(size)
         self.clock = pygame.time.Clock()
-        self.font_title = pygame.font.SysFont("Segoe UI Semibold", 25)
-        self.font_action = pygame.font.SysFont("Segoe UI Semibold", 31)
-        self.font_body = pygame.font.SysFont("Segoe UI", 17)
-        self.font_small = pygame.font.SysFont("Segoe UI", 14)
-        self.font_label = pygame.font.SysFont("Segoe UI Semibold", 14)
-        self.font_mono = pygame.font.SysFont("Cascadia Mono", 14)
+        # Font stacks with macOS/Linux fallbacks: the Windows names alone fall back to
+        # pygame's default face on a Mac, which is what looked blurry.
+        sans = "Segoe UI,Helvetica Neue,Helvetica,Arial,DejaVu Sans"
+        sans_bold = "Segoe UI Semibold,Helvetica Neue,Helvetica,Arial,DejaVu Sans"
+        mono = "Cascadia Mono,Menlo,Monaco,DejaVu Sans Mono,Courier New"
+        self.font_title = pygame.font.SysFont(sans_bold, 25, bold=True)
+        self.font_action = pygame.font.SysFont(sans_bold, 31, bold=True)
+        self.font_body = pygame.font.SysFont(sans, 17)
+        self.font_small = pygame.font.SysFont(sans, 14)
+        self.font_label = pygame.font.SysFont(sans_bold, 14, bold=True)
+        self.font_mono = pygame.font.SysFont(mono, 14)
 
     def close(self) -> None:
         self.pg.quit()
@@ -91,6 +108,25 @@ class LiveDashboard:
         y: int,
     ) -> None:
         self.screen.blit(font.render(value, True, color), (x, y))
+
+    def _wrapped(
+        self, value: str, font: Any, color: Color, x: int, y: int, width: int, line_height: int = 18
+    ) -> int:
+        """Draw text wrapped to `width` px; returns the y after the last line."""
+        words = value.split()
+        line = ""
+        for word in words:
+            candidate = f"{line} {word}".strip()
+            if font.size(candidate)[0] <= width or not line:
+                line = candidate
+            else:
+                self._text(line, font, color, x, y)
+                y += line_height
+                line = word
+        if line:
+            self._text(line, font, color, x, y)
+            y += line_height
+        return y
 
     def _rule(self, x: int, y: int, width: int) -> None:
         self.pg.draw.line(self.screen, self.theme.line, (x, y), (x + width, y), 1)
@@ -149,6 +185,18 @@ class LiveDashboard:
         self.screen.blit(scaled, (target_x, target_y))
         self.pg.draw.rect(self.screen, self.theme.line, (x, y, width, height), 1, border_radius=4)
 
+    @staticmethod
+    def _action_order(names: Any) -> list[str]:
+        """Stable row order for value/probability bars: the run's own action set order."""
+        from .macros import Macro
+
+        present = set(names)
+        for enum in (Macro, Action):
+            ordered = [m.value for m in enum if m.value in present]
+            if ordered and len(ordered) == len(present):
+                return ordered
+        return sorted(present)
+
     def _restart_rect(self) -> Any:
         return self.pg.Rect(self.config.width - 144, 13, 120, 36)
 
@@ -162,6 +210,7 @@ class LiveDashboard:
         episode_reward: float,
         waiting: bool = False,
         run_ended: bool = False,
+        ended_reason: str | None = None,
     ) -> DashboardCommand:
         restart_rect = self._restart_rect()
         command = DashboardCommand.CONTINUE
@@ -190,11 +239,11 @@ class LiveDashboard:
         game_w = panel_x - margin * 2
         game_h = c.height - game_y - margin
 
-        self._text("TypeSafe plays Mario", self.font_title, t.text, margin, 18)
+        self._text(f"{self.brain} plays Mario", self.font_title, t.text, margin, 18)
         if run_ended:
-            status = "Run ended"
+            status = f"Run ended · {ended_reason}" if ended_reason else "Run ended"
         else:
-            status = "Waiting for Jev" if waiting else "Live decision loop"
+            status = f"Querying {self.brain}…" if waiting else "Live decision loop"
         status_width = self.font_small.size(status)[0]
         dot_x = panel_x - status_width - 24
         status_color = t.danger if run_ended else (t.warning if waiting else t.accent)
@@ -229,9 +278,12 @@ class LiveDashboard:
         self._text(action_name, self.font_action, t.text, x, y)
         y += 42
         if decision is None:
-            description = "Jev is evaluating the next bounded controller action."
+            description = f"{self.brain} is selecting the next controller macro."
         else:
-            description = ACTION_DESCRIPTIONS[decision.action]
+            # Grounded-cadence Macros are not in ACTION_DESCRIPTIONS (findings #21).
+            description = ACTION_DESCRIPTIONS.get(
+                decision.action, "Committed move: buttons held until Mario lands."
+            )
         self._text(description, self.font_small, t.muted, x, y)
         y += 32
         self._rule(x, y, width)
@@ -240,44 +292,211 @@ class LiveDashboard:
         confidence = decision.confidence if decision else 0.0
         latency = decision.latency_ms if decision else 0.0
         metric_width = width // 3
+        tel = decision.telemetry if decision is not None else None
+        if tel is not None:
+            decided_by = (
+                "explored"
+                if tel.get("explored")
+                else "server"
+                if tel.get("status") == "selected"
+                else "fallback (argmax)"
+                if tel.get("status") == "abstained"
+                else str(tel.get("status") or "—")
+            )
+            if tel.get("replay"):
+                decided_by += " (replayed)"
+            first_metric = ("Decided by", decided_by)
+        elif decision is not None and decision.selection_status is not None:
+            first_metric = ("Decided by", decision.selection_status)
+        else:
+            first_metric = ("Confidence", f"{confidence * 100:.0f}%")
         metrics = (
-            ("Confidence", f"{confidence * 100:.0f}%"),
+            first_metric,
             ("Latency", f"{latency:.0f} ms"),
-            ("Reward", f"{episode_reward:+.1f}"),
+            ("Episode reward", f"{episode_reward:+.3f}"),
         )
         for index, (label, value) in enumerate(metrics):
             metric_x = x + index * metric_width
             self._text(label, self.font_small, t.muted, metric_x, y)
             self._text(value, self.font_body, t.text, metric_x, y + 19)
         y += 58
-        self._text("Controller probabilities", self.font_label, t.text, x, y)
-        y += 24
-
-        probabilities = decision.probabilities if decision else {}
+        telemetry = decision.telemetry if decision is not None else None
+        adapt1 = telemetry is not None or (
+            decision is not None and decision.selection_status is not None
+        )
         selected_action = decision.action.value if decision else None
-        for action in Action:
-            probability = float(probabilities.get(action.value, 0.0))
-            self._bar(
-                label=action.value.replace("_", " "),
-                value=probability,
-                x=x,
-                y=y,
-                width=width,
-                selected=action.value == selected_action,
+        if telemetry:
+            # --- Adapt-1 panel (findings #22): show what the SERVER said, not what we did with it.
+            model = telemetry.get("model_type") or "no model"
+            skill = telemetry.get("validation_skill")
+            skill_text = f"skill {skill:.2f}" if isinstance(skill, (int, float)) else "skill —"
+            samples = telemetry.get("sample_count")
+            mode = "learning" if telemetry.get("learning") else "frozen"
+            self._text(f"Adapt-1 · {telemetry.get('domain')}", self.font_label, t.text, x, y)
+            y += 22
+            self._text(
+                f"{model} · {skill_text} · {samples} samples · {mode}",
+                self.font_small,
+                t.muted,
+                x,
+                y,
             )
-            y += 36
-
-        self._rule(x, y + 2, width)
-        y += 17
-        self._text("Situation", self.font_label, t.text, x, y)
-        y += 24
-        jump = decision.jump_needed_probability if decision else None
-        danger = clamp01((decision.danger_score or 0.0) / 2.0) if decision else 0.0
-        self._bar(label="Jump useful now", value=clamp01(jump), x=x, y=y, width=width)
-        y += 40
-        danger_color = t.danger if danger >= 0.66 else t.warning
-        self._bar(label="Immediate danger", value=danger, x=x, y=y, width=width, color=danger_color)
-        y += 43
+            y += 20
+            cost = (
+                "Cost  replay · no API calls, nothing spent"
+                if telemetry.get("replay")
+                else "Cost  live · 1 Query per decision, 0 Records (frozen)"
+                if not telemetry.get("learning")
+                else "Cost  live · 1 Query + 1 Record per decision (learning)"
+            )
+            self._text(
+                cost, self.font_mono, t.accent if telemetry.get("learning") else t.muted, x, y
+            )
+            y += 24
+            status = telemetry.get("status") or "—"
+            reason = telemetry.get("reason")
+            tie = telemetry.get("tie_size")
+            status_color = (
+                t.warning if status == "abstained" else t.accent if status == "explored" else t.text
+            )
+            detail = f" ({reason}{f', tie {tie}' if tie else ''})" if reason else ""
+            self._text(f"Selection  {status}{detail}", self.font_mono, status_color, x, y)
+            y += 20
+            counts = telemetry.get("counts") or {}
+            self._text(
+                f"This run   selected {counts.get('selected', 0)} · abstained "
+                f"{counts.get('abstained', 0)} · explored {counts.get('explored', 0)}",
+                self.font_mono,
+                t.muted,
+                x,
+                y,
+            )
+            y += 26
+            self._text("Learned value per macro", self.font_label, t.text, x, y)
+            y += 22
+            values = telemetry.get("values") or {}
+            top = max(values.values()) if values else 0.0
+            order = self._action_order(values.keys())
+            for name in order[:8]:
+                v = float(values.get(name, 0.0))
+                self._bar(
+                    label=f"{name.replace('_', ' ')}  {v:.3f}",
+                    value=(v / top if top > 0 else 0.0),
+                    x=x,
+                    y=y,
+                    width=width,
+                    selected=name == selected_action,
+                )
+                y += 30
+            if not values:
+                y = (
+                    self._wrapped(
+                        "no per-macro values in the response (tie / no model)",
+                        self.font_small,
+                        t.warning,
+                        x,
+                        y,
+                        width,
+                    )
+                    + 4
+                )
+            last = telemetry.get("last_feedback")
+            if last:
+                sent = "sent" if last.get("sent") else "not sent (frozen)"
+                self._text(
+                    f"Last feedback  r={last['reward']:+.4f} · {last['outcome']} · {sent}",
+                    self.font_mono,
+                    t.muted,
+                    x,
+                    y,
+                )
+                y += 20
+            if telemetry.get("episode_id"):
+                self._text(
+                    f"TCP  {telemetry['episode_id']} · step {telemetry.get('step')}",
+                    self.font_mono,
+                    t.muted,
+                    x,
+                    y,
+                )
+                y += 20
+            apex = telemetry.get("apex")
+            if apex:
+                vals = apex.get("values") or {}
+                short = " ".join(
+                    f"{k.removeprefix('apex_')[:4]}={v:.3f}" for k, v in sorted(vals.items())
+                )
+                y = (
+                    self._wrapped(
+                        f"Apex x={apex.get('x')}  {apex.get('choice')} · {apex.get('status')}"
+                        + (f"  {short}" if short else ""),
+                        self.font_mono,
+                        t.accent,
+                        x,
+                        y,
+                        width,
+                    )
+                    + 4
+                )
+            nav = snapshot.navigation_features()
+            terrain = (
+                f"Terrain  pit {nav.get('gap_distance_tiles')}/{nav.get('gap_width_tiles_visible')}"
+                f" · drop {nav.get('drop_distance_tiles')}/{nav.get('drop_depth_tiles')}"
+                f" · wall {nav.get('obstacle_distance_tiles')}"
+            )
+            self._text(terrain, self.font_mono, t.muted, x, y)
+            y += 24
+            self._rule(x, y + 2, width)
+            y += 17
+        else:
+            probabilities = dict(decision.probabilities) if decision else {}
+            names = (
+                self._action_order(probabilities.keys())
+                if probabilities
+                else [a.value for a in Action]
+            )
+            self._text(
+                "Controller probabilities" if not adapt1 else "Macro scores (context-free share)",
+                self.font_label,
+                t.text,
+                x,
+                y,
+            )
+            y += 24
+            for name in names[:8]:
+                self._bar(
+                    label=name.replace("_", " "),
+                    value=float(probabilities.get(name, 0.0)),
+                    x=x,
+                    y=y,
+                    width=width,
+                    selected=name == selected_action,
+                )
+                y += 36
+            self._rule(x, y + 2, width)
+            y += 17
+        if adapt1 and not telemetry:
+            note = (
+                "Replay of a log recorded before decision telemetry was stored — "
+                "moves only, no server values. Cost: nothing, no API calls."
+                if decision
+                and decision.selection_status
+                and decision.selection_status.startswith("replay")
+                else f"Selection   {decision.selection_status if decision else '—'}"
+            )
+            y = self._wrapped(note, self.font_small, t.muted, x, y, width) + 8
+        elif not adapt1:
+            self._text("Situation", self.font_label, t.text, x, y)
+            y += 24
+            jump = decision.jump_needed_probability if decision else None
+            danger = clamp01((decision.danger_score or 0.0) / 2.0) if decision else 0.0
+            self._bar(label="Jump useful now", value=clamp01(jump), x=x, y=y, width=width)
+            y += 40
+            danger_color = t.danger if danger >= 0.66 else t.warning
+            self._bar(
+                label="Immediate danger", value=danger, x=x, y=y, width=width, color=danger_color
+            )
+            y += 43
 
         enemies = ", ".join(enemy.kind for enemy in snapshot.enemies) or "none"
         state_lines = (

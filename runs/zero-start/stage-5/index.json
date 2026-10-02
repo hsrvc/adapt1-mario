@@ -1,0 +1,104 @@
+[
+ {
+  "file": "console.log",
+  "sha256": "598818f2e7a4f54256d202cace541600124d635dbb1f4de54afbb237d9625526",
+  "bytes": 1358,
+  "note": ""
+ },
+ {
+  "file": "curve.json",
+  "sha256": "4a11d119ad77a6cc20d1d95595f170fda2ba71c6229dec0d52705b0b709773ec",
+  "bytes": 804,
+  "note": ""
+ },
+ {
+  "file": "ep000-seed777.gif",
+  "sha256": "1583c2b0459eca7200fe1de93a4e2680d141d1462b839eb0ad016f739be693e2",
+  "bytes": 2127105,
+  "note": ""
+ },
+ {
+  "file": "model-state-after-frozen-clear.json",
+  "sha256": "2cec0f6b317c9e3775d41740f31b90deeced7a02497a49c9464b419b390fa481",
+  "bytes": 790,
+  "note": ""
+ },
+ {
+  "file": "run-20261001T235336Z.jsonl",
+  "sha256": "f03daeb287ed6da3b052d655c8522b14bd695d958529c17a8156bd7ed77e319d",
+  "bytes": 289538,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed1.gif",
+  "sha256": "09709ebc35752ba8ab179efee43b1ed2f6cb2d9a37c77e4035455e48b993c62c",
+  "bytes": 2186581,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed1.trace.jsonl",
+  "sha256": "4ffc958028af8fa602d09fdac5709f3f5a0bfb4433b842c5075bf18f9ba43124",
+  "bytes": 9651,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed2.gif",
+  "sha256": "09709ebc35752ba8ab179efee43b1ed2f6cb2d9a37c77e4035455e48b993c62c",
+  "bytes": 2186581,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed2.trace.jsonl",
+  "sha256": "4ffc958028af8fa602d09fdac5709f3f5a0bfb4433b842c5075bf18f9ba43124",
+  "bytes": 9651,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed3.gif",
+  "sha256": "09709ebc35752ba8ab179efee43b1ed2f6cb2d9a37c77e4035455e48b993c62c",
+  "bytes": 2186581,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed3.trace.jsonl",
+  "sha256": "4ffc958028af8fa602d09fdac5709f3f5a0bfb4433b842c5075bf18f9ba43124",
+  "bytes": 9651,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed4.gif",
+  "sha256": "09709ebc35752ba8ab179efee43b1ed2f6cb2d9a37c77e4035455e48b993c62c",
+  "bytes": 2186581,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed4.trace.jsonl",
+  "sha256": "4ffc958028af8fa602d09fdac5709f3f5a0bfb4433b842c5075bf18f9ba43124",
+  "bytes": 9651,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed777.gif",
+  "sha256": "09709ebc35752ba8ab179efee43b1ed2f6cb2d9a37c77e4035455e48b993c62c",
+  "bytes": 2186581,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/1-1-seed777.trace.jsonl",
+  "sha256": "4ffc958028af8fa602d09fdac5709f3f5a0bfb4433b842c5075bf18f9ba43124",
+  "bytes": 9651,
+  "note": ""
+ },
+ {
+  "file": "confirm-after-refit/eval.log",
+  "sha256": "e4ba5de95ebd426c583dce8c3b5f57c3a2c54a88acc1480ccb7e1756990b96a9",
+  "bytes": 2857,
+  "note": ""
+ },
+ {
+  "file": "run-20261001T235336Z.jsonl.provenance.json",
+  "sha256": "4f1d213ba9993e346d9cb37ec48d1fecf4c4cda9e5c3b67535d755e086bc21ea",
+  "bytes": 166795,
+  "note": ""
+ }
+]

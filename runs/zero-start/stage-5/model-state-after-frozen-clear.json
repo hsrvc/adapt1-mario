@@ -1,0 +1,31 @@
+{
+ "mario-zero2-takeoff": {
+  "current_model_type": null,
+  "current_version": null,
+  "version": 5446,
+  "version_lag": null,
+  "installed": null,
+  "status": "running",
+  "trained_at": null,
+  "trained_samples": null,
+  "validation_skill": null,
+  "sample_count": 5450,
+  "learner_version": 5450
+ },
+ "mario-zero2-apex": {
+  "current_model_type": null,
+  "current_version": null,
+  "version": 3049,
+  "version_lag": null,
+  "installed": null,
+  "status": "running",
+  "trained_at": null,
+  "trained_samples": null,
+  "validation_skill": null,
+  "sample_count": 3049,
+  "learner_version": 3049
+ },
+ "read_at_utc": "2026-10-02T01:08:38Z",
+ "account": "hsc",
+ "note": "read right after zero2 stage 5 was stopped at its ep000 frozen clear (2026-10-02 09:10 SGT); no feedback since the stop"
+}

@@ -1,0 +1,62 @@
+[
+ {
+  "file": "mario-machina-z7r-20261002T043401Z.jsonl",
+  "gz": "logs/mario-machina-z7r-20261002T043401Z.jsonl.gz",
+  "sha256_uncompressed": "424178402d92c49cebc13c96cce450dc97a546fc15a5679571b04eaa774dc7ca",
+  "bytes": 21348139,
+  "rows": 2339,
+  "note": "full journal: resolved_config, run_args, every proposal, execution and observe (467 attempts) [session_id values redacted for publication]"
+ },
+ {
+  "file": "mario-machina-z7r-attempts.jsonl",
+  "gz": "logs/mario-machina-z7r-attempts.jsonl.gz",
+  "sha256_uncompressed": "a4c25eae55cc2a2d20451cfb74010fec9da7da3990c178af10ef506d2528c2cd",
+  "bytes": 124942,
+  "rows": 467,
+  "note": "per-attempt summary (max_x, flag, source, improved_parent, retained)"
+ },
+ {
+  "file": "mario-machina-z7r-frozen-SuperMarioBros-1-1-v0-20261002T044720Z.jsonl",
+  "gz": "logs/mario-machina-z7r-frozen-SuperMarioBros-1-1-v0-20261002T044720Z.jsonl.gz",
+  "sha256_uncompressed": "386dec859b06e196fc5216149db221a968ee001c5e38a781c71a752db65f56a1",
+  "bytes": 121348,
+  "rows": 7,
+  "note": "frozen eval 1-1: 3161 x 3, 244 commands [session_id values redacted for publication]"
+ },
+ {
+  "file": "mario-machina-z7r-frozen-SuperMarioBros-2-1-v0-20261002T044727Z.jsonl",
+  "gz": "logs/mario-machina-z7r-frozen-SuperMarioBros-2-1-v0-20261002T044727Z.jsonl.gz",
+  "sha256_uncompressed": "008183cff3d89078e2243798ffa5cae49de9d0d40de9bf08cf37b59ae5445b50",
+  "bytes": 55144,
+  "rows": 7,
+  "note": "frozen eval 2-1 (contrast): 735 x 3 [session_id values redacted for publication]"
+ },
+ {
+  "file": "z7r-run.log",
+  "gz": "logs/z7r-run.log.gz",
+  "sha256_uncompressed": "5f9910da2a8bada153c748494cd57e28f10ba2c66b1314f7a018e0789b6c531a",
+  "bytes": 53307,
+  "rows": 474,
+  "note": "stdout of the acquisition run"
+ },
+ {
+  "file": "mario-machina-z7r-20261002T043401Z.jsonl.provenance.json",
+  "sha256": "7dfdaa2539f3864ea1007c3e3188ed7a624ada94500533e7cde0f58b0017a148",
+  "note": "provenance sidecar (commit 412aa8b, clean tree)"
+ },
+ {
+  "file": "mario-machina-z7r-attempts.jsonl.provenance.json",
+  "sha256": "df9c6f92513ddd8f4fdaf47a8f724122b90aff38e18fedf843f8a01c8b55a89d",
+  "note": "provenance sidecar (commit 412aa8b, clean tree)"
+ },
+ {
+  "file": "replays/z7r-403-first-flag.gif",
+  "sha256": "d63a3e8e8018f1533e6df31fe12a5b83dfeee241224528e81c19514283fe79d7",
+  "note": "attempt 403 (first flag) rendered offline from the journal"
+ },
+ {
+  "file": "replays/z7r-403-first-flag.last.png",
+  "sha256": "0111a13d092cb6e8dc38acd2557d2a7ee86f9cdc56b7ca67ddf6f61dc6fa8ad0",
+  "note": "attempt 403 (first flag) rendered offline from the journal"
+ }
+]
