@@ -1,6 +1,6 @@
 # Zero start: 1-1 learned from nothing (2026-10-01 → 02)
 
-Run it: [`REPRODUCE.md` §5](../../REPRODUCE.md#5-zero-start--8500-records--15-hours) (≈ 8,500 Records, ≈ 15 hours).
+Run it: [`REPRODUCE.md` §5](../../REPRODUCE.md#5-zero-start--8500-records--16-hours) (≈ 8,500 Records, ≈ 16 hours).
 
 ![the first frozen clear, stage 5](stage-5/ep000-seed777.gif)
 
@@ -40,5 +40,4 @@ Stage 5 also has `confirm-after-refit/` (the five-seed evaluation after the refi
 
 - Frozen reads move by hundreds of pixels between checkpoints even when little has changed. The server refits on every
   new batch of rows. Judge the trend and the online clear rate, not one read.
-- The first clear was narrow: in stage 4 the same moves died just short. The five-seed confirmation after the refit
-  shows it holds.
+- The first clear was narrow. The five-seed confirmation after the refit shows it holds.

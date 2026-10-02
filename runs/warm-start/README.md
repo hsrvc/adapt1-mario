@@ -46,14 +46,8 @@ python scripts/kstep_returns.py --dataset $D/coverage.jsonl --out $D/coverage-r.
 python scripts/assemble_apex_feed.py --demos $D/curated.jsonl --coverage $D/coverage-r.jsonl --out $D/apex-feed.jsonl
 ```
 
-**Takeoff feed.** All 640 rows come from the same kind of pools, but we did not record exactly which coverage rows were
-picked, so there is no script that rebuilds this file. Use the shipped one. What it contains:
-
-- 341 curated demonstration rows (`curated.jsonl` above);
-- 55 demonstration rows where the teacher made a random move;
-- 121 coverage rows (`coverage-r.jsonl` above);
-- 123 rows for rarely used macros, from a second coverage pool: `scripts/historical/apex_coverage_d6faa03_v2.py
-  --follow best --write-mainline --stride 3 --macros $MACROS`, then the same returns.
+**Takeoff feed.** Its 640 rows are teacher demonstrations plus coverage rows from the same kind of pools, but we did
+not record exactly which coverage rows were picked, so no script rebuilds this file. Use the shipped one.
 
 ## Caveat
 

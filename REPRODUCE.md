@@ -64,7 +64,7 @@ without saying so. An evaluation in that window measures the fallback, not the p
 different server version. How the two datasets are rebuilt from code is in
 [`runs/warm-start/README.md`](runs/warm-start/README.md).
 
-## 5. Zero start: ≈ 8,500 Records, ≈ 15 hours
+## 5. Zero start: ≈ 8,500 Records, ≈ 16 hours
 
 Two empty domains play 1-1 and learn online. We ran it in stages of 2,000 Records each, which makes natural
 checkpoints:
@@ -77,7 +77,7 @@ python scripts/zero_start_duo.py --takeoff-domain my-takeoff-z --apex-domain my-
 ```
 
 For each later stage, drop `--recreate`, set `--seed` to the number of episodes played so far (ours: 45, 72, 98, 122),
-and use a new `--out-dir` and `--run-id`. The command of every stage is in `runs/zero-start/stage-N/*.provenance.json`.
+and use a new `--out-dir` and `--run-id`. Each stage's settings are in `runs/zero-start/stage-N/*.provenance.json`.
 
 **Two settings decide whether this works:**
 - `--max-samples` is the learner's row budget. Keep it above the Records you will ever send. Past the budget the
@@ -90,6 +90,7 @@ and use a new `--out-dir` and `--run-id`. The command of every stage is in `runs
 
 ## Regenerating the datasets
 
-Every dataset regenerates from the code. Each `*.provenance.json` records the command, the package versions and the
+Every dataset regenerates from the code, except the warm-start takeoff file (see
+[`runs/warm-start/README.md`](runs/warm-start/README.md)). Each `*.provenance.json` records the command, the package versions and the
 input hashes. Its `git.commit` refers to our private development repository, not this one. `scripts/historical/` keeps
 the exact versions of generators that have changed since they produced data.
