@@ -11,11 +11,16 @@ Run it yourself: [`REPRODUCE.md` §3b](../../REPRODUCE.md#3b-machina-on-2-1--350
 Attempt 1 next to attempt 278, at twice the speed. Attempt 1 plays the 1-1 sequence on 2-1 and dies at a piranha
 plant at x = 735. Attempt 278 reaches the flag.
 
-![attempt 1 dies at x = 735; attempt 278 reaches the flag](videos/before-after-attempt1-vs-278.gif)
+
+https://github.com/user-attachments/assets/32fcc9a1-ada6-40bb-be77-b205e529b4d0
+
 
 The sequence Machina kept, replayed with learning off. The panel shows the command now playing, how long each button
 is held, and the whole 256-command sequence with a playhead:
-[machina-2-1-frozen-clear.mp4](videos/machina-2-1-frozen-clear.mp4) (36 s).
+
+
+https://github.com/user-attachments/assets/dc0c11f7-c8b0-4b44-8bb7-ebfae62af54f
+
 
 ## How it started from 1-1
 
