@@ -33,6 +33,16 @@
   "note": "the run stdout"
  },
  {
+  "file": "replays/seeded-b-278-first-flag.gif",
+  "sha256": "a6272ebac495cdc77ef8a342927b979cd8e0b4014897e96d7fed3269d8698099",
+  "note": "attempt 278, the first 2-1 flag, re-executed offline from the journal (machina_replay.py --use-executed)"
+ },
+ {
+  "file": "replays/seeded-b-278-first-flag.last.png",
+  "sha256": "f515eb816bf8f8530bf688b58ea8dcd42ae3d087b51c3a8e8eb74e7155012b13",
+  "note": "attempt 278, the first 2-1 flag, re-executed offline from the journal (machina_replay.py --use-executed)"
+ },
+ {
   "file": "mario-machina-2-1-seeded-b-20261003T132903Z.jsonl.provenance.json",
   "sha256": "0deff5880c31accf3c4e1514a8a7b98b712eb2eb33872a88be1e0be743759f24",
   "note": "provenance sidecar"
@@ -41,20 +51,5 @@
   "file": "mario-machina-2-1-seeded-b-attempts.jsonl.provenance.json",
   "sha256": "210f0b1ab8d9fffe447853beceffb15f0aee87a79f6c5b7bcd7471c2b4595dec",
   "note": "provenance sidecar"
- },
- {
-  "file": "videos/machina-2-1-frozen-clear.mp4",
-  "sha256": "6c76d6fa50cb2e40f007c4f6a2fd3931d6a7e64123a2960f810f736ad59de4f6",
-  "note": "the frozen 2-1 replay on the dashboard (machina_dashboard.py --env SuperMarioBros-2-1-v0), offline render"
- },
- {
-  "file": "videos/before-after-attempt1-vs-278.mp4",
-  "sha256": "3813c66a09c709a07e013b4157c95e1d1d363d2e81237093ff04c787be4d4773",
-  "note": "attempt 1 (its 1-1 sequence, dies at 735) beside attempt 278 (flag), 2x speed (machina_before_after.py)"
- },
- {
-  "file": "videos/before-after-attempt1-vs-278.gif",
-  "sha256": "46b68ed19b93a3e89c34c32da60347d4afade45b67b40c24c9b1218c6c334f76",
-  "note": "the same, as a 720 px 12 fps GIF for inline display"
  }
 ]

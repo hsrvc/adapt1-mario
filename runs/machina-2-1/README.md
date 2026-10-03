@@ -70,6 +70,6 @@ attempt for attempt but have not shown it.
 | `logs/mario-machina-2-1-seeded-b-2026*.jsonl.gz` | the full journal: resolved config, every proposal, execution and response |
 | `logs/*-attempts.jsonl.gz` | one line per attempt: `max_x`, `flag`, `source`, `improved_parent` |
 | `logs/*-frozen-*.jsonl.gz` | the replays with learning off, on 2-1 and on 1-1 |
-| `videos/` | the clips above, rendered offline from the journals |
+| `replays/seeded-b-278-first-flag.gif` | attempt 278, the first flag, rendered offline from the journal (`machina_replay.py`) |
 | `*.provenance.json` | command, package versions, input hashes |
 | `index.json` | sha256 of every file. The `session_id` values in the journals are blanked for publication |
