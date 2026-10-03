@@ -24,6 +24,8 @@ from typesafe_mario.machina import (  # noqa: E402
     Journal,
     MachinaClient,
     OfflineMachina,
+    seed_rows_from_journal,
+    set_level_length,
     execute_policy,
     execute_sequence,
     state_row,
@@ -76,6 +78,20 @@ def main() -> int:
         "(eps 0) instead of the proposal and report what ran. Label the run 'refined from a "
         "demonstration'. The teacher reaches ~2473 on 1-1; the learner must finish the rest.",
     )
+    ap.add_argument(
+        "--seed-sequence",
+        type=Path,
+        default=None,
+        help="SEEDED from Machina's own result (`mach2`): for the first --seed-count attempts, execute the action rows of "
+        "the first proposal in this journal (e.g. the z7r frozen 1-1 run) instead of the new proposal, and report what ran",
+    )
+    ap.add_argument("--seed-count", type=int, default=1)
+    ap.add_argument(
+        "--level-length",
+        type=float,
+        default=None,
+        help="px where the flag is (goal coordinate and outcome scale). Default 3161 (1-1, every earlier run); 2-1 = 3193",
+    )
     ap.add_argument("--dry-run", action="store_true", help="offline stub, spends nothing")
     ap.add_argument(
         "--allow-dirty",
@@ -85,6 +101,9 @@ def main() -> int:
     args = ap.parse_args()
     if not args.dry_run:
         check_clean(allow_dirty=args.allow_dirty, what="a Machina acquisition run")
+    if args.level_length is not None:
+        set_level_length(args.level_length)
+    seed_rows = seed_rows_from_journal(args.seed_sequence) if args.seed_sequence else None
 
     ts = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     journal = Journal(args.journal_dir / f"{args.domain_id}-{ts}.jsonl")
@@ -179,6 +198,9 @@ def main() -> int:
                 DiversifiedHeuristicPolicy(epsilon=0.0, rng_seed=n),
                 max_commands=len(rows),
             )
+        elif seed_rows is not None and n - args.start < args.seed_count:
+            trace = execute_sequence(env, parser, snap, seed_rows)
+            trace["seeded"] = True
         else:
             trace = execute_sequence(env, parser, snap, rows)
         env.close()
@@ -218,7 +240,7 @@ def main() -> int:
             first_flag = first_flag or n
         print(
             f"#{n:04d} max_x={trace['max_x']:4d} best={best:4d} exec={trace['executed']:3d}/{trace['proposed']} "
-            f"{'FLAG' if trace['flag'] else 'dead' if trace['dead'] else 'stall'} src={'SEEDED-teacher' if trace.get('seeded') else prop.get('source')} "
+            f"{'FLAG' if trace['flag'] else 'dead' if trace['dead'] else 'stall'} src={('SEEDED-sequence' if seed_rows is not None else 'SEEDED-teacher') if trace.get('seeded') else prop.get('source')} "
             f"obs={obs.get('status')} improved={obs.get('improved_parent')} retained={obs.get('retained_trajectories')}",
             flush=True,
         )

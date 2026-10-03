@@ -756,8 +756,13 @@ class Adapt1Policy:
         epsilon: float = 0.0,
         temporal_context: bool = False,
         learn: bool = True,
+        abstain_fallback: str | None = None,
     ) -> None:
         self._client = client
+        # `refine` (2026-10-03): a corrector domain falls back to a FIXED choice (``keep_base``) when the
+        # server abstains or names an unknown policy, instead of the argmax guess — so an empty or undecided
+        # corrector replays the frozen base exactly. None = the argmax fallback (#22), unchanged.
+        self._abstain_fallback = abstain_fallback
         self._domain = domain_id
         self._relation = relation
         self._allow_exploration = allow_exploration
@@ -830,15 +835,21 @@ class Adapt1Policy:
         snapshot: MarioSnapshot,
         actions: Sequence[Action],
         extra: Mapping[str, Any] | None = None,
+        features: Mapping[str, Any] | None = None,
     ) -> Decision:
-        state = snapshot.to_state()
-        if extra is not None:
-            # The apex look (design-notes §14a): raw arc facts the flattener emits as apex_*.
-            # An apex domain reads raw current-frame terrain, never the takeoff preview.
-            state["apex"] = dict(extra)
-        features = context_features(
-            state, self._feature_names, projected=False if extra is not None else None
-        )
+        """``features``: a ready-made context (the `refine` corrector: the base's context + the base's
+        choice + interaction terms, ``refinement.py``); None = flatten ``snapshot`` for this arm."""
+        if features is not None:
+            features = dict(features)
+        else:
+            state = snapshot.to_state()
+            if extra is not None:
+                # The apex look (design-notes §14a): raw arc facts the flattener emits as apex_*.
+                # An apex domain reads raw current-frame terrain, never the takeoff preview.
+                state["apex"] = dict(extra)
+            features = context_features(
+                state, self._feature_names, projected=False if extra is not None else None
+            )
         explore = self._allow_exploration
         if self._explore_after_x is not None:
             # Exploit until the hard region, then explore — spends the exploration/feedback
@@ -867,16 +878,25 @@ class Adapt1Policy:
         # On abstention, commit to the learner's OWN best guess (argmax of the scores), not a
         # random action. Random fallback silently corrupts eval — it measures coin-flips, not
         # the learned policy. Abstention means "no *confident* winner", not "no information".
-        selected = parsed["policy"] or self._best_effort(
-            actions, parsed["scores"], parsed["diagnostics"]
+        by_name = {a.value: a for a in actions}
+        fallback = (
+            self._abstain_fallback
+            if self._abstain_fallback is not None and self._abstain_fallback in by_name
+            else None
+        )
+        selected = (
+            parsed["policy"]
+            or fallback
+            or self._best_effort(actions, parsed["scores"], parsed["diagnostics"])
         )
         # The choices may be 8-frame Actions or grounded Macros (macros.py); resolve the
         # server's policy name against whatever set the runner passed in.
-        by_name = {a.value: a for a in actions}
         action = by_name.get(str(selected))
         if action is None:
             # Server returned a policy name we do not recognise; use the best-guess instead.
-            action = by_name[self._best_effort(actions, parsed["scores"], parsed["diagnostics"])]
+            action = by_name[
+                fallback or self._best_effort(actions, parsed["scores"], parsed["diagnostics"])
+            ]
             abstained = True
         explored = False
         if explore and self._epsilon > 0 and self._rng.random() < self._epsilon:
@@ -923,8 +943,16 @@ class Adapt1Policy:
                     v = diag.get("selection_expected_reward")
                 if isinstance(v, (int, float)) and not isinstance(v, bool):
                     values[str(name)] = float(v)
+        # The score the server RANKS on (``selection_expected_reward``), separately: on a bandit domain
+        # ``sequential_expected_reward`` is also present and near-constant across arms (`refine` pilot, 2026-10-03).
+        selection_values: dict[str, float] = {}
+        for name, diag in (parsed["diagnostics"] or {}).items():
+            v = diag.get("selection_expected_reward") if isinstance(diag, Mapping) else None
+            if isinstance(v, (int, float)) and not isinstance(v, bool):
+                selection_values[str(name)] = float(v)
         telemetry = {
             "domain": self._domain,
+            "selection_values": selection_values,
             "model_type": learner.get("model_type"),
             "validation_skill": learner.get("validation_skill"),
             "sample_count": learner.get("sample_count"),

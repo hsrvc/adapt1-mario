@@ -15,7 +15,7 @@ reports what ran and how far Mario got. Machina keeps the best attempts and edit
 - Cost: 1 Record per attempt (467) plus 2 to create and configure; 1 Query per proposal.
 
 **Result:** first flag at attempt **403**, and 42 flags in the 467 attempts. The run stops 64 attempts after the first
-flag. Frozen replay: **1-1 = 3161 on 3/3** (244 commands); 2-1 = 735 (it does not transfer).
+flag. Frozen replay: **1-1 = 3161 on 3/3** (244 commands); 2-1 = 735 (it does not transfer). Started from this sequence, Machina clears 2-1 at attempt 278: [`../machina-2-1/`](../machina-2-1/).
 
 **It is deterministic.** We ran this setup first on 2026-09-22 and again on 2026-10-02 on a different account. All 467
 proposals were byte-identical. A rerun with the same config should match `logs/*-attempts.jsonl.gz` attempt for attempt.

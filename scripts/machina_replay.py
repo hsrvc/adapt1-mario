@@ -32,7 +32,13 @@ def main() -> int:
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--decimate", type=int, default=3)
     args = ap.parse_args()
-    rows = [json.loads(l) for l in args.journal.read_text().splitlines() if l.strip()]
+    import gzip
+
+    raw = args.journal.read_bytes()
+    text = (
+        gzip.decompress(raw).decode() if args.journal.suffix == ".gz" else raw.decode()
+    )  # bundles ship .gz journals
+    rows = [json.loads(l) for l in text.splitlines() if l.strip()]
     props = [r["record"] for r in rows if r["kind"] == "proposal"]
     execs = [r["record"] for r in rows if r["kind"] == "execution"]
     actions = execs[args.index]["actions"] if args.use_executed else props[args.index]["actions"]

@@ -150,8 +150,14 @@ class DelayedCredit:
             if not self.budget.take():
                 entry.dropped = True
                 continue
-            names = entry.policy.feature_names
-            next_features = {n: entry.row["next_state"][n] for n in names}
+            next_context = getattr(entry.policy, "next_context", None)
+            if callable(
+                next_context
+            ):  # `refine` corrector: its context is wider than the row's state features
+                next_features = next_context(entry.row["next_state"])
+            else:
+                names = entry.policy.feature_names
+                next_features = {n: entry.row["next_state"][n] for n in names}
             record = entry.policy.send_feedback(
                 entry.pending,
                 next_state={},

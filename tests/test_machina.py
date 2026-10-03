@@ -102,3 +102,47 @@ def test_offline_stub_enforces_the_observation_contract():
     with pytest.raises(AssertionError):
         m.trajectory("observe", {**ok, "step_outcomes": [0.0]})
     assert m.trajectory("observe", ok)["status"] == "learned"
+
+
+# --- mach2 (2026-10-03): per-level length and seeding from Machina's own 1-1 sequence ------------------------
+
+
+def test_level_length_scales_state_and_outcome_and_defaults_to_1_1():
+    from typesafe_mario import machina
+
+    assert machina.LEVEL_LENGTH_PX == 3161.0
+    try:
+        machina.set_level_length(3193.0)
+        assert machina.LEVEL_LENGTH_PX == 3193.0
+    finally:
+        machina.set_level_length(3161.0)
+
+
+def test_seed_rows_are_read_from_a_journals_first_proposal(tmp_path):
+    import json
+
+    from typesafe_mario.machina import seed_rows_from_journal
+
+    j = tmp_path / "j.jsonl"
+    rows = [[0.1, 0.2, -0.3, 1.0], [0.0, 0.0, 0.0, 0.0]]
+    j.write_text(
+        json.dumps({"kind": "call", "record": {"op": "state", "resp": {}}})
+        + "\n"
+        + json.dumps({"kind": "call", "record": {"op": "propose", "resp": {"actions": rows}}})
+        + "\n"
+    )
+    assert seed_rows_from_journal(j) == rows
+
+
+def test_a_clear_always_outscores_an_overshoot_past_the_pole():
+    from typesafe_mario import machina
+
+    try:
+        machina.set_level_length(3193.0)
+        assert machina.attempt_outcome(3206, False) < machina.attempt_outcome(3193, True) == 1.0
+        assert machina.attempt_outcome(1600, False) == 1600 / 3193.0
+    finally:
+        machina.set_level_length(3161.0)
+    assert (
+        machina.attempt_outcome(2471, False) == 2471 / 3161.0
+    )  # every #27/#52 non-flag attempt: unchanged

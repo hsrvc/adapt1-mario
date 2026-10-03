@@ -1,0 +1,63 @@
+{
+ "kind": "machina-attempts",
+ "target": "artifacts/machina/mario-machina-2-1-seeded-b-attempts.jsonl",
+ "target_sha256": "307743616a85d8c91ebbe6d0d8a7d143025b9525901695b2742d3285f7357ef1",
+ "written_at": "2026-10-03T13:40:39+00:00",
+ "command": [
+  "machina_acquire.py",
+  "--domain-id",
+  "mario-machina-2-1-seeded-b",
+  "--env",
+  "SuperMarioBros-2-1-v0",
+  "--level-length",
+  "3193",
+  "--attempts",
+  "1227",
+  "--stop-after-flag",
+  "64",
+  "--horizon",
+  "256",
+  "--capacity",
+  "96",
+  "--profile",
+  "coherent_edits,global_recall,progress_guided_mutation,sequence_compaction,outcome_tier_exploration,retain_prefix_failures=false",
+  "--seed-sequence",
+  "artifacts/machina/mario-machina-z7r-frozen-SuperMarioBros-1-1-v0-20261002T044720Z.jsonl"
+ ],
+ "script_sha256": "9d66fbe5472bbfbde9ba8070bd2dc913f3d20b2afea3352f5592cf7e61c3980d",
+ "cwd": "/Users/hsrvc/Documents/playground/rei/mario/agent",
+ "git": {
+  "commit": "9b95e31a94c950d5ea90a0043fcd77e926dd9907",
+  "dirty": false,
+  "dirty_files": [],
+  "diff_sha256": null,
+  "diff": null
+ },
+ "environment": {
+  "python": "3.13.15",
+  "platform": "macOS-14.4.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+   "gym-super-mario-bros": "9.1.0",
+   "nes-py": "9.0.1",
+   "gymnasium": "1.3.0",
+   "numpy": "2.5.3",
+   "pillow": "12.3.0"
+  }
+ },
+ "inputs": {
+  "journal": {
+   "path": "artifacts/machina/mario-machina-2-1-seeded-b-20261003T132903Z.jsonl",
+   "sha256": "10e7c75d356ce7012b6bac3bf9a445c52562a2d98ec3f4bc5880cd4bab779a69",
+   "provenance": "artifacts/machina/mario-machina-2-1-seeded-b-20261003T132903Z.jsonl.provenance.json"
+  }
+ },
+ "extra": {
+  "domain_id": "mario-machina-2-1-seeded-b",
+  "dry_run": false,
+  "env": "SuperMarioBros-2-1-v0",
+  "spent": 342,
+  "best_max_x": 3197,
+  "flags": 33,
+  "first_flag": 278
+ }
+}

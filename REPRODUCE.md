@@ -42,6 +42,26 @@ all 3 repeats. Machina is deterministic, so your run should match ours attempt f
 `runs/machina/logs/*-attempts.jsonl.gz` has `max_x`, `flag` and `source` for each attempt. If yours diverges, compare
 the server's resolved config (written near the top of your journal in `artifacts/machina/`) with ours.
 
+## 3b. Machina on 2-1: ≈ 350 Records
+
+Starts from the 1-1 sequence in `runs/machina/` (attempt 1 plays it on 2-1), then acquires as in §3:
+
+```bash
+SEED=runs/machina/logs/mario-machina-z7r-frozen-SuperMarioBros-1-1-v0-20261002T044720Z.jsonl.gz
+python scripts/machina_acquire.py --domain-id my-machina-2-1 --env SuperMarioBros-2-1-v0 --level-length 3193 \
+  --attempts 1227 --horizon 256 --capacity 96 --seed-sequence $SEED \
+  --profile coherent_edits,global_recall,progress_guided_mutation,sequence_compaction,outcome_tier_exploration,retain_prefix_failures=false
+python scripts/machina_frozen.py --domain-id my-machina-2-1 --env SuperMarioBros-2-1-v0 --level-length 3193   # Queries only
+```
+
+**Expect:** attempt 1 at 735 (the seed), the first flag at attempt **278**, a stop 64 attempts later (342 Records), and a
+frozen 2-1 of 3193 with the flag on all 3 repeats. Compare with `runs/machina-2-1/logs/*-attempts.jsonl.gz`. We have run
+this once; Machina was deterministic on 1-1, so we expect a match, and a mismatch is worth reporting.
+
+Free, without a key: `python scripts/machina_replay.py --journal runs/machina-2-1/logs/mario-machina-2-1-seeded-b-20261003T132903Z.jsonl.gz --index 277 --use-executed --env SuperMarioBros-2-1-v0 --out 278.gif`
+replays attempt 278 to the flag, and `python scripts/machina_before_after.py <that journal> before-after.mp4` renders
+attempt 1 beside attempt 278.
+
 ## 4. Warm start: 1,017 Records
 
 Also ≈ 1,000 Queries for the ingest (one per row) and ≈ 400 for the evaluation.

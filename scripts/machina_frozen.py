@@ -28,7 +28,17 @@ def main() -> int:
     ap.add_argument("--env", default="SuperMarioBros-1-1-v0")
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--journal-dir", type=Path, default=Path("artifacts/machina"))
+    ap.add_argument(
+        "--level-length",
+        type=float,
+        default=None,
+        help="px where the flag is; must match the domain's acquisition run (default 3161; mach2 2-1 domains: 3193)",
+    )
     args = ap.parse_args()
+    if args.level_length is not None:
+        from typesafe_mario.machina import set_level_length
+
+        set_level_length(args.level_length)
     ts = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     journal = Journal(args.journal_dir / f"{args.domain_id}-frozen-{args.env}-{ts}.jsonl")
     m = MachinaClient(Adapt1Client(), args.domain_id, journal)

@@ -1,0 +1,55 @@
+[
+ {
+  "file": "mario-machina-2-1-seeded-b-20261003T132903Z.jsonl",
+  "gz": "logs/mario-machina-2-1-seeded-b-20261003T132903Z.jsonl.gz",
+  "sha256_uncompressed": "ea5d8d15d298e24df8a22f3d9fd5cbb4f40433e8c8055e08fd00d2fab2291c97",
+  "note": "full journal: every propose / execution / observe call of the 342 attempts (session_id inside: redact at a public cut) [session_id values redacted for publication]",
+  "bytes": 20425485
+ },
+ {
+  "file": "mario-machina-2-1-seeded-b-attempts.jsonl",
+  "gz": "logs/mario-machina-2-1-seeded-b-attempts.jsonl.gz",
+  "sha256_uncompressed": "307743616a85d8c91ebbe6d0d8a7d143025b9525901695b2742d3285f7357ef1",
+  "note": "one line per attempt: max_x, executed, flag, source, improved_parent"
+ },
+ {
+  "file": "mario-machina-2-1-seeded-b-frozen-SuperMarioBros-1-1-v0-20261003T134052Z.jsonl",
+  "gz": "logs/mario-machina-2-1-seeded-b-frozen-SuperMarioBros-1-1-v0-20261003T134052Z.jsonl.gz",
+  "sha256_uncompressed": "44bf7370ceef91b1791cde7aec73a6bcb217a54f5d405a3e0d3a36111a50a97b",
+  "note": "frozen 1-1 with this 2-1 sequence: 1262 x3 [session_id values redacted for publication]",
+  "bytes": 60526
+ },
+ {
+  "file": "mario-machina-2-1-seeded-b-frozen-SuperMarioBros-2-1-v0-20261003T134046Z.jsonl",
+  "gz": "logs/mario-machina-2-1-seeded-b-frozen-SuperMarioBros-2-1-v0-20261003T134046Z.jsonl.gz",
+  "sha256_uncompressed": "b95e4493b2591b39ceea3351ab67cd7ef9caf56ebccd111b6f985aca3d106662",
+  "note": "frozen 2-1: 3193 flag x3 [session_id values redacted for publication]",
+  "bytes": 125089
+ },
+ {
+  "file": "seeded-b-run.log",
+  "gz": "logs/seeded-b-run.log.gz",
+  "sha256_uncompressed": "7b5fa13bd43c6ca2a5563884adcc9e46ff1ad4d021d73732dc7251ca8d18e102",
+  "note": "the run stdout"
+ },
+ {
+  "file": "replays/seeded-b-278-first-flag.gif",
+  "sha256": "a6272ebac495cdc77ef8a342927b979cd8e0b4014897e96d7fed3269d8698099",
+  "note": "attempt 278, the first 2-1 flag, re-executed offline from the journal (machina_replay.py --use-executed)"
+ },
+ {
+  "file": "replays/seeded-b-278-first-flag.last.png",
+  "sha256": "f515eb816bf8f8530bf688b58ea8dcd42ae3d087b51c3a8e8eb74e7155012b13",
+  "note": "attempt 278, the first 2-1 flag, re-executed offline from the journal (machina_replay.py --use-executed)"
+ },
+ {
+  "file": "mario-machina-2-1-seeded-b-20261003T132903Z.jsonl.provenance.json",
+  "sha256": "0deff5880c31accf3c4e1514a8a7b98b712eb2eb33872a88be1e0be743759f24",
+  "note": "provenance sidecar"
+ },
+ {
+  "file": "mario-machina-2-1-seeded-b-attempts.jsonl.provenance.json",
+  "sha256": "210f0b1ab8d9fffe447853beceffb15f0aee87a79f6c5b7bcd7471c2b4595dec",
+  "note": "provenance sidecar"
+ }
+]

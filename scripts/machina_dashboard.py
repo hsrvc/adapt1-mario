@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Render Machina's frozen 1-1 run as a dashboard MP4: the command playing, its four channels, the whole sequence.
+"""Render a Machina frozen run (1-1, or 2-1 with --env) as a dashboard MP4: the command playing, its four channels, the whole sequence.
 
 Offline, 0 Records, 0 Queries: the frozen journal recorded the exact proposal Machina returned (244 commands of
 4 channels, `retained_episode_policy`). The emulator is deterministic, so replaying that proposal from
@@ -25,7 +25,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from typesafe_mario.dashboard import LiveDashboard  # noqa: E402
 from typesafe_mario.machina import (  # noqa: E402
     FRAMES_PER_COMMAND,
-    LEVEL_LENGTH_PX,
     _frames,
     execute_sequence,
 )
@@ -87,7 +86,7 @@ def draw(d: LiveDashboard, frame, rows, i: int, x_now: int, args) -> bytes:
 
     x, y, w = panel_x + 8, header_h + 22, c.panel_width - 40
     h = held(rows[i])
-    d._text("World 1-1", d.font_label, t.muted, x, y)
+    d._text(args.world, d.font_label, t.muted, x, y)
     right = f"Command {i + 1} of {len(rows)}"
     d._text(right, d.font_small, t.muted, x + w - d.font_small.size(right)[0], y + 1)
     y += 28
@@ -141,7 +140,13 @@ def draw(d: LiveDashboard, frame, rows, i: int, x_now: int, args) -> bytes:
         f"First flag at attempt {args.first_flag} of {args.attempts},", d.font_mono, t.muted, x, y
     )
     y += 22
-    d._text(f"{args.minutes} wall-clock minutes from untrained", d.font_mono, t.muted, x, y)
+    d._text(
+        args.origin or f"{args.minutes} wall-clock minutes from untrained",
+        d.font_mono,
+        t.muted,
+        x,
+        y,
+    )
     y += 22
     d._text(f"Position  x {x_now}", d.font_mono, t.muted, x, y)
     pg.display.flip()
@@ -162,10 +167,30 @@ def main() -> int:
     ap.add_argument("--fps", type=int, default=60)
     ap.add_argument("--hold", type=float, default=2.5)
     ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument(
+        "--env",
+        default="SuperMarioBros-1-1-v0",
+        help="the level the journal's run played (mach2: 2-1)",
+    )
+    ap.add_argument(
+        "--level-length",
+        type=float,
+        default=None,
+        help="px of the flag, the run's goal scale (default: the level's, 1-1 3161 / 2-1 3193)",
+    )
+    ap.add_argument(
+        "--origin",
+        default=None,
+        help="the second stats line (default '<minutes> wall-clock minutes from untrained'); mach2: how it started",
+    )
     args = ap.parse_args()
+    from typesafe_mario import machina as _machina
+
+    _machina.set_level_length(args.level_length or _machina.LEVEL_LENGTHS.get(args.env, 3161.0))
+    args.world = "World " + args.env.removeprefix("SuperMarioBros-").removesuffix("-v0")
 
     rows, meta = load(args.journal)
-    env = create_mario_env("SuperMarioBros-1-1-v0", render_mode="rgb_array")
+    env = create_mario_env(args.env, render_mode="rgb_array")
     parser = MarioStateParser(decision_horizon_frames=8)
     _f, info = env.reset(seed=args.seed)
     snap = parser.parse(info, _unwrap_ram(env), previous_action=None)
@@ -182,7 +207,7 @@ def main() -> int:
     out = []
     for k, fr in enumerate(frames):
         i = min(k // FRAMES_PER_COMMAND, trace["executed"] - 1)
-        x_now = int(round(trace["states"][i][0] * LEVEL_LENGTH_PX))
+        x_now = int(round(trace["states"][i][0] * _machina.LEVEL_LENGTH_PX))
         out.append(draw(dash, fr, rows[: trace["executed"]], i, x_now, args))
     w, h = dash.screen.get_size()
     out += out[-1:] * int(args.hold * args.fps)

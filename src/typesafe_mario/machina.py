@@ -21,6 +21,47 @@ from .runner import _unwrap_ram
 from .state import MarioSnapshot
 
 LEVEL_LENGTH_PX = 3161.0
+# x where the flag is reached, per level (2-1: every offline clear in w21-coverage-v5 ends at 3193). The goal coordinate
+# and the outcome divide by the CURRENT level's length; `set_level_length` changes it for a run (`mach2`, 2026-10-03).
+# Default 3161 keeps every 1-1 run (#26/#27/#52) and the z7r frozen 2-1 contrast (735) replaying bit for bit.
+LEVEL_LENGTHS: dict[str, float] = {"SuperMarioBros-1-1-v0": 3161.0, "SuperMarioBros-2-1-v0": 3193.0}
+
+
+# A non-clear attempt scores below a clear, always (`mach2`, 2026-10-03): on 2-1 Mario can fly past the pole's x without
+# touching it (x 3206 > 3193), which scored 1.004 > the flag's 1.0 and made the overshoot the retained best for 140
+# attempts. Changes nothing on 1-1: no non-flag attempt of #27/#52 got past x 2471 (< 0.995 × 3161).
+NON_CLEAR_CAP = 0.995
+
+
+def attempt_outcome(max_x: float, clear: bool) -> float:
+    return 1.0 if clear else min(max_x / LEVEL_LENGTH_PX, NON_CLEAR_CAP)
+
+
+def set_level_length(px: float) -> None:
+    global LEVEL_LENGTH_PX
+    LEVEL_LENGTH_PX = float(px)
+
+
+def seed_rows_from_journal(path: Any) -> list[list[float]]:
+    """The action rows of the first ``propose`` response in a Machina journal (plain or ``.gz``, e.g. a frozen run's) —
+    the sequence a seeded attempt executes instead of the server's proposal."""
+    import gzip as _gzip
+    import json as _json
+
+    p = Path(path)
+    text = _gzip.decompress(p.read_bytes()).decode() if p.suffix == ".gz" else p.read_text()
+    for line in text.splitlines():
+        d = _json.loads(line)
+        rec = d.get("record") or {}
+        if (
+            d.get("kind") == "call"
+            and rec.get("op") == "propose"
+            and (rec.get("resp") or {}).get("actions")
+        ):
+            return [list(map(float, r)) for r in rec["resp"]["actions"]]
+    raise ValueError(f"no propose response with actions in {path}")
+
+
 FRAMES_PER_COMMAND = 8
 STATE_DIMENSIONS = 8
 ACTION_DIMENSIONS = 4
@@ -186,7 +227,7 @@ def execute_sequence(
         snap = nxt
         if dead or clear or truncated or stalled >= stall_commands:
             break
-    outcome = 1.0 if clear else max_x / LEVEL_LENGTH_PX
+    outcome = attempt_outcome(max_x, clear)
     assert len(states) == len(actions) + 1 == len(step_outcomes) + 1
     return {
         "states": states,
@@ -362,7 +403,7 @@ def execute_policy(
         snap = nxt
         if dead or clear or ex.truncated or stalled >= stall_commands:
             break
-    outcome = 1.0 if clear else max_x / LEVEL_LENGTH_PX
+    outcome = attempt_outcome(max_x, clear)
     return {
         "states": states,
         "actions": actions,
