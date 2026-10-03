@@ -4,6 +4,14 @@ Run it: [`REPRODUCE.md` §3b](../../REPRODUCE.md#3b-machina-on-2-1--350-records)
 
 ![attempt 278 reaches the 2-1 flag](replays/seeded-b-278-first-flag.gif)
 
+Attempt 1 (Machina's own 1-1 sequence) beside attempt 278, at 2× speed:
+
+![attempt 1 dies at 735; attempt 278 reaches the flag](videos/before-after-attempt1-vs-278.gif)
+
+Full-quality videos (download or open in the browser): [the frozen 2-1 replay with the command panel](videos/machina-2-1-frozen-clear.mp4)
+(36 s) and [attempt 1 vs attempt 278](videos/before-after-attempt1-vs-278.mp4) (19 s). Both render offline from the
+files here: `scripts/machina_dashboard.py` and `scripts/machina_before_after.py` (commands in [`REPRODUCE.md` §3b](../../REPRODUCE.md#3b-machina-on-2-1--350-records)).
+
 Same engine, config and decoder as the [1-1 run](../machina/), on World 2-1. The first attempt does not use
 Machina's proposal: it plays the sequence Machina found on 1-1 from zero (attempt 403 of that run), which reaches
 x = 735 on 2-1 and dies at a piranha pipe. Machina then edits from there, like any other attempt. No demonstration,
@@ -50,5 +58,6 @@ attempt for attempt is an expectation, not yet a result.
 | `logs/*-attempts.jsonl.gz` | one line per attempt: `max_x`, `flag`, `source`, `improved_parent` |
 | `logs/*-frozen-*.jsonl.gz` | the frozen replays on 2-1 and 1-1 |
 | `replays/seeded-b-278-first-flag.gif` | attempt 278, rendered offline from the journal (`machina_replay.py`) |
+| `videos/` | the frozen 2-1 replay on the dashboard, and attempt 1 vs 278 (MP4, and the GIF above) |
 | `*.provenance.json` | command, package versions, input hashes |
 | `index.json` | sha256 of every file. The `session_id` values in the journals are blanked for publication |

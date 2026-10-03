@@ -61,7 +61,8 @@ this once; Machina was deterministic on 1-1, so we expect a match, and a mismatc
 
 Free, without a key: `python scripts/machina_replay.py --journal runs/machina-2-1/logs/mario-machina-2-1-seeded-b-20261003T132903Z.jsonl.gz --index 277 --use-executed --env SuperMarioBros-2-1-v0 --out 278.gif`
 replays attempt 278 to the flag, and `python scripts/machina_before_after.py <that journal> before-after.mp4` renders
-attempt 1 beside attempt 278.
+attempt 1 beside attempt 278; `python scripts/machina_dashboard.py --env SuperMarioBros-2-1-v0 --first-flag 278 --attempts 342 --origin "started from its own 1-1 sequence" --journal runs/machina-2-1/logs/mario-machina-2-1-seeded-b-frozen-SuperMarioBros-2-1-v0-20261003T134046Z.jsonl.gz --out machina-2-1.mp4`
+renders the frozen replay with the command panel.
 
 ## 4. Warm start: 1,017 Records
 
