@@ -1,7 +1,8 @@
 # Adapt-1 plays Super Mario Bros
 
 [Adapt-1](https://docs.reilabs.org) (Rei Labs' NeuroAdapt API) learns to clear World 1-1 of the original Super Mario
-Bros, and Machina also World 2-1. This repo has the recipes that reach the flag, the code to rerun them, and the evidence from our runs.
+Bros, and its trajectory engine Machina also clears World 2-1. This repo has the recipes that reach the flag, the
+code to rerun them, and the evidence from our runs.
 
 It is a fork of [fhshaik/typesafe-mario](https://github.com/fhshaik/typesafe-mario): the emulator harness and the
 state parser come from there. We replaced the model that picks the controls with Adapt-1 and added the learning loops,
@@ -26,7 +27,7 @@ Each result is a **frozen** evaluation: learning is switched off and Adapt-1 pla
 | recipe | idea | result | cost |
 |---|---|---|---|
 | [**Machina**](runs/machina/) | Adapt-1's trajectory engine proposes a whole button sequence per attempt and improves on its best attempts | first flag at attempt 403; the frozen replay clears 3/3 | ≈ 470 Records, 15 min |
-| [**Machina on 2-1**](runs/machina-2-1/) | the same engine on World 2-1, starting from the sequence it found on 1-1 | first flag at attempt 278 (at the pole from attempt 170, a few frames past the attempt length limit); the frozen replay clears 2-1 3/3 | ≈ 350 Records |
+| [**Machina on 2-1**](runs/machina-2-1/) | the same engine on World 2-1, starting from the sequence it found on 1-1 | first flag at attempt 278; the frozen replay clears 2-1 3/3 | ≈ 350 Records |
 | [**Warm start**](runs/warm-start/) | two Adapt-1 domains (when to jump; how to steer mid-air) learn from 1,017 rows recorded offline | clears 5/5 seeds | 1,017 Records |
 | [**Zero start**](runs/zero-start/) | the same two domains start empty and learn only from their own play | clears after 8,000 Records of play | ≈ 8,500 Records, ≈ 16 h |
 

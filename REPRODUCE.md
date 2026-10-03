@@ -44,7 +44,7 @@ the server's resolved config (written near the top of your journal in `artifacts
 
 ## 3b. Machina on 2-1: ≈ 350 Records
 
-Starts from the 1-1 sequence in `runs/machina/` (attempt 1 plays it on 2-1), then acquires as in §3:
+Attempt 1 plays the 1-1 sequence from `runs/machina/` on 2-1. Then Machina acquires as in §3.
 
 ```bash
 SEED=runs/machina/logs/mario-machina-z7r-frozen-SuperMarioBros-1-1-v0-20261002T044720Z.jsonl.gz
@@ -54,15 +54,30 @@ python scripts/machina_acquire.py --domain-id my-machina-2-1 --env SuperMarioBro
 python scripts/machina_frozen.py --domain-id my-machina-2-1 --env SuperMarioBros-2-1-v0 --level-length 3193   # Queries only
 ```
 
-**Expect:** attempt 1 at 735 (the seed), Mario at the flagpole from attempt 170 (cut off a few frames before the grab:
-[`runs/machina-2-1/`](runs/machina-2-1/#attempt-170-vs-attempt-278)), the first counted flag at attempt **278**, a stop 64 attempts later (342 Records), and a
-frozen 2-1 of 3193 with the flag on all 3 repeats. Compare with `runs/machina-2-1/logs/*-attempts.jsonl.gz`. We have run
-this once; Machina was deterministic on 1-1, so we expect a match, and a mismatch is worth reporting.
+**Expect:**
 
-Free, without a key: `python scripts/machina_replay.py --journal runs/machina-2-1/logs/mario-machina-2-1-seeded-b-20261003T132903Z.jsonl.gz --index 277 --use-executed --env SuperMarioBros-2-1-v0 --out 278.gif`
-replays attempt 278 to the flag, and `python scripts/machina_before_after.py <that journal> before-after.mp4` renders
-attempt 1 beside attempt 278; `python scripts/machina_dashboard.py --env SuperMarioBros-2-1-v0 --first-flag 278 --attempts 342 --origin "started from its own 1-1 sequence" --journal runs/machina-2-1/logs/mario-machina-2-1-seeded-b-frozen-SuperMarioBros-2-1-v0-20261003T134046Z.jsonl.gz --out machina-2-1.mp4`
-renders the frozen replay with the command panel.
+- Attempt 1 stops at x = 735.
+- From attempt 170, Mario is at the flagpole when the 256 commands end. The game does not count these attempts as
+  clears (see [`runs/machina-2-1/`](runs/machina-2-1/#attempt-170-and-attempt-278)).
+- The first counted flag is at attempt **278**. The run stops 64 attempts later, at 342 Records.
+- The frozen replay reaches the flag (x = 3193) on 3 of 3 repeats.
+
+Compare your attempts with `runs/machina-2-1/logs/*-attempts.jsonl.gz`. We ran this setup once. Machina was
+deterministic on 1-1, so we expect your run to match ours. If it does not match, please report it.
+
+Checks without a key (0 Records):
+
+```bash
+J=runs/machina-2-1/logs/mario-machina-2-1-seeded-b-20261003T132903Z.jsonl.gz
+# attempt 278 reaches the flag
+python scripts/machina_replay.py --journal $J --index 277 --use-executed --env SuperMarioBros-2-1-v0 --out 278.gif
+# attempt 1 beside attempt 278 (the GIF on the 2-1 page)
+python scripts/machina_before_after.py $J before-after.mp4
+# the frozen replay with the command panel
+python scripts/machina_dashboard.py --env SuperMarioBros-2-1-v0 --first-flag 278 --attempts 342 \
+  --origin "started from its own 1-1 sequence" --out machina-2-1.mp4 \
+  --journal runs/machina-2-1/logs/mario-machina-2-1-seeded-b-frozen-SuperMarioBros-2-1-v0-20261003T134046Z.jsonl.gz
+```
 
 ## 4. Warm start: 1,017 Records
 

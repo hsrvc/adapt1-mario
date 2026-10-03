@@ -1,54 +1,62 @@
-# Machina on 2-1, started from its own 1-1 sequence: first flag at attempt 278 (2026-10-03)
+# Machina clears World 2-1
 
-Run it: [`REPRODUCE.md` §3b](../../REPRODUCE.md#3b-machina-on-2-1--350-records) (≈ 350 Records).
+Machina, Adapt-1's trajectory engine, cleared World 2-1 by starting from the button sequence it had found for 1-1.
+The first clear came at attempt 278. With learning switched off, the sequence it kept clears 2-1 on 3 of 3 replays.
+The run took 342 attempts on 2026-10-03, at 1 Record each.
 
-![attempt 278 reaches the 2-1 flag](replays/seeded-b-278-first-flag.gif)
+Run it yourself: [`REPRODUCE.md` §3b](../../REPRODUCE.md#3b-machina-on-2-1--350-records).
 
-Attempt 1 (Machina's own 1-1 sequence) beside attempt 278, at 2× speed:
+## Watch it play
 
-![attempt 1 dies at 735; attempt 278 reaches the flag](videos/before-after-attempt1-vs-278.gif)
+Attempt 1 next to attempt 278, at twice the speed. Attempt 1 plays the 1-1 sequence on 2-1 and dies at a piranha
+plant at x = 735. Attempt 278 reaches the flag.
 
-Full-quality videos (download or open in the browser): [the frozen 2-1 replay with the command panel](videos/machina-2-1-frozen-clear.mp4)
-(36 s) and [attempt 1 vs attempt 278](videos/before-after-attempt1-vs-278.mp4) (19 s). Both render offline from the
-files here: `scripts/machina_dashboard.py` and `scripts/machina_before_after.py` (commands in [`REPRODUCE.md` §3b](../../REPRODUCE.md#3b-machina-on-2-1--350-records)).
+![attempt 1 dies at x = 735; attempt 278 reaches the flag](videos/before-after-attempt1-vs-278.gif)
 
-Same engine, config and decoder as the [1-1 run](../machina/), on World 2-1. The first attempt does not use
-Machina's proposal: it plays the sequence Machina found on 1-1 from zero (attempt 403 of that run), which reaches
-x = 735 on 2-1 and dies at a piranha pipe. Machina then edits from there, like any other attempt. No demonstration,
-no scripted player: the starting point is Machina's own earlier result.
+The sequence Machina kept, replayed with learning off. The panel shows the command now playing, how long each button
+is held, and the whole 256-command sequence with a playhead:
+[machina-2-1-frozen-clear.mp4](videos/machina-2-1-frozen-clear.mp4) (36 s).
 
-| attempt | reach |
-|---|---|
-| 1 (the 1-1 sequence) | 735 |
-| 5 | 1736 |
-| 154 | 3026, the springboard under the 9-block tower |
-| 170 | 3197: at the flagpole when the attempt ends (see below) |
-| **278** | **flag** (x = 3193) |
+## How it started from 1-1
 
-- Flags: 33 of the 65 attempts from the first flag on. The run stops 64 attempts after the first flag.
-- Frozen replay: **2-1 = 3193 flag on 3/3** (all 256 commands). The same sequence on 1-1 reaches 1262: one Machina
-  sequence is one level.
-- Cost: 1 Record per attempt (342) plus 2 to create and configure.
+The setup is the [1-1 run](../machina/)'s, with one change. Attempt 1 ignores Machina's proposal and plays the
+sequence Machina replays on 1-1 with learning off. From then on Machina edits its best attempts, as it does on 1-1.
+No demonstration or scripted player is involved; the starting point is Machina's own earlier result.
 
-## Attempt 170 vs attempt 278
+| attempt | furthest x | what happened |
+|---|---|---|
+| 1 | 735 | the 1-1 sequence dies at a piranha plant |
+| 5 | 1736 | past the first wall |
+| 154 | 3026 | at the springboard below the 9-block tower |
+| 170 | 3197 | over the tower and at the flagpole when the attempt ends |
+| 278 | 3193 | first counted clear |
 
-An attempt is at most **256 commands** of 8 frames (2,048 frames, about 34 s of game time). That is the longest
-sequence Machina takes, so the harness stops the game there and scores what happened.
+After the first clear, 33 of the next 65 attempts also cleared. The run stops 64 attempts after its first flag.
 
-From attempt 170 on, Mario reaches the flagpole just as those 2,048 frames run out: he is in the air at the pole,
-1 to 5 frames before the game registers the grab. Let the emulator run a few more frames and every one of those
-attempts gets the flag (all 57 between 170 and 277, checked offline from the journal). So the level is
-**effectively cleared at attempt 170**; **attempt 278** is the first attempt that grabs the pole within the 256
-commands, the number we count.
+## Attempt 170 and attempt 278
 
-How an attempt is scored: distance reached ÷ the flag's x (3193 on 2-1, 3161 on 1-1); a clear scores 1.0. An
-attempt that ends in mid-air just past the pole's x (up to 3206) would score 1.004, more than a clear. In a first
-run that is what happened: those near-misses outscored real clears, became Machina's best attempts, and it stopped
-improving. The harness now caps an attempt without the flag at **0.995**, so a clear always scores highest; this
-run used the cap from attempt 1. The cap changes nothing on 1-1 (no failed 1-1 attempt came within 690 px of the flag).
+An attempt holds at most 256 commands of 8 frames, about 34 seconds of game time. That is the longest sequence
+Machina accepts, so the harness stops the game when the commands run out and scores the attempt.
 
-Machina was deterministic on 1-1 across two accounts. We have run this 2-1 setup once, so a rerun matching it
-attempt for attempt is an expectation, not yet a result.
+From attempt 170 on, Mario is in the air at the flagpole when the commands run out, 1 to 5 frames before the game
+registers the grab. We let the emulator run those attempts a few frames longer, offline: all 57 of them, from 170 to
+277, then get the flag. The level was in reach from attempt 170. Attempt 278 is the first to grab the pole within
+the 256 commands, and that is the number we report.
+
+The same near-misses explain a rule in how attempts are scored. An attempt scores the distance it reached divided by
+the flag's position, 3193 on 2-1, and a clear scores 1.0. Mario in the air just past the pole is at x = 3206, which
+would score 1.004 and beat a real clear. In our first run on 2-1 that happened: the near-misses became Machina's best
+attempts and it stopped improving. The harness now caps an attempt without the flag at 0.995. This run used the cap
+from its first attempt. It makes no difference on 1-1, where no failed attempt came within 690 px of the flag.
+
+## What the sequence can and can't do
+
+The sequence clears 2-1 only. Played on 1-1 it reaches x = 1262, and the 1-1 clear stays in
+[`../machina/`](../machina/). Machina sees Mario's position and keeps one sequence per level, so it does not react
+to what is on screen the way the domain recipes do.
+
+Machina replayed 1-1 identically on two accounts. We have run this 2-1 setup once, so we expect a rerun to match it
+attempt for attempt but have not shown it.
 
 ## Files
 
@@ -56,8 +64,7 @@ attempt for attempt is an expectation, not yet a result.
 |---|---|
 | `logs/mario-machina-2-1-seeded-b-2026*.jsonl.gz` | the full journal: resolved config, every proposal, execution and response |
 | `logs/*-attempts.jsonl.gz` | one line per attempt: `max_x`, `flag`, `source`, `improved_parent` |
-| `logs/*-frozen-*.jsonl.gz` | the frozen replays on 2-1 and 1-1 |
-| `replays/seeded-b-278-first-flag.gif` | attempt 278, rendered offline from the journal (`machina_replay.py`) |
-| `videos/` | the frozen 2-1 replay on the dashboard, and attempt 1 vs 278 (MP4, and the GIF above) |
+| `logs/*-frozen-*.jsonl.gz` | the replays with learning off, on 2-1 and on 1-1 |
+| `videos/` | the clips above, rendered offline from the journals |
 | `*.provenance.json` | command, package versions, input hashes |
 | `index.json` | sha256 of every file. The `session_id` values in the journals are blanked for publication |
