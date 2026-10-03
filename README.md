@@ -26,7 +26,7 @@ Each result is a **frozen** evaluation: learning is switched off and Adapt-1 pla
 | recipe | idea | result | cost |
 |---|---|---|---|
 | [**Machina**](runs/machina/) | Adapt-1's trajectory engine proposes a whole button sequence per attempt and improves on its best attempts | first flag at attempt 403; the frozen replay clears 3/3 | ≈ 470 Records, 15 min |
-| [**Machina on 2-1**](runs/machina-2-1/) | the same engine on World 2-1, starting from the sequence it found on 1-1 | first flag at attempt 278; the frozen replay clears 2-1 3/3 | ≈ 350 Records |
+| [**Machina on 2-1**](runs/machina-2-1/) | the same engine on World 2-1, starting from the sequence it found on 1-1 | first flag at attempt 278 (at the pole from attempt 170, a few frames past the attempt length limit); the frozen replay clears 2-1 3/3 | ≈ 350 Records |
 | [**Warm start**](runs/warm-start/) | two Adapt-1 domains (when to jump; how to steer mid-air) learn from 1,017 rows recorded offline | clears 5/5 seeds | 1,017 Records |
 | [**Zero start**](runs/zero-start/) | the same two domains start empty and learn only from their own play | clears after 8,000 Records of play | ≈ 8,500 Records, ≈ 16 h |
 

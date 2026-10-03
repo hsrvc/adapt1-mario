@@ -54,7 +54,8 @@ python scripts/machina_acquire.py --domain-id my-machina-2-1 --env SuperMarioBro
 python scripts/machina_frozen.py --domain-id my-machina-2-1 --env SuperMarioBros-2-1-v0 --level-length 3193   # Queries only
 ```
 
-**Expect:** attempt 1 at 735 (the seed), the first flag at attempt **278**, a stop 64 attempts later (342 Records), and a
+**Expect:** attempt 1 at 735 (the seed), Mario at the flagpole from attempt 170 (cut off a few frames before the grab:
+[`runs/machina-2-1/`](runs/machina-2-1/#attempt-170-vs-attempt-278)), the first counted flag at attempt **278**, a stop 64 attempts later (342 Records), and a
 frozen 2-1 of 3193 with the flag on all 3 repeats. Compare with `runs/machina-2-1/logs/*-attempts.jsonl.gz`. We have run
 this once; Machina was deterministic on 1-1, so we expect a match, and a mismatch is worth reporting.
 

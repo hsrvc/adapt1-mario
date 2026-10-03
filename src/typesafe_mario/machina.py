@@ -27,9 +27,9 @@ LEVEL_LENGTH_PX = 3161.0
 LEVEL_LENGTHS: dict[str, float] = {"SuperMarioBros-1-1-v0": 3161.0, "SuperMarioBros-2-1-v0": 3193.0}
 
 
-# A non-clear attempt scores below a clear, always (`mach2`, 2026-10-03): on 2-1 Mario can fly past the pole's x without
-# touching it (x 3206 > 3193), which scored 1.004 > the flag's 1.0 and made the overshoot the retained best for 140
-# attempts. Changes nothing on 1-1: no non-flag attempt of #27/#52 got past x 2471 (< 0.995 × 3161).
+# A non-clear attempt scores below a clear, always (`mach2`, 2026-10-03): on 2-1 an attempt can end in mid-air at the
+# pole a few frames before the grab registers (x 3206 > 3193, findings #64), which scored 1.004 > the flag's 1.0 and made
+# that near-miss the retained best for 140 attempts. Changes nothing on 1-1: no non-flag attempt of #27/#52 got past x 2471 (< 0.995 × 3161).
 NON_CLEAR_CAP = 0.995
 
 
