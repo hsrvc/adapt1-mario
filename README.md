@@ -19,15 +19,14 @@ harness reports how far Mario got, and the domain learns from that. The warm sta
 **Machina**, Adapt-1's trajectory engine, works differently: it proposes the whole button sequence for an attempt at
 once and improves on its best attempts.
 
-## Results
+## Results: World 1-1
 
-Each result is a **frozen** evaluation: learning is switched off and Adapt-1 plays its best move. The flag is at x = 3161
-(1-1) and x = 3193 (2-1).
+Each result is a **frozen** evaluation: learning is switched off and Adapt-1 plays its best move. The flag is at
+x = 3161.
 
 | recipe | idea | result | cost |
 |---|---|---|---|
 | [**Machina**](runs/machina/) | Adapt-1's trajectory engine proposes a whole button sequence per attempt and improves on its best attempts | first flag at attempt 403; the frozen replay clears 3/3 | ≈ 470 Records, 15 min |
-| [**Machina on 2-1**](runs/machina-2-1/) | the same engine on World 2-1, starting from the sequence it found on 1-1 | first flag at attempt 278; the frozen replay clears 2-1 3/3 | ≈ 350 Records |
 | [**Warm start**](runs/warm-start/) | two Adapt-1 domains (when to jump; how to steer mid-air) learn from 1,017 rows recorded offline | clears 5/5 seeds | 1,017 Records |
 | [**Zero start**](runs/zero-start/) | the same two domains start empty and learn only from their own play | clears after 8,000 Records of play | ≈ 8,500 Records, ≈ 16 h |
 
@@ -35,13 +34,23 @@ Each result is a **frozen** evaluation: learning is switched off and Adapt-1 pla
 
 *Zero start: reach per episode (dots) and frozen checkpoints (diamonds) against Records spent.*
 
-**Limits.** The 1-1 policies don't carry over to 2-1 as they are. Machina clears 2-1 by editing its 1-1 sequence into a
-new 2-1 sequence, and that sequence no longer clears 1-1. Machina is deterministic and replays exactly. The
-two domain recipes don't: the server refits its model as rows arrive, and the same rows can fit a policy that plays
-differently. Machina sees Mario's position and learns one fixed sequence; the domain recipes see no position and react
-to what's on screen.
+**Limits.** Machina is deterministic and replays exactly. The two domain recipes don't: the server refits its model as
+rows arrive, and the same rows can fit a policy that plays differently. Machina sees Mario's position and learns one
+fixed sequence; the domain recipes see no position and react to what's on screen.
 
-## Watch it play
+## Results: World 2-1
+
+The 1-1 players don't carry over to 2-1 as they are. Machina's 1-1 sequence and the zero-start learners die at the
+first pipe with a piranha plant (x ≈ 735, 23% of the level); the warm start dies at x = 471. The flag is at x = 3193.
+
+| recipe | idea | result | cost |
+|---|---|---|---|
+| [**Machina on 2-1**](runs/machina-2-1/) | the same engine on World 2-1, starting from the sequence it found on 1-1 | first flag at attempt 278; the frozen replay clears 2-1 3/3 | ≈ 350 Records |
+
+Machina clears 2-1 by editing its 1-1 sequence into a new 2-1 sequence, and that sequence no longer clears 1-1. The
+[2-1 page](runs/machina-2-1/) has the videos: the frozen replay, and attempt 1 next to attempt 278.
+
+## Watch it play (1-1)
 
 The zero-start learners playing 1-1 with learning switched off (a frozen run on 2026-10-02). At every decision the
 panel shows Adapt-1's score for each of the 8 moves, and at the top of each jump its keep / brake / pull back choice.
