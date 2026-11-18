@@ -1,4 +1,4 @@
-# Zero start: 1-1 learned from nothing (2026-10-01 → 02)
+# Zero start: 1-1 learned from nothing
 
 Run it: [`REPRODUCE.md` §5](../../REPRODUCE.md#5-zero-start--8500-records--16-hours) (≈ 8,500 Records, ≈ 16 hours).
 
@@ -16,7 +16,7 @@ UCB (tries less-tested moves first). Learner row budget (`max_samples`) 16,384, 
 | 4 | 2,000 | 24 | 19 | 2017 → 2776 |
 | 5 | 431 | 5 | 5 | **3161 (flag)** at the opening checkpoint, after 8,000 Records |
 
-The run stopped after the frozen clear. Once the model had refit on stage 5's 431 rows, it was evaluated again on seeds
+The run (2026-10-01 and 02) stopped after the frozen clear. Once the model had refit on stage 5's 431 rows, it was evaluated again on seeds
 777, 1, 2, 3 and 4 (`stage-5/confirm-after-refit/`): **3161 on all five**, by a different route through the pit before
 the staircase.
 

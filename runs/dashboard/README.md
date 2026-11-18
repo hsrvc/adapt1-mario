@@ -1,4 +1,4 @@
-# Frozen runs with per-move scores (2026-10-02)
+# Frozen runs with per-move scores
 
 One frozen 1-1 run per pair, recorded by `scripts/dashboard_live.py`: exploration off, no feedback, both models
 confirmed installed first. Every decision is saved with the server's response, including `values`, the expected

@@ -1,4 +1,4 @@
-# Machina from zero: first flag at attempt 403 (2026-10-02)
+# Machina from zero: first flag at attempt 403
 
 Run it: [`REPRODUCE.md` §3](../../REPRODUCE.md#3-machina--470-records-15-minutes) (≈ 470 Records, 15 minutes).
 

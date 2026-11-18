@@ -1,4 +1,4 @@
-# Warm start: 1-1 cleared on 5/5 seeds (2026-10-01)
+# Warm start: 1-1 cleared on 5/5 seeds
 
 Run it: [`REPRODUCE.md` §4](../../REPRODUCE.md#4-warm-start-1017-records) (1,017 Records).
 
