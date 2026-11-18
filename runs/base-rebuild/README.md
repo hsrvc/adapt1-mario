@@ -1,6 +1,6 @@
-# The base rebuild: the zero start's 8,498 rows fed again into new domains (2026-11-15)
+# The base rebuild: the zero start's rows fed again into new domains
 
-Server build `f5e1ab8` at the start and the end of the feed. Cost: 8,512 credits for the
+Fed on 2026-11-15. Server build `f5e1ab8` at the start and the end of the feed. Cost: 8,512 credits for the
 feed (meter). The check was not metered: 5 frozen games, about 365 queries.
 
 The corrector run in [`../refine-2-1/`](../refine-2-1/) plays on a base called `mario-zero2r-takeoff` / `-apex`. This

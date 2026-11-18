@@ -1,4 +1,4 @@
-# A frozen 1-1 player reaches the 2-1 flag with 5 corrections, and still clears 1-1 (2026-11-16 → 17)
+# Correctors clear World 2-1 and keep 1-1
 
 Run it: [`REPRODUCE.md` §5b](../../REPRODUCE.md#5b-correctors-for-2-1-on-a-frozen-1-1-base--7300-credits-plus-the-base)
 (≈ 7,300 credits for the correctors, plus the player).
@@ -7,7 +7,7 @@ Run it: [`REPRODUCE.md` §5b](../../REPRODUCE.md#5b-correctors-for-2-1-on-a-froz
 
 The player is a pair of domains like the [zero start](../zero-start/): one picks the moves on the ground (takeoff),
 the other the choices in mid-air (apex). It knows only World 1-1. On 2-1 it dies at the first piranha pipe (x = 736).
-In this run it is frozen, so it gets no more feedback rows. Two small new domains, the correctors, sit on top of it,
+In this run (2026-11-16 and 17) it is frozen, so it gets no more feedback rows. Two small new domains, the correctors, sit on top of it,
 one for each half of the pair. At each decision a corrector keeps the player's move or replaces it with one other
 move.
 
