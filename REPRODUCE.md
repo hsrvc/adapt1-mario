@@ -204,6 +204,7 @@ Checks without a key (0 credits):
 L=runs/refine-2-1/refine12/leg2-frontier.jsonl.gz
 python scripts/refine_replay.py --log $L --tag final --out 2-1-flag.gif    # the frozen 2-1 game: 46 decisions, flag
 python scripts/refine_replay.py --log $L --tag r01-1-1                     # the frozen 1-1 game: flag, 0 corrections
+python scripts/refine_dashboard.py --log $L --tag final --out correctors-2-1.mp4   # the video on the run page (needs ffmpeg)
 python scripts/pub/verify_runs.py runs                                      # every bundle against its hashes
 ```
 

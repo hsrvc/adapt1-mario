@@ -47,8 +47,17 @@ def load_game(log: Path, tag: str, env_id: str | None) -> dict[str, Any]:
     return found
 
 
-def replay(game: dict[str, Any], *, seed: int, frames: list[Any] | None) -> dict[str, Any]:
-    """Play the logged moves. Raises ReplayMismatch at the first decision that differs from the log."""
+def replay(
+    game: dict[str, Any],
+    *,
+    seed: int,
+    frames: list[Any] | None,
+    marks: list[tuple[int, int | None]] | None = None,
+) -> dict[str, Any]:
+    """Play the logged moves. Raises ReplayMismatch at the first decision that differs from the log.
+
+    ``marks`` (needs ``frames``) gets one entry per decision: how many frames it took, and the frame of its
+    mid-air look (None when the move had none)."""
     env = create_mario_env(game["env"], render_mode="rgb_array")
     parser = CadenceParser(decision_horizon_frames=8)
     on_frame = (
@@ -64,6 +73,7 @@ def replay(game: dict[str, Any], *, seed: int, frames: list[Any] | None) -> dict
                 raise ReplayMismatch(f"decision {i}: x {snap.x} != logged {st['x']}")
             macro = Macro(st["executed"])
             sink: dict[str, Any] = {}
+            start = len(frames) if frames is not None else 0
             ex = execute(
                 env,
                 macro,
@@ -77,6 +87,8 @@ def replay(game: dict[str, Any], *, seed: int, frames: list[Any] | None) -> dict
                 raise ReplayMismatch(
                     f"decision {i}: mid-air look {fired}, logged {st.get('apex_executed')}"
                 )
+            if marks is not None and frames is not None:
+                marks.append((len(frames) - start, ex.frames_to_apex if fired else None))
             snap = parser.parse(
                 ex.info,
                 _unwrap_ram(env),

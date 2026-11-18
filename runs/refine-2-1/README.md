@@ -3,8 +3,6 @@
 Run it: [`REPRODUCE.md` §5b](../../REPRODUCE.md#5b-correctors-for-2-1-on-a-frozen-1-1-base--7300-credits-plus-the-base)
 (≈ 7,300 credits for the correctors, plus the player).
 
-![the frozen 2-1 game that reaches the flag](replays/2-1-flag.gif)
-
 The player is a pair of domains like the [zero start](../zero-start/): one picks the moves on the ground (takeoff),
 the other the choices in mid-air (apex). It knows only World 1-1. On 2-1 it dies at the first piranha pipe (x = 736).
 In this run (2026-11-16 and 17) it is frozen, so it gets no more feedback rows. Two small new domains, the correctors, sit on top of it,
@@ -14,6 +12,19 @@ move.
 With learning switched off everywhere, the player and its correctors reach the 2-1 flag (x = 3193) in 46 decisions.
 5 of those are corrections. On 1-1 the correctors change nothing and the player still reaches the flag.
 [Machina](../machina-2-1/) also clears 2-1, but the sequence it ends with no longer clears 1-1.
+
+## Watch it play
+
+The frozen 2-1 game, replayed from the log. The panel shows Adapt-1's scores for keeping the player's move and for
+the best replacements, on the ground and at the top of each jump, and how each move was picked. The picture stops
+for a moment at each of the 5 corrections.
+
+<!-- VIDEO: in the GitHub web editor, drag correctors-2-1.mp4 onto this line -->
+
+Render it yourself from the log, with no key:
+`python scripts/refine_dashboard.py --log runs/refine-2-1/refine12/leg2-frontier.jsonl.gz --tag final --out correctors-2-1.mp4`
+
+## The corrections
 
 | step | correction (decision, x) | frozen 2-1 after it | frozen 1-1 |
 |---|---|---|---|

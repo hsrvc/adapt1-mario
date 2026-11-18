@@ -32,7 +32,7 @@ cheap and valid:
 | Machina (`/domains/{id}/trajectory/*`) | `src/typesafe_mario/machina.py`, `scripts/machina_acquire.py` |
 | the zero-start loop (credit, Record budget, wait for an installed model) | `src/typesafe_mario/online_duo.py`, `scripts/zero_start_duo.py` |
 | the numbers sent per decision | `src/typesafe_mario/adapt1_policy.py` (feature sets), `src/typesafe_mario/cadence.py` |
-| correctors on a frozen player (trials before the failure point, keep/override domains, the 1-1 check) | `src/typesafe_mario/frontier.py`, `src/typesafe_mario/refinement.py`, `scripts/refine_frontier.py`; replay a logged frozen game for free: `scripts/refine_replay.py` |
+| correctors on a frozen player (trials before the failure point, keep/override domains, the 1-1 check) | `src/typesafe_mario/frontier.py`, `src/typesafe_mario/refinement.py`, `scripts/refine_frontier.py`; replay a logged frozen game for free: `scripts/refine_replay.py`, or film it with the correctors' scores: `scripts/refine_dashboard.py` |
 | feed recorded rows to a domain | `scripts/ingest_demos.py` |
 | evaluate with learning off | `scripts/frozen_eval.py`, `scripts/machina_frozen.py` |
 | film a run on the dashboard | `scripts/dashboard_live.py` (live: about 80 Queries; `--from-evidence`: free), `scripts/machina_dashboard.py` (free) |

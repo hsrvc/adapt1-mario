@@ -185,7 +185,7 @@ parts together are about 25,500 credits. The correctors hold 649 and 360 rows at
 | `refine9/`, `refine10/`, `refine11/` | the three retired corrector pairs |
 | `base2/` | the player's 1,000 online rows, its frozen checkpoints (GIFs) and its frozen games on 1-1 and 2-1 |
 | `*.provenance.json` | the exact command of each run, and the commit when the file was written. The `start` line of a log has the commit at the start of the run |
-| `index.json` | sha256 of every run file (not of the two pages, the GIF or the index itself). Check with `python scripts/pub/verify_runs.py runs/refine-2-1` |
+| `index.json` | sha256 of every run file (not of the two pages or the index itself). Check with `python scripts/pub/verify_runs.py runs/refine-2-1` |
 
 Words in the logs: a **leg** is one start of the script on the same correctors. A line of kind `frozen` is one
 frozen game with every decision: the player's move, the corrector's answer and scores, and the move that ran. A
