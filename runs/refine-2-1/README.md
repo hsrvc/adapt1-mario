@@ -19,7 +19,9 @@ The frozen 2-1 game, replayed from the log. The panel shows Adapt-1's scores for
 the best replacements, on the ground and at the top of each jump, and how each move was picked. The picture stops
 for a moment at each of the 5 corrections.
 
-<!-- VIDEO: in the GitHub web editor, drag correctors-2-1.mp4 onto this line -->
+
+https://github.com/user-attachments/assets/0e327075-c30a-47fe-a8f9-2d11d8e4642c
+
 
 Render it yourself from the log, with no key:
 `python scripts/refine_dashboard.py --log runs/refine-2-1/refine12/leg2-frontier.jsonl.gz --tag final --out correctors-2-1.mp4`
