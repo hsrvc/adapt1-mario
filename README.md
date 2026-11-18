@@ -53,8 +53,9 @@ Machina clears 2-1 by editing its 1-1 sequence into a new 2-1 sequence, and that
 [2-1 page](runs/machina-2-1/) has the videos: the frozen replay, and attempt 1 next to attempt 278.
 
 The correctors keep 1-1: the same frozen system clears both levels. The harness tries single moves at the place where
-Mario fails, and the correctors learn which ones to apply and where. The [correctors page](runs/refine-2-1/) has who
-does what and the limits.
+Mario fails, and the correctors learn which ones to apply and where. The last correction sets up a wall jump that gets Mario
+over the tower near the flag, a known quirk of the game. The [correctors page](runs/refine-2-1/) has who does what and the
+limits.
 
 ## Watch it play (1-1)
 

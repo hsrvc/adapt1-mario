@@ -195,7 +195,8 @@ live check a new `--out-dir`). The exact command of each is in `runs/refine-2-1/
 - **Your numbers will differ.** The server does not fit the same model twice from the same rows, so your base plays
   its own route through 2-1 and needs its own corrections. The run can also stop with no flag: the method fixes one
   move at a time, and a place that needs several new moves together is out of its reach. On one of our earlier bases
-  the tower at x = 3026 was such a place (our analysis, and its evidence is not in this repo).
+  the tower at x = 3026 was such a place (our analysis, and its evidence is not in this repo). Our run passed it
+  only through a wall jump (see the run page), so your run may well stop there.
 - Reproducible here means the rows, the code and the evaluations. The server's model fits are not bit-identical.
 
 Checks without a key (0 credits):
@@ -205,6 +206,7 @@ L=runs/refine-2-1/refine12/leg2-frontier.jsonl.gz
 python scripts/refine_replay.py --log $L --tag final --out 2-1-flag.gif    # the frozen 2-1 game: 46 decisions, flag
 python scripts/refine_replay.py --log $L --tag r01-1-1                     # the frozen 1-1 game: flag, 0 corrections
 python scripts/refine_dashboard.py --log $L --tag final --out correctors-2-1.mp4   # the video on the run page (needs ffmpeg)
+python scripts/wall_jump_scan.py --runs runs                               # finds the one wall jump, at the 2-1 tower
 python scripts/pub/verify_runs.py runs                                      # every bundle against its hashes
 ```
 

@@ -37,6 +37,12 @@ Render it yourself from the log, with no key:
 | 4 | pull back in mid-air (31, x 1941) | 3026, stuck at a tall tower near the end | flag, 0 corrections |
 | 5 | short running jump (41, x 2967) | **3193, the flag** | flag, 0 corrections |
 
+Steps 1 to 4 are ordinary play. Step 5 is different: it sets up a wall jump that gets Mario over the tower. He
+hits the side of the tower about 7 tiles up with his feet at a seam between two blocks, the game counts him as
+standing for a few frames (3 here), and the player's own next jump is accepted there. This is a known quirk of the
+original game. Our client asks for the next move the moment the game reports "standing", so it gets the timing for
+free. The springboard beside the tower is not used.
+
 ## Who does what
 
 Our code finds each correction. It replays the frozen game to just before the place where Mario fails. At each of
@@ -60,6 +66,8 @@ A frozen game sends no rows, and no move in it is scripted.
 
 ## Reading the result
 
+- The last step rests on that wall jump, which needs Mario at an exact height on the wall. It is the most fragile
+  part of the result. The solid part is steps 1 to 4: from 23% to 95% of the level with 1-1 intact.
 - We tuned the method on this level. This run, `refine12`, is the fourth corrector pair we tried. The three retired
   pairs are here with their logs.
 - The method fixes one move at a time. A place that needs several new moves together is out of its reach. By our
@@ -84,6 +92,9 @@ These replay the two frozen games from the logged moves, with no key, in a few s
 python scripts/refine_replay.py --log runs/refine-2-1/refine12/leg2-frontier.jsonl.gz --tag final --out 2-1.gif
 python scripts/refine_replay.py --log runs/refine-2-1/refine12/leg2-frontier.jsonl.gz --tag r01-1-1
 ```
+
+`python scripts/wall_jump_scan.py --runs runs` replays the six frozen games in this repo frame by frame and looks
+for wall jumps. It finds one, at the tower in this game, and none in the 1-1 or Machina games.
 
 ## Files
 

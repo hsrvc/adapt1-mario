@@ -90,7 +90,7 @@ The path was not this smooth. The logs show each of these:
   decision 28 had dropped out. Six repair rows restored 3026. **Later rows can undo a correction.**
 - **Step 5:** the first try at the tower tested decisions 51 to 53 and found nothing. By our reading Mario only
   bounces against the wall there. We then changed the rule that picks the decisions (by our account: start from the
-  decision that reaches the wall. In the logs: 4 decisions, not 3). The next leg tested decisions 41 to 38 and found the short jump.
+  decision that reaches the wall. In the logs: 4 decisions, not 3). The next leg tested decisions 41 to 38 and found the short jump. It works through a wall jump (limit 5).
 - **A limit we set before the run was missed.** Step 2 should pass within 60 repeats and passed at 64. We continued.
   The 64 is in the log. The limit of 60 is in our private plan.
 
@@ -138,11 +138,18 @@ tested move (for example 64 repeats = 40 plays of the move + 24 keep rows).
    (`refine9`). With the cap and no cost, the mid-air margin that keeps 1-1 free of corrections was 0.10 after
    step 1 and 0.06 in step 2 (`refine11`). With both it was 0.14 and 0.13 (`refine12`).
 4. **The method fixes one move at a time.** It cannot find a fix that needs several new moves together.
-5. **Why this run passed the tower is partly luck of the route.** This is our own analysis and its evidence is not
-   in this repo. In October we tried the same method on the original zero-start pair. It stopped at the same tower,
-   x = 3026. On that pair's route the game did not create the springboard that stands there (a known bug of the NTSC
-   game), and the method found no move that passes. On this player's route one changed jump is enough (that part
-   is in the logs).
+5. **The tower is passed by a wall jump, and that is luck.** The short jump of step 5, with the player's own
+   brake after it, puts Mario against the side of the tower at x 3028, about 7 tiles up. The game counts him as
+   standing there for a few frames (3 in a replay with no buttons), and the player's next move, a full running
+   jump, starts on the second of them. A wall jump is a known quirk of the original game: it needs speed toward the
+   wall, Mario's feet at a block seam, and Mario at least 1 pixel inside the wall. Our client asks for the next move
+   as soon as the game reports "standing", so the timing costs it nothing.
+   `python scripts/wall_jump_scan.py --runs runs` shows it: at that spot, with no buttons pressed, the game flags
+   Mario as falling on the third frame, so no floor is under him. The same scan finds no wall jump in the other five frozen games of
+   this repo. The springboard beside the tower is on screen and is not used. By our account we did not know any of this
+   when the run ended: the trials only showed that this move reaches the flag. We found the wall jump on
+   2026-11-18, from the video. In October the same method stopped at this tower on the original zero-start pair (our account, and that
+   run is not in this repo).
 6. **An offline diagnosis also found the last correction.** This is our account and it is not in the logs. While the trials at decisions 41 to 38 ran, a reviewer
    who replayed the game offline reported that a change at decision 41 clears the tower. The trials were launched
    before that report, and no route was given to the learner. But we chose the new rule of step 5 after we saw
