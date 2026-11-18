@@ -55,8 +55,8 @@ Machina clears 2-1 by editing its 1-1 sequence into a new 2-1 sequence, and that
 The correctors keep 1-1: the same frozen system clears both levels. Our code finds each correction by trying single
 moves just before the place where Mario fails. The two corrector domains learn where each one applies, and 4 of the 5
 play through a rule in our client that reads the server's score intervals. The method fixes one move at a time, and it
-was tuned on this level over four tries in one night. The [correctors page](runs/refine-2-1/) lists what the result
-shows and what it does not.
+was tuned on this level over four tries in one night. The [correctors page](runs/refine-2-1/) and its notes list what
+the result shows and what it does not.
 
 ![the frozen 1-1 player with its correctors reaches the 2-1 flag](runs/refine-2-1/replays/2-1-flag.gif)
 
