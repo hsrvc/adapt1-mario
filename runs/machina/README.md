@@ -4,7 +4,7 @@ Run it: [`REPRODUCE.md` §3](../../REPRODUCE.md#3-machina--470-records-15-minute
 
 ![attempt 403 reaches the flag](replays/z7r-403-first-flag.gif)
 
-Machina is Adapt-1's trajectory engine (`/domains/{id}/trajectory/*`). Each attempt it proposes a whole sequence of
+Machina is Adapt-1's trajectory learner (`/domains/{id}/trajectory/*`). Each attempt it proposes a whole sequence of
 up to 256 controller commands (8 frames each) for the same start state. The harness plays it on the emulator and
 reports what ran and how far Mario got. Machina keeps the best attempts and edits them for the next proposal.
 

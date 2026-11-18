@@ -1,7 +1,7 @@
 # Adapt-1 plays Super Mario Bros
 
 [Adapt-1](https://docs.reilabs.org) (Rei Labs' NeuroAdapt API) learns to clear World 1-1 of the original Super Mario
-Bros. On World 2-1, its trajectory engine Machina clears the level, and a frozen 1-1 player clears it with 5
+Bros. On World 2-1, its trajectory learner Machina clears the level, and a frozen 1-1 player clears it with 5
 corrections that two more Adapt-1 domains apply. This repo has the recipes that reach the flag, the
 code to rerun them, and the evidence from our runs.
 
@@ -17,7 +17,7 @@ rows and model — and gets back one of 8 macros, such as `right_run_jump_full`.
 harness reports how far Mario got, and the domain learns from that. The warm start begins from moves recorded from a
 **scripted player** written by hand; the zero start begins from nothing.
 
-**Machina**, Adapt-1's trajectory engine, works differently: it proposes the whole button sequence for an attempt at
+**Machina**, Adapt-1's trajectory learner, works differently: it proposes the whole button sequence for an attempt at
 once and improves on its best attempts.
 
 ## Results: World 1-1
@@ -27,7 +27,7 @@ x = 3161.
 
 | recipe | idea | result | cost |
 |---|---|---|---|
-| [**Machina**](runs/machina/) | Adapt-1's trajectory engine proposes a whole button sequence per attempt and improves on its best attempts | first flag at attempt 403; the frozen replay clears 3/3 | ≈ 470 Records, 15 min |
+| [**Machina**](runs/machina/) | Adapt-1's trajectory learner proposes a whole button sequence per attempt and improves on its best attempts | first flag at attempt 403; the frozen replay clears 3/3 | ≈ 470 Records, 15 min |
 | [**Warm start**](runs/warm-start/) | two Adapt-1 domains (when to jump; how to steer mid-air) learn from 1,017 rows recorded offline | clears 5/5 seeds | 1,017 Records |
 | [**Zero start**](runs/zero-start/) | the same two domains start empty and learn only from their own play | clears after 8,000 Records of play | ≈ 8,500 Records, ≈ 16 h |
 
@@ -46,7 +46,7 @@ first pipe with a piranha plant (x ≈ 735, 23% of the level); the warm start di
 
 | recipe | idea | result | cost |
 |---|---|---|---|
-| [**Machina on 2-1**](runs/machina-2-1/) | the same engine on World 2-1, starting from the sequence it found on 1-1 | first flag at attempt 278; the frozen replay clears 2-1 3/3 | ≈ 350 Records |
+| [**Machina on 2-1**](runs/machina-2-1/) | the same learner on World 2-1, starting from the sequence it found on 1-1 | first flag at attempt 278; the frozen replay clears 2-1 3/3 | ≈ 350 Records |
 | [**Correctors on a frozen 1-1 player**](runs/refine-2-1/) | a rebuilt copy of the zero-start player gets no more rows; two small domains learn when to replace one of its moves | frozen: 2-1 flag with 5 corrections in 46 decisions, and 1-1 flag with 0 corrections | ≈ 7,300 credits for the correctors that work; ≈ 25,500 with the player and three retired tries |
 
 Machina clears 2-1 by editing its 1-1 sequence into a new 2-1 sequence, and that sequence no longer clears 1-1. The

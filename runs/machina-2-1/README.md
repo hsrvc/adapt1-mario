@@ -1,6 +1,6 @@
 # Machina clears World 2-1
 
-Machina, Adapt-1's trajectory engine, cleared World 2-1 by starting from the button sequence it had found for 1-1.
+Machina, Adapt-1's trajectory learner, cleared World 2-1 by starting from the button sequence it had found for 1-1.
 The first clear came at attempt 278. With learning switched off, the sequence it kept clears 2-1 on 3 of 3 replays.
 The run took 342 attempts on 2026-10-03, at 1 Record each.
 
