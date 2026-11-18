@@ -58,8 +58,6 @@ play through a rule in our client that reads the server's score intervals. The m
 was tuned on this level over four tries in one night. The [correctors page](runs/refine-2-1/) and its notes list what
 the result shows and what it does not.
 
-![the frozen 1-1 player with its correctors reaches the 2-1 flag](runs/refine-2-1/replays/2-1-flag.gif)
-
 ## Watch it play (1-1)
 
 The zero-start learners playing 1-1 with learning switched off (a frozen run on 2026-10-02). At every decision the
