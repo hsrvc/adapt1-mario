@@ -1,0 +1,82 @@
+8498 rows to feed {'takeoff': 5450, 'apex': 3048} via explicit (≈ 8498 credits) into {'takeoff': 'mario-zero2r-takeoff', 'apex': 'mario-zero2r-apex'}; skipped 0 done
+  mario-zero2r-takeoff: engine ready after 2s
+  mario-zero2r-apex: engine ready after 2s
+created {'takeoff': 'mario-zero2r-takeoff', 'apex': 'mario-zero2r-apex'}
+  takeoff: 200/5450 (0.98 rows/s) credits=408
+  apex: 200/3048 (0.96 rows/s) credits=415
+  takeoff: 400/5450 (0.98 rows/s) credits=806
+  apex: 400/3048 (0.97 rows/s) credits=817
+  takeoff: 600/5450 (0.98 rows/s) credits=1203
+  apex: 600/3048 (0.96 rows/s) credits=1220
+  takeoff: 800/5450 (0.99 rows/s) credits=1602
+  apex: 800/3048 (0.98 rows/s) credits=1621
+  takeoff: 1000/5450 (0.98 rows/s) credits=1999
+  apex: 1000/3048 (0.97 rows/s) credits=2025
+  takeoff: 1200/5450 (0.99 rows/s) credits=2392
+  apex: 1200/3048 (0.98 rows/s) credits=2431
+  takeoff: 1400/5450 (1.00 rows/s) credits=2786
+  apex: 1400/3048 (0.99 rows/s) credits=2837
+  takeoff: 1600/5450 (1.01 rows/s) credits=3185
+  apex: 1600/3048 (0.99 rows/s) credits=3239
+  takeoff: 1800/5450 (1.01 rows/s) credits=3582
+  apex: 1800/3048 (1.00 rows/s) credits=3642
+  takeoff: 2000/5450 (1.02 rows/s) credits=3978
+  apex: 2000/3048 (1.01 rows/s) credits=4046
+  takeoff: 2200/5450 (1.03 rows/s) credits=4374
+  apex: 2200/3048 (1.02 rows/s) credits=4448
+  takeoff: 2400/5450 (1.03 rows/s) credits=4772
+  apex: 2400/3048 (1.02 rows/s) credits=4852
+  takeoff: 2600/5450 (1.04 rows/s) credits=5168
+  apex: 2600/3048 (1.02 rows/s) credits=5256
+  takeoff: 2800/5450 (1.04 rows/s) credits=5564
+  apex: 2800/3048 (1.02 rows/s) credits=5660
+  takeoff: 3000/5450 (1.05 rows/s) credits=5959
+  apex: 3000/3048 (1.03 rows/s) credits=6064
+  takeoff: 3200/5450 (1.06 rows/s) credits=6259
+  takeoff: 3400/5450 (1.07 rows/s) credits=6459
+  takeoff: 3600/5450 (1.07 rows/s) credits=6659
+  takeoff: 3800/5450 (1.09 rows/s) credits=6859
+  takeoff: 4000/5450 (1.10 rows/s) credits=7059
+  takeoff: 4200/5450 (1.10 rows/s) credits=7259
+  takeoff: 4400/5450 (1.11 rows/s) credits=7459
+  takeoff: 4600/5450 (1.12 rows/s) credits=7659
+  takeoff: 4800/5450 (1.13 rows/s) credits=7859
+  takeoff: 5000/5450 (1.13 rows/s) credits=8059
+  takeoff: 5200/5450 (1.14 rows/s) credits=8259
+  takeoff: 5400/5450 (1.15 rows/s) credits=8459
+{
+ "kind": "summary",
+ "sent": {
+  "takeoff": 5450,
+  "apex": 3048
+ },
+ "live_before": {
+  "takeoff": 0,
+  "apex": 0
+ },
+ "live_after": {
+  "takeoff": 5450,
+  "apex": 3048
+ },
+ "consumed_ok": {
+  "takeoff": true,
+  "apex": true
+ },
+ "errors": [],
+ "credits": 8512,
+ "credits_by_kind": {
+  "version": 2,
+  "get_domain": 2,
+  "create_domain": 2,
+  "status": 6,
+  "feedback": 8500
+ },
+ "server_version_end": {
+  "build_time": "unknown",
+  "commit_sha": "f5e1ab83e73acb4948f6d12270134e4f9f6a7a6e",
+  "schema_version": "5",
+  "source_fingerprint": "sha256:449af134…",
+  "version": "v0.1.0"
+ },
+ "log": "artifacts/rebuild-zero2/feeds/feed-base-20261115T161652Z.jsonl"
+}

@@ -283,7 +283,9 @@ def test_zero_start_run_respects_the_cap_and_logs(tmp_path):
 
     with open(summary["run_log"]) as fh:
         entries = [json.loads(line) for line in fh]
-    assert entries[0]["kind"] == "eval" and entries[-1]["kind"] == "summary"
+    # the run log opens with the server version (2026-11-14), then the ep000 checkpoint
+    assert entries[0]["kind"] == "server_version" and entries[1]["kind"] == "eval"
+    assert entries[-1]["kind"] == "summary"
     assert any(e["kind"] == "episode" for e in entries)
 
 

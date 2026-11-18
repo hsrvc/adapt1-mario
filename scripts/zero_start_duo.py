@@ -24,12 +24,18 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from typesafe_mario.adapt1_client import Adapt1Client, Adapt1Error  # noqa: E402
-from typesafe_mario.adapt1_policy import FEATURE_SETS, build_domain_config  # noqa: E402
-from typesafe_mario.macros import APEX_NAMES  # noqa: E402
-from typesafe_mario.offline_client import OfflineAdapt1Client  # noqa: E402
-from typesafe_mario.online_duo import MACROS_28, CreditConfig, RunConfig, wait_ready, zero_start_run  # noqa: E402
-from typesafe_mario.provenance import check_clean, git_state, write_provenance  # noqa: E402
+from typesafe_mario.adapt1_client import Adapt1Client, Adapt1Error
+from typesafe_mario.adapt1_policy import FEATURE_SETS, build_domain_config
+from typesafe_mario.macros import APEX_NAMES
+from typesafe_mario.offline_client import OfflineAdapt1Client
+from typesafe_mario.online_duo import (
+    MACROS_28,
+    CreditConfig,
+    RunConfig,
+    wait_ready,
+    zero_start_run,
+)
+from typesafe_mario.provenance import check_clean, git_state, write_provenance
 
 
 def main() -> int:
@@ -109,6 +115,52 @@ def main() -> int:
         help="OFFLINE: the same loop on OfflineAdapt1Client — 0 Records",
     )
     ap.add_argument(
+        "--guide",
+        action="store_true",
+        help="planner-guided exploration (2026-11-14 plan): on --guide-share of grounded decisions in LEARNING "
+        "episodes, the native planner picks the macro from a depth-1 emulator look-ahead scored by a value learner. "
+        "Frozen evals never use it. Disclose as search-assisted acquisition",
+    )
+    ap.add_argument(
+        "--value-domain",
+        default=None,
+        help="domain hosting the value learner (default <takeoff>-value)",
+    )
+    ap.add_argument(
+        "--guide-share",
+        type=float,
+        default=0.75,
+        help="share of grounded decisions the planner guides",
+    )
+    ap.add_argument(
+        "--first-fit-episodes", type=int, default=8, help="episodes before the first value fit"
+    )
+    ap.add_argument("--refit-rows", type=int, default=300, help="new value rows between refits")
+    ap.add_argument(
+        "--guide-min-skill",
+        type=float,
+        default=0.2,
+        help="the value model's validation skill needed before the guide speaks (below it the duo explores with ucb)",
+    )
+    ap.add_argument(
+        "--guide-engine",
+        choices=("predict", "planner"),
+        default="predict",
+        help="predict: score the look-ahead with value/predict and pick the best (1 credit); planner: hand the same "
+        "scores to the native planner and take its pick (1 more credit)",
+    )
+    ap.add_argument(
+        "--stop-on-clear",
+        action="store_true",
+        help="stop at the first frozen eval that reaches the flag (then confirm it on 5 seeds)",
+    )
+    ap.add_argument(
+        "--max-credits",
+        type=int,
+        default=0,
+        help="hard cap on credits counted by the client meter (1 per call, value/observe 1 per row; 0 = no cap)",
+    )
+    ap.add_argument(
         "--allow-dirty",
         action="store_true",
         help="spend Records from a dirty working tree (the diff is recorded in the provenance file)",
@@ -126,9 +178,20 @@ def main() -> int:
         print("DRY RUN — offline contract client: nothing is sent, no Records are spent")
     else:
         client = Adapt1Client()
+    meter = None
+    if args.guide or args.max_credits:
+        from typesafe_mario.credit_meter import CreditMeter
+
+        meter = CreditMeter(client)
+        client = meter
+    value_domain = args.value_domain or f"{args.takeoff_domain}-value"
 
     if args.recreate:
-        for dom in (args.takeoff_domain, args.apex_domain):
+        for dom in (
+            args.takeoff_domain,
+            args.apex_domain,
+            *((value_domain,) if args.guide else ()),
+        ):
             try:
                 client.call("DELETE", f"/domains/{dom}")  # type: ignore[attr-defined]
             except Adapt1Error:
@@ -186,6 +249,34 @@ def main() -> int:
             print(
                 f"  {dom}: {held} rows held, budget {budget} — a {args.max_records}-Record stage fits"
             )
+    guide = None
+    if args.guide:
+        try:
+            from typesafe_mario.planner_guide import PlannerGuide
+        except ModuleNotFoundError:
+            raise SystemExit(
+                "--guide needs typesafe_mario.planner_guide, which this copy does not have"
+            ) from None
+
+        guide = PlannerGuide(
+            client,
+            value_domain,
+            macros=MACROS_28,
+            feature_names=takeoff_features,
+            share=args.guide_share,
+            rng_seed=args.seed,
+            first_fit_episodes=args.first_fit_episodes,
+            refit_rows=args.refit_rows,
+            horizon=args.horizon,
+            min_skill=args.guide_min_skill,
+            engine=args.guide_engine,
+        )
+        guide.setup(create=True)
+        print(
+            f"planner guide on: value domain {value_domain}, share {args.guide_share}, first fit after "
+            f"{args.first_fit_episodes} episodes, refit every {args.refit_rows} rows, min skill {args.guide_min_skill}, "
+            f"engine {args.guide_engine} (search-assisted acquisition)"
+        )
     cfg = RunConfig(
         takeoff_domain=args.takeoff_domain,
         apex_domain=args.apex_domain,
@@ -206,6 +297,10 @@ def main() -> int:
         out_dir=args.out_dir,
         run_id=args.run_id,
         max_samples=args.max_samples,
+        guide=guide,
+        meter=meter,
+        max_credits=args.max_credits or None,
+        stop_on_clear=args.stop_on_clear,
     )
     print(
         f"credit={cfg.credit} macros={[m.value for m in cfg.macros]} cap={cfg.max_records} Records "

@@ -24,7 +24,7 @@ from __future__ import annotations
 
 import json
 from collections.abc import Callable, Mapping, Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -107,6 +107,9 @@ class DelayedCredit:
     episode_id: str
     entries: list[_Entry] = field(default_factory=list)
     sent_records: list[dict[str, Any]] = field(default_factory=list)
+    # planner-guided exploration (2026-11-14): called with (entry, reward) after each feedback is sent, so the value
+    # learner gets the same row with the same credited return. None = unchanged behaviour.
+    on_sent: Callable[[_Entry, float], None] | None = None
 
     def add(
         self, row: Mapping[str, Any], pending: Mapping[str, Any] | None, policy: Adapt1Policy | None
@@ -169,8 +172,14 @@ class DelayedCredit:
                 outcome=str(entry.row["outcome"]),
             )
             entry.sent = True
+            if self.on_sent is not None:
+                self.on_sent(entry, reward)
             record = dict(record)
             record.update(
+                # the full decision row (2026-11-14): the context the decision saw and the next state sent, so the
+                # run log alone can rebuild the learner (#75/#76: the zero2 logs lacked both)
+                context=dict(entry.pending.get("features") or {}),
+                next_state=dict(next_features),
                 kind=entry.row.get("kind"),
                 immediate_reward=float(entry.row["reward"]),
                 frames=int(entry.row["frames"]),
@@ -224,6 +233,7 @@ def play_episode(
     stall_timeout: int | None = 20,
     reward_config: RewardConfig = PROGRESS_FRACTION,
     on_decision: Callable[[dict[str, Any]], None] | None = None,
+    guide: Any = None,
 ) -> EpisodeStats:
     """One learning episode: the takeoff domain chooses a macro at every grounded decision, the
     apex domain an ``ApexChoice`` at the top of every jump; each decision's feedback goes to
@@ -247,19 +257,77 @@ def play_episode(
             break
         decision = takeoff.choose(snapshot, tuple(macros))
         pending_t = takeoff.take_pending()
+        guide_tel: dict[str, Any] = {}
+        if guide is not None and pending_t is not None:
+            # planner-guided exploration (LEARNING only): the planner may choose the macro to try; the feedback then
+            # credits the macro actually played (pending "policy"), as the client ε route does (#57).
+            chosen, guide_tel = guide.suggest(
+                env, parser, snapshot, pending_t.get("features") or {}
+            )
+            if chosen is not None:
+                server_pick = decision.action.value
+                if chosen != decision.action:
+                    decision = replace(decision, action=chosen, selection_status="guided")
+                    guide.stats["overrides"] += 1
+                    takeoff.status_counts["guided"] = takeoff.status_counts.get("guided", 0) + 1
+                else:
+                    guide.stats["agreed"] += 1
+                pending_t = {
+                    **pending_t,
+                    "policy": chosen.value,
+                    "guided": True,
+                    "server_pick": server_pick,
+                }
         takeoff_learner = {
             k: (decision.telemetry or {}).get(k) for k in ("model_type", "sample_count")
         }
         apex_state: dict[str, Any] = {}
+        hook = apex_hook(parser, env, apex, decision, apex_state)
+        apex_pick, apex_tel = (None, {})
+        if guide is not None:
+            # the jump-top choice, decided before the jump from three deterministic replays (planner_guide.plan_apex)
+            apex_pick, apex_tel = guide.plan_apex(env, parser, snapshot, decision.action)
+            if apex_pick is not None:
+                base_hook = hook
+
+                def hook(
+                    event: Any,
+                    _base: Any = base_hook,
+                    _pick: Any = apex_pick,
+                    _sink: dict[str, Any] = apex_state,
+                ) -> Any:
+                    server = _base(
+                        event
+                    )  # the apex domain is still queried: decision id + its own pick
+                    _sink["server_pick"] = server
+                    if _pick != server:
+                        _sink["decision"] = replace(
+                            _sink["decision"], action=_pick, selection_status="guided"
+                        )
+                    return _pick
+
         execution = execute(
             env,
             decision.action,
             grounded=snapshot.grounded,
             ram=_unwrap_ram(env),
-            apex=apex_hook(parser, env, apex, decision, apex_state),
+            apex=hook,
         )
         fired = execution.apex is not None and bool(apex_state)
         pending_a = apex.take_pending() if fired else None
+        if fired and apex_pick is not None and pending_a is not None:
+            server_pick = apex_state.get("server_pick")
+            if apex_pick != server_pick:
+                guide.stats["apex_overrides"] += 1
+                apex.status_counts["guided"] = apex.status_counts.get("guided", 0) + 1
+            else:
+                guide.stats["apex_agreed"] += 1
+            pending_a = {
+                **pending_a,
+                "policy": apex_pick.value,
+                "guided": True,
+                "server_pick": getattr(server_pick, "value", server_pick),
+            }
         if fired:
             apex_looks += 1
             tel = apex_state["decision"].telemetry or {}
@@ -306,6 +374,8 @@ def play_episode(
                     "x": next_snapshot.x,
                     "macro": decision.action.value,
                     "status": decision.selection_status,
+                    "guide": guide_tel or None,
+                    "apex_guide": apex_tel or None,
                     "apex": apex_state["decision"].action.value if fired else None,
                     "sent": len(sent),
                     "spent": credit.budget.spent,
@@ -507,6 +577,14 @@ class RunConfig:
     out_dir: Path = Path("artifacts/zero-start")
     run_id: str = "zero-start"
     max_samples: int = 4096  # learning.context.max_samples of the domains — the learner's retained-row budget (#46)
+    # planner-guided exploration (2026-11-14 plan): a planner_guide.PlannerGuide, used in LEARNING episodes only;
+    # frozen evals never see it. meter = a planner_guide.CreditMeter wrapping the client; max_credits = a hard cap.
+    guide: Any = None
+    meter: Any = None
+    max_credits: int | None = None
+    stop_on_clear: bool = (
+        False  # stop at the first frozen eval that reaches the flag (confirm it on 5 seeds after)
+    )
 
 
 def zero_start_run(
@@ -536,6 +614,8 @@ def zero_start_run(
 
     live_at_start: dict[str, int] = {}
 
+    cleared_at: list[str] = []
+
     def evaluate(tag: str, episode: int) -> None:
         nonlocal best_reach, best_reach_episode
         before = wait_installed(client, (cfg.takeoff_domain, cfg.apex_domain), log=log)
@@ -559,6 +639,8 @@ def zero_start_run(
         )
         t_st, a_st = status_query(client, cfg.takeoff_domain), status_query(client, cfg.apex_domain)
         reach = max(int(r["max_x"]) for r in res)
+        if any(r.get("reached_flag") for r in res):
+            cleared_at.append(tag)
         if reach > best_reach:
             best_reach, best_reach_episode = reach, episode
         # The two open questions to Rei (#30 §7, #31), watched rather than assumed answered:
@@ -619,7 +701,25 @@ def zero_start_run(
         for line in checks:
             log(f"  !! {line}")
 
+    def server_version(when: str) -> None:
+        get = getattr(client, "version", None)
+        if not callable(get):
+            return
+        try:
+            ver = get()
+        except Exception as exc:  # noqa: BLE001 — a version read must never stop a run
+            ver = {"error": f"{type(exc).__name__}: {exc}"[:200]}
+        with run_log.open("a", encoding="utf-8") as fh:
+            fh.write(
+                json.dumps({"kind": "server_version", "when": when, "version": ver}, default=str)
+                + "\n"
+            )
+        log(
+            f"server version ({when}): {ver.get('commit_sha', ver) if isinstance(ver, dict) else ver}"
+        )
+
     try:
+        server_version("start")
         evaluate("ep000", 0)
         for ep in range(cfg.episodes):
             seed = cfg.seed + ep
@@ -645,7 +745,32 @@ def zero_start_run(
                 epsilon=cfg.epsilon,
                 run_id=cfg.run_id,
             )
-            credit = DelayedCredit(cfg.credit, budget, episode_id)
+            on_sent = None
+            if cfg.guide is not None:
+
+                def on_sent(
+                    entry: _Entry, reward: float, _ep: str = episode_id, guide: Any = cfg.guide
+                ) -> None:
+                    # ground rows only: the value learner's state is the takeoff context
+                    if (
+                        entry.policy is not None
+                        and entry.policy.domain_id == cfg.takeoff_domain
+                        and entry.pending
+                    ):
+                        guide.add_row(
+                            entry.pending.get("features") or {},
+                            reward,
+                            episode_id=_ep,
+                            step=int(entry.row["step"]),
+                        )
+
+            credit = DelayedCredit(cfg.credit, budget, episode_id, on_sent=on_sent)
+            if cfg.guide is not None and ep > 0:
+                # nes_py keeps ONE save slot and reset() restores from it; the guide's look-ahead overwrites that slot,
+                # so a reused env would "reset" to the last look-ahead state (seen in the 2026-11-14 dry run: an episode
+                # starting at x 1522). A fresh env per guided episode restores the true level start.
+                env.close()
+                env = create_mario_env(cfg.env_id, render_mode="rgb_array")
             stats = play_episode(
                 env,
                 takeoff=takeoff,
@@ -655,7 +780,9 @@ def zero_start_run(
                 seed=seed,
                 max_decisions=cfg.max_decisions,
                 stall_timeout=cfg.stall_timeout,
+                guide=cfg.guide,
             )
+            guide_state = cfg.guide.end_episode() if cfg.guide is not None else None
             takeoff.close()
             apex.close()
             for rec in credit.sent_records:
@@ -666,6 +793,9 @@ def zero_start_run(
                 "episode": episodes_done,
                 **stats.as_dict(),
                 "feedback": credit.sent_records,
+                "guide": guide_state,
+                "credits": cfg.meter.credits if cfg.meter is not None else None,
+                "credits_by_kind": dict(cfg.meter.by_kind) if cfg.meter is not None else None,
             }
             with run_log.open("a", encoding="utf-8") as fh:
                 fh.write(json.dumps(entry, default=str) + "\n")
@@ -675,13 +805,31 @@ def zero_start_run(
                 f"sent={stats.sent}/{stats.rows} spent={budget.spent}/{cfg.max_records} "
                 f"takeoff={stats.takeoff_status} apex={stats.apex_status} "
                 f"model={stats.takeoff_learner.get('model_type')}/{stats.apex_learner.get('model_type')}"
+                + (f" credits={cfg.meter.credits}" if cfg.meter is not None else "")
+                + (
+                    f" guide[consulted={guide_state['consulted']} overrides={guide_state['overrides']} "
+                    f"agreed={guide_state['agreed']} apex={guide_state['apex_overrides']}/"
+                    f"{guide_state['apex_consulted']} errors={guide_state['plan_errors']} value_model="
+                    f"{'v' + str(guide_state['model_version']) if guide_state['installed'] else 'none'}"
+                    f"{' fit-started' if guide_state['fit_started'] else ''}]"
+                    if guide_state
+                    else ""
+                )
             )
+            if cfg.meter is not None and cfg.max_credits and cfg.meter.credits >= cfg.max_credits:
+                stop_reason = "credit_cap"
+                log(f"credit cap {cfg.max_credits} reached ({cfg.meter.credits}) — stopping")
+                break
             if budget.remaining == 0:
                 stop_reason = "records_cap"
                 log(f"Records cap {cfg.max_records} reached — stopping")
                 break
             if episodes_done % cfg.eval_every == 0 and episodes_done < cfg.episodes:
                 evaluate(f"ep{episodes_done:03d}", episodes_done)
+                if cfg.stop_on_clear and cleared_at:
+                    stop_reason = "frozen_clear"
+                    log(f"frozen clear at {cleared_at[0]} — stopping (confirm on 5 seeds next)")
+                    break
                 if (
                     cfg.stop_flat is not None
                     and episodes_done - best_reach_episode >= cfg.stop_flat
@@ -692,6 +840,7 @@ def zero_start_run(
                     )
                     break
         evaluate(f"ep{episodes_done:03d}-final", episodes_done)
+        server_version("end")
     finally:
         env.close()
     summary = {
@@ -702,6 +851,9 @@ def zero_start_run(
         "stop_reason": stop_reason,
         "run_log": str(run_log),
         "sent_by_domain": dict(sent_by_domain),
+        "credits": cfg.meter.credits if cfg.meter is not None else None,
+        "credits_by_kind": dict(cfg.meter.by_kind) if cfg.meter is not None else None,
+        "guide": dict(cfg.guide.stats) if cfg.guide is not None else None,
         "alerts": alerts,
         "evals": [{k: e[k] for k in ("tag", "episode", "reach", "records_spent")} for e in evals],
     }

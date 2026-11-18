@@ -1,0 +1,52 @@
+[
+ {
+  "file": "rows-base.jsonl",
+  "gz": "rows-base.jsonl.gz",
+  "sha256_uncompressed": "cc031625e8b9e63de8c2cef52ab6f7752fbb1e00b262eea0c6814a418ae0e245",
+  "bytes": 9775159,
+  "note": "the 8,498 fed rows in fed order"
+ },
+ {
+  "file": "verify-base.json",
+  "sha256": "877857b544c30e581e6c37ce1e6662689fdf84a285621470d866ca0f7b562ffc",
+  "bytes": 370,
+  "note": "regenerated rows against the server dump: 0 mismatches"
+ },
+ {
+  "file": "config-base-takeoff.json",
+  "sha256": "1b8a29714ccf50402711dcc3e3e17585f941dc2ee19a6a4c716c01c8399fd886",
+  "bytes": 2821,
+  "note": "POST /domains body, takeoff"
+ },
+ {
+  "file": "config-base-apex.json",
+  "sha256": "768b17ca22132694433aadeaed3297bdd0ee5646091894c5381ae60c619b88b4",
+  "bytes": 1931,
+  "note": "POST /domains body, apex"
+ },
+ {
+  "file": "feed-base.jsonl",
+  "gz": "feed-base.jsonl.gz",
+  "sha256_uncompressed": "e907a116c2380f67974e0178068cb61b92d6fda5c7033e34c30a7eb023cf410f",
+  "bytes": 1639424,
+  "note": "feed log: every row and its response"
+ },
+ {
+  "file": "feed-base.provenance.json",
+  "sha256": "a0baf12b576d7e1d8628c13ebfb01c9aeb5840820ce021bbe14b5584b197a3a6",
+  "bytes": 7410,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "feed-base-console.log",
+  "sha256": "626a8b900b78bbbe41f615a1f1a9dcbde96f5b4b157c49ca15972ebc4f6ec53b",
+  "bytes": 2955,
+  "note": "console of the feed"
+ },
+ {
+  "file": "check-1-1.json",
+  "sha256": "910af107703554b116190ad5ce7f6584b1d574a5b419f634d0650bf5d3d49261",
+  "bytes": 66394,
+  "note": "learner status and 5 frozen 1-1 games after the feed"
+ }
+]

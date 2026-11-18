@@ -1,0 +1,20 @@
+[    10s] mario-zero2r-takeoff-refine-2-1-v12: 601 rows held, max_samples 16384
+[    16s] mario-zero2r-apex-refine-2-1-v12: 329 rows held, max_samples 16384
+[    36s] rows of the earlier legs: {'keep': 594, 'override': 336}
+[    36s] keeping fix 9:apex:override_apex_brake at x=724 (from artifacts/refine12/run-20261116T174550Z/frontier.jsonl#r1)
+[    36s] keeping fix 24:takeoff:override_jump at x=1548 (from artifacts/refine12/run-20261116T174550Z/frontier.jsonl#r2)
+[    36s] keeping fix 28:apex:override_apex_pull_back at x=1668 (from artifacts/refine12/run-20261116T174550Z/frontier.jsonl#r3)
+[    36s] keeping fix 31:apex:override_apex_pull_back at x=1941 (from artifacts/refine12/run-20261116T174550Z/frontier.jsonl#r4)
+[    36s] keeping fix 41:takeoff:override_right_run_jump_short at x=2967 (from artifacts/refine12/run-20261116T221301Z/frontier.jsonl#r1)
+[   513s] frozen r00: 2-1 end=flag max_x=3193 decisions=46 overrides=[(24, 1548, 'right_run_jump_full', 'jump'), (41, 2967, 'right_run_jump_full', 'right_run_jump_short')] apex_overrides=3
+[   936s] frozen r00-1-1: 1-1 end=flag max_x=3161 decisions=48 overrides=[] apex_overrides=0
+[   936s] round 0: anchoring keep_base at 79 decisions of the 1-1 game
+[  1300s]   mario-zero2r-takeoff-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  1327s]   mario-zero2r-apex-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  1347s]   mario-zero2r-apex-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  1823s] frozen final: 2-1 end=flag max_x=3193 decisions=46 overrides=[(24, 1548, 'right_run_jump_full', 'jump'), (41, 2967, 'right_run_jump_full', 'right_run_jump_short')] apex_overrides=3
+[  2270s] frozen r99-1-1: 1-1 end=flag max_x=3161 decisions=48 overrides=[] apex_overrides=0
+[  2531s]    1-1 keep margin (takeoff) after round 99: smallest [(0.3998, 13, 761), (0.4142, 21, 1324), (0.4364, 19, 1269)] (an override fires below 0); an override's mean is above keep's at 0 of 48 decisions
+[  2684s]    1-1 keep margin (apex) after round 99: smallest [(0.3286, 17, 1059), (0.3565, 40, 2660), (0.3689, 4, 344)] (an override fires below 0); an override's mean is above keep's at 0 of 31 decisions
+[  2710s] DONE {"kind": "summary", "outcome": "flag", "records_spent": 79, "credits": 582, "credits_by_kind": {"mario-zero2r-takeoff-refine-2-1-v12": 1, "query": 501, "mario-zero2r-apex-refine-2-1-v12": 1, "feedback": 79}, "sent_by_domain": {"mario-zero2r-takeoff-refine-2-1-v12": 48, "mario-zero2r-apex-refine-2-1-v12": 31}, "rows_by_kind": {"keep": 673, "override": 336}, "rows_by_domain": {"mario-zero2r-takeoff-refine-2-1-v12": {"keep": 401, "override": 248}, "mario-zero2r-apex-refine-2-1-v12": {"keep": 272, "override": 88}}, "reward_max": 0.002, "override_cost": 0.05, "rewards_capped": 79, "corrector_live_sample_count_after": {"mario-zero2r-takeoff-refine-2-1-v12": 649, "mario-zero2r-apex-refine-2-1-v12": 360}, "final_frozen": "2-1 end=flag max_x=3193 decisions=46", "base_changed": [], "base_feedback_calls": 0, "base_cache": {"hits": 2290, "misses": 0}, "corrector_cache": {"hits": 1887, "misses": 324}, "wall_s": 2710}
+[  2710s] log: artifacts/refine12/run-20261117T043232Z/frontier.jsonl

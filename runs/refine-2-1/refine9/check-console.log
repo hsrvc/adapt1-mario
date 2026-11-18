@@ -1,0 +1,7 @@
+[     6s] mario-zero2r-takeoff-refine-2-1-v9: 168 rows held, max_samples 16384
+[    12s] mario-zero2r-apex-refine-2-1-v9: 520 rows held, max_samples 16384
+[   281s] frozen r00: 2-1 end=dead max_x=1368 decisions=20 overrides=[] apex_overrides=2
+[   663s] frozen r00-1-1: 1-1 end=flag max_x=3161 decisions=48 overrides=[] apex_overrides=0
+[   663s] round 0: anchoring keep_base at 0 decisions of the 1-1 game
+[   685s] DONE {"kind": "summary", "outcome": "rounds_done", "records_spent": 0, "credits": 138, "credits_by_kind": {"mario-zero2r-takeoff-refine-2-1-v9": 1, "query": 136, "mario-zero2r-apex-refine-2-1-v9": 1}, "sent_by_domain": {"mario-zero2r-takeoff-refine-2-1-v9": 0, "mario-zero2r-apex-refine-2-1-v9": 0}, "rows_by_kind": {"keep": 0, "override": 0}, "corrector_live_sample_count_after": {"mario-zero2r-takeoff-refine-2-1-v9": 168, "mario-zero2r-apex-refine-2-1-v9": 520}, "final_frozen": "2-1 end=dead max_x=1368 decisions=20", "base_changed": [], "base_feedback_calls": 0, "base_cache": {"hits": 112, "misses": 6}, "corrector_cache": {"hits": 0, "misses": 118}, "wall_s": 685}
+[   685s] log: artifacts/refine9/run-20261116T144222Z/frontier.jsonl

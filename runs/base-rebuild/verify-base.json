@@ -1,0 +1,21 @@
+{
+ "episodes": 128,
+ "rows_dump": 8498,
+ "rows_regenerated": 8498,
+ "rows_verified_by_feedback": 8468,
+ "rows_context_only": 30,
+ "mismatches": [],
+ "diverged": [],
+ "seed_inferred": {
+  "zero2-v3-fh-s5-ep0005": 127
+ },
+ "runs": [
+  "zero2-v3-fh-s1",
+  "zero2-v3-fh-s2",
+  "zero2-v3-fh-s3",
+  "zero2-v3-fh-s4",
+  "zero2-v3-fh-s5"
+ ],
+ "mismatch_rows": 0,
+ "pass": true
+}

@@ -21,6 +21,10 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[4]  # scripts/pub -> scripts -> agent -> mario -> repo
 # The proxy's per-account session (Machina journals carry it in every request). Not the key, but it identifies the account.
 SESSION_ID = re.compile(rb'"session_id": ?"[^"]*"')
+# The same id appears under other keys too (owner_session_id on domain reads, user_id / tenant_id on /memory/list
+# items; 2026-11-14). Redact it by shape wherever it occurs: 24 hex, a colon, 32 hex.
+SESSION_SHAPE = re.compile(rb"(?<![0-9a-f])[0-9a-f]{24}:[0-9a-f]{32}(?![0-9a-f])")
+PLAIN_RUN_SUFFIXES = {".json", ".jsonl", ".log", ".txt", ".md", ".html"}
 
 
 def redact_sessions(out: Path) -> int:
@@ -30,6 +34,8 @@ def redact_sessions(out: Path) -> int:
     for gz in sorted(out.glob("runs/**/*.gz")):
         raw = gzip.decompress(gz.read_bytes())
         red, n = SESSION_ID.subn(b'"session_id":"redacted"', raw)
+        red, n2 = SESSION_SHAPE.subn(b"redacted", red)
+        n += n2
         if not n:
             continue
         gz.write_bytes(gzip.compress(red, mtime=0))
@@ -47,9 +53,42 @@ def redact_sessions(out: Path) -> int:
     return changed
 
 
+def redact_plain(out: Path) -> int:
+    """Redact the session id (by key and by shape) in the uncompressed text files of the shipped bundles, and re-hash
+    their entries in the bundle's index.json. Returns the number of files changed."""
+    changed = 0
+    for path in sorted(out.glob("runs/**/*")):
+        if (
+            not path.is_file()
+            or path.suffix.lower() not in PLAIN_RUN_SUFFIXES
+            or path.name == "index.json"
+        ):
+            continue
+        raw = path.read_bytes()
+        red, n = SESSION_ID.subn(b'"session_id":"redacted"', raw)
+        red, n2 = SESSION_SHAPE.subn(b"redacted", red)
+        if not (n + n2):
+            continue
+        path.write_bytes(red)
+        bundle = next((q for q in path.parents if (q / "index.json").exists()), None)
+        if bundle is not None:
+            index_path = bundle / "index.json"
+            entries = json.loads(index_path.read_text())
+            rel = path.relative_to(bundle).as_posix()
+            for e in entries:
+                if e.get("file") == rel and "sha256" in e:
+                    e["sha256"] = hashlib.sha256(red).hexdigest()
+                    e["bytes"] = len(red)
+                    e["note"] = (e.get("note") or "") + " [session ids redacted for publication]"
+            index_path.write_text(json.dumps(entries, indent=1) + "\n")
+        changed += 1
+    return changed
+
+
 def strip_diffs(out: Path) -> int:
     """A run started from a dirty tree records the whole uncommitted diff in its provenance. The public copy keeps
-    dirty / dirty_files / diff_sha256 and drops the diff text (it can carry private, unrelated work)."""
+    dirty / dirty_files / diff_sha256 and drops the diff text (it can carry private, unrelated work). The name of a
+    dirty file at the root of the private workspace (a notes file) is replaced by a placeholder."""
     n = 0
     for prov in sorted(out.glob("runs/**/*.provenance.json")):
         rec = json.loads(prov.read_text())
@@ -57,6 +96,11 @@ def strip_diffs(out: Path) -> int:
         if not git.get("diff"):
             continue
         git["diff"] = "[omitted in the public copy; diff_sha256 identifies it]"
+        # a file at the root of the private workspace is a notes file, never code that ships: keep the count
+        git["dirty_files"] = [
+            f if "/" in f else "[a notes file of the private workspace]"
+            for f in git.get("dirty_files") or []
+        ]
         prov.write_text(json.dumps(rec, indent=1) + "\n")
         bundle = next(q for q in prov.parents if (q / "index.json").exists())
         idx = json.loads((bundle / "index.json").read_text())
@@ -141,6 +185,7 @@ def main() -> int:
             print(f"  exclude matched nothing: {ex}", file=sys.stderr)
     print(f"copied {copied} of {len(entries)} manifest entries into {args.out}")
     print(f"redacted session_id in {redact_sessions(args.out)} run logs")
+    print(f"redacted session ids in {redact_plain(args.out)} plain run files")
     print(f"dropped the uncommitted diff from {strip_diffs(args.out)} provenance file(s)")
     # the learning-curve figure is redrawn from the bundles that ship, so it never shows data the tree lacks
     plot = args.out / "scripts" / "plot_zero_curve.py"

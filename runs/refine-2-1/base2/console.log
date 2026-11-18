@@ -1,0 +1,59 @@
+  mario-zero2r-takeoff: 5450 rows held, budget 16384 — a 1000-Record stage fits
+  mario-zero2r-apex: 3048 rows held, budget 16384 — a 1000-Record stage fits
+credit=CreditConfig(kind='frame_horizon', horizon=128, k=6, gamma=0.9) macros=['noop', 'right', 'right_run', 'left', 'right_run_jump_short', 'right_run_jump_mid', 'right_run_jump_full', 'right_jump_full'] cap=1000 Records eval every 5 on seeds (777,)
+server version (start): f5e1ab83e73acb4948f6d12270134e4f9f6a7a6e
+[eval ep000] reach=2737 (best 2737 @ep0) flag=[False] records=0 takeoff model=extra_trees consumed=5450/0 apex model=extra_trees consumed=3048/0 server=[{'selected': 45}]
+ep0001 seed=200 x=2754 dead dec=47 looks=26 sent=73/73 spent=73/1000 takeoff={'selected': 47} apex={'selected': 26} model=None/None credits=228
+ep0002 seed=201 x=2016 dead dec=49 looks=21 sent=70/70 spent=143/1000 takeoff={'selected': 49} apex={'selected': 21} model=None/None credits=368
+ep0003 seed=202 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=227/1000 takeoff={'selected': 53} apex={'selected': 31} model=None/None credits=536
+ep0004 seed=203 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=311/1000 takeoff={'selected': 53} apex={'selected': 31} model=None/None credits=704
+ep0005 seed=204 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=395/1000 takeoff={'selected': 53} apex={'selected': 31} model=None/None credits=872
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-apex: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-apex: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-apex: retrain running, no model installed — waiting 15s before the frozen eval
+[eval ep005] reach=3161 (best 3161 @ep5) flag=[True] records=395 takeoff model=extra_trees consumed=5705/255 apex model=extra_trees consumed=3188/140 server=[{'selected': 44}]
+ep0006 seed=205 x=3161 FLAG dec=59 looks=34 sent=93/93 spent=488/1000 takeoff={'selected': 59} apex={'selected': 34} model=None/None credits=1151
+ep0007 seed=206 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=572/1000 takeoff={'selected': 53} apex={'selected': 31} model=None/None credits=1319
+ep0008 seed=207 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=656/1000 takeoff={'selected': 53} apex={'selected': 31} model=None/None credits=1487
+ep0009 seed=208 x=2746 dead dec=52 looks=26 sent=78/78 spent=734/1000 takeoff={'selected': 52} apex={'selected': 26} model=None/None credits=1643
+ep0010 seed=209 x=3161 FLAG dec=53 looks=31 sent=84/84 spent=818/1000 takeoff={'selected': 53} apex={'selected': 31} model=None/None credits=1811
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+  mario-zero2r-takeoff: retrain running, no model installed — waiting 15s before the frozen eval
+[eval ep010] reach=3161 (best 3161 @ep5) flag=[True] records=818 takeoff model=extra_trees consumed=5975/525 apex model=extra_trees consumed=3341/293 server=[{'selected': 45}]
+ep0011 seed=210 x=2016 dead dec=37 looks=18 sent=55/55 spent=873/1000 takeoff={'selected': 37} apex={'selected': 18} model=None/None credits=2018
+ep0012 seed=211 x=3161 FLAG dec=66 looks=36 sent=102/102 spent=975/1000 takeoff={'selected': 66} apex={'selected': 36} model=None/None credits=2222
+ep0013 seed=212 x=3161 FLAG dec=58 looks=31 sent=25/89 spent=1000/1000 takeoff={'selected': 58} apex={'selected': 31} model=extra_trees/extra_trees credits=2336
+Records cap 1000 reached — stopping
+[eval ep013-final] reach=3161 (best 3161 @ep5) flag=[True] records=1000 takeoff model=extra_trees consumed=6094/644 apex model=extra_trees consumed=3404/356 server=[{'selected': 48}]
+server version (end): f5e1ab83e73acb4948f6d12270134e4f9f6a7a6e
+
+done: episodes=13 records=1000 best_reach=3161 (ep5) stop=records_cap
+run log: artifacts/base2-s1/run-20261116T070551Z.jsonl

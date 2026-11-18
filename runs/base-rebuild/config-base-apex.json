@@ -1,0 +1,114 @@
+{
+ "domain_id": "mario-zero2r-apex",
+ "hypotheses": [
+  {
+   "name": "apex_keep",
+   "policy": "apex_keep",
+   "predicts": [
+    "advanced"
+   ],
+   "relation": "controls"
+  },
+  {
+   "name": "apex_brake",
+   "policy": "apex_brake",
+   "predicts": [
+    "advanced"
+   ],
+   "relation": "controls"
+  },
+  {
+   "name": "apex_pull_back",
+   "policy": "apex_pull_back",
+   "predicts": [
+    "advanced"
+   ],
+   "relation": "controls"
+  }
+ ],
+ "learning": {
+  "context": {
+   "feature_paths": [
+    "values.speed_x",
+    "values.speed_y",
+    "values.grounded",
+    "values.jump_phase",
+    "values.airborne_frames",
+    "values.enemy_ahead",
+    "values.enemy_dist",
+    "values.obstacle_dist",
+    "values.gap_dist",
+    "values.clear_forward",
+    "values.stalled",
+    "values.drop_dist",
+    "values.drop_depth",
+    "values.floor_below",
+    "values.apex_vx",
+    "values.apex_rise",
+    "values.apex_height",
+    "values.obstacle_height"
+   ],
+   "max_samples": 16384
+  },
+  "enabled": true,
+  "policy": {
+   "exploration_mode": "ucb",
+   "min_context_observations": 16,
+   "model_max_weight": 0.9
+  },
+  "reward": {
+   "aggregation": "weighted_mean",
+   "components": [
+    {
+     "field": "values.reward",
+     "goal": "maximize",
+     "max": 1.0,
+     "min": 0.0,
+     "weight": 1.0
+    }
+   ]
+  },
+  "training": {
+   "enabled": true,
+   "model_type": "extra_trees"
+  }
+ },
+ "query_templates": {
+  "feedback_outcomes": [
+   "advanced",
+   "setback",
+   "no_progress",
+   "died",
+   "cleared"
+  ]
+ },
+ "schema": {
+  "event_types": [
+   "frame"
+  ],
+  "relations": [
+   "controls"
+  ],
+  "signals": [
+   "reward",
+   "speed_x",
+   "speed_y",
+   "grounded",
+   "jump_phase",
+   "airborne_frames",
+   "enemy_ahead",
+   "enemy_dist",
+   "obstacle_dist",
+   "gap_dist",
+   "clear_forward",
+   "stalled",
+   "drop_dist",
+   "drop_depth",
+   "floor_below",
+   "apex_vx",
+   "apex_rise",
+   "apex_height",
+   "obstacle_height"
+  ]
+ }
+}

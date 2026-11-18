@@ -26,6 +26,9 @@ def build_curve(run_log: Path) -> dict:
             "records": r["records_spent"],
             "decisions": r["decisions"],
             "looks": r["apex_looks"],
+            "credits": r.get(
+                "credits"
+            ),  # all credits by the client meter (guided runs, 2026-11-14); None before
         }
         for r in rows
         if r["kind"] == "episode"

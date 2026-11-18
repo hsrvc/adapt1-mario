@@ -118,3 +118,29 @@ def test_curated_grounded_dataset_passes_the_contract():
     assert len(episodes) >= 8  # minimum_episodes for the sequential model to install
     assert any(r["terminal"] and r["outcome"] == "cleared" for r in rows)  # a flag run is in
     assert any(r["terminal"] and r["outcome"] == "died" for r in rows)  # and a death (diversity)
+
+
+def test_feedback_with_explicit_context_and_no_decision_id_is_accepted() -> None:
+    """The replay route of `rebuild_domains.py --route explicit`: the context travels in the feedback."""
+    from typesafe_mario.adapt1_policy import build_domain_config
+    from typesafe_mario.offline_client import OfflineAdapt1Client, OfflineContractError
+
+    client = OfflineAdapt1Client()
+    config = build_domain_config("d-explicit")
+    client.create_domain(config)
+    features = list(client.domains["d-explicit"]["features"])
+    row = {name: 0.0 for name in features}
+    body = {
+        "session_id": "ignored",
+        "policy": min(client.domains["d-explicit"]["policies"]),
+        "outcome": next(iter(client.domains["d-explicit"]["outcomes"]), None),
+        "context": {"values": row},
+        "values": {"reward": 0.001, "next_state": row},
+        "metadata": {"episode_id": "e", "step": 0, "terminal": False},
+    }
+    status, resp = client.feedback("d-explicit", body)
+    assert status == 200
+    assert resp["credit_assignment"]["context_source"] == "request"
+    body["decision_id"] = "never-issued"
+    with pytest.raises(OfflineContractError, match="decision_id"):
+        client.feedback("d-explicit", body)

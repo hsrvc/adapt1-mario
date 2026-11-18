@@ -1,0 +1,204 @@
+{
+ "kind": "refine-frontier-log",
+ "target": "artifacts/refine12/run-20261117T043232Z/frontier.jsonl",
+ "target_sha256": "cb6ca430…",
+ "written_at": "2026-11-17T05:17:43+00:00",
+ "command": [
+  "refine_frontier.py",
+  "--account",
+  "hsc",
+  "--base-takeoff-domain",
+  "mario-zero2r-takeoff",
+  "--base-apex-domain",
+  "mario-zero2r-apex",
+  "--model-max-weight",
+  "0.9",
+  "--min-context-observations",
+  "4",
+  "--abstain-on-ood",
+  "--refine-takeoff-domain",
+  "mario-zero2r-takeoff-refine-2-1-v12",
+  "--refine-apex-domain",
+  "mario-zero2r-apex-refine-2-1-v12",
+  "--keep-dominance",
+  "--keep-anchor",
+  "1",
+  "--anchor-1-1",
+  "1",
+  "--max-override-ratio",
+  "1.0",
+  "--leak-patience",
+  "6",
+  "--rounds",
+  "0",
+  "--repeat-cap",
+  "100",
+  "--lead-repeats",
+  "6",
+  "--block-repeats",
+  "4",
+  "--fight-patience",
+  "3",
+  "--archive-records",
+  "0",
+  "--workers",
+  "4",
+  "--max-records",
+  "600",
+  "--max-credits",
+  "2500",
+  "--reward-max",
+  "0.002",
+  "--override-cost",
+  "0.05",
+  "--depth",
+  "4",
+  "--keep-fixes-from",
+  "artifacts/refine12/run-20261116T174550Z/frontier.jsonl",
+  "artifacts/refine12/run-20261116T221301Z/frontier.jsonl",
+  "--out-dir",
+  "artifacts/refine12",
+  "--run-id",
+  "refine12-confirm"
+ ],
+ "script_sha256": "5055b6c8…",
+ "cwd": "/Users/hsrvc/Documents/playground/rei/mario/agent",
+ "git": {
+  "commit": "39c26d5a1c7578c6175947bf0962f98dba190d7d",
+  "dirty": false,
+  "dirty_files": [],
+  "diff_sha256": null,
+  "diff": null
+ },
+ "environment": {
+  "python": "3.13.15",
+  "platform": "macOS-14.4.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+   "gym-super-mario-bros": "9.1.0",
+   "nes-py": "9.0.1",
+   "gymnasium": "1.3.0",
+   "numpy": "2.5.3",
+   "pillow": "12.3.0"
+  }
+ },
+ "inputs": {},
+ "extra": {
+  "account": "hsc",
+  "config": {
+   "account": "hsc",
+   "base_takeoff_domain": "mario-zero2r-takeoff",
+   "base_apex_domain": "mario-zero2r-apex",
+   "refine_takeoff_domain": "mario-zero2r-takeoff-refine-2-1-v12",
+   "refine_apex_domain": "mario-zero2r-apex-refine-2-1-v12",
+   "max_records": 600,
+   "rounds": 0,
+   "reward_max": 0.002,
+   "override_cost": 0.05,
+   "depth": 4,
+   "batch": 4,
+   "repeat_cap": 100,
+   "workers": 4,
+   "horizon": 512,
+   "seed": 777,
+   "no_retention": false,
+   "keep_going_on_retention_loss": false,
+   "max_credits": 2500,
+   "archive_records": 0,
+   "archive_depth": 6,
+   "esc_starts": 0,
+   "esc_beam": 0,
+   "create_refiners": false,
+   "model_max_weight": 0.9,
+   "abstain_on_ood": true,
+   "keep_fixes_from": [
+    "artifacts/refine12/run-20261116T174550Z/frontier.jsonl",
+    "artifacts/refine12/run-20261116T221301Z/frontier.jsonl"
+   ],
+   "path": null,
+   "path_start": 0,
+   "path_from": null,
+   "keep_anchor": 1,
+   "anchor_from": null,
+   "anchor_1_1": 1,
+   "max_override_ratio": 1.0,
+   "leak_patience": 6,
+   "keep_dominance": true,
+   "leader": null,
+   "resume_sweep": null,
+   "fight_patience": 3,
+   "lead_repeats": 6,
+   "block_repeats": 4,
+   "min_context_observations": 4,
+   "pass_margin": 48,
+   "path_repeat_cap": 12,
+   "out_dir": "artifacts/refine12",
+   "run_id": "refine12-confirm",
+   "dry_run": false,
+   "allow_dirty": false
+  },
+  "git_at_start": {
+   "commit": "39c26d5a1c7578c6175947bf0962f98dba190d7d",
+   "dirty": false,
+   "dirty_files": [],
+   "diff_sha256": null,
+   "diff": null
+  },
+  "invariants": {
+   "demonstrations_used": 0,
+   "absolute_x_in_learning_context": false,
+   "base_feedback": "refused by GuardedClient",
+   "credit": "frame_horizon 512 frames of the trial decision only",
+   "exploration": "one trial per game at the frozen system's failure point; every tried edit is sent with its measured credit"
+  },
+  "status": "finished",
+  "summary": {
+   "kind": "summary",
+   "outcome": "flag",
+   "records_spent": 79,
+   "credits": 582,
+   "credits_by_kind": {
+    "mario-zero2r-takeoff-refine-2-1-v12": 1,
+    "query": 501,
+    "mario-zero2r-apex-refine-2-1-v12": 1,
+    "feedback": 79
+   },
+   "sent_by_domain": {
+    "mario-zero2r-takeoff-refine-2-1-v12": 48,
+    "mario-zero2r-apex-refine-2-1-v12": 31
+   },
+   "rows_by_kind": {
+    "keep": 673,
+    "override": 336
+   },
+   "rows_by_domain": {
+    "mario-zero2r-takeoff-refine-2-1-v12": {
+     "keep": 401,
+     "override": 248
+    },
+    "mario-zero2r-apex-refine-2-1-v12": {
+     "keep": 272,
+     "override": 88
+    }
+   },
+   "reward_max": 0.002,
+   "override_cost": 0.05,
+   "rewards_capped": 79,
+   "corrector_live_sample_count_after": {
+    "mario-zero2r-takeoff-refine-2-1-v12": 649,
+    "mario-zero2r-apex-refine-2-1-v12": 360
+   },
+   "final_frozen": "2-1 end=flag max_x=3193 decisions=46",
+   "base_changed": [],
+   "base_feedback_calls": 0,
+   "base_cache": {
+    "hits": 2290,
+    "misses": 0
+   },
+   "corrector_cache": {
+    "hits": 1887,
+    "misses": 324
+   },
+   "wall_s": 2710
+  }
+ }
+}

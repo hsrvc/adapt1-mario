@@ -953,6 +953,12 @@ class Adapt1Policy:
         telemetry = {
             "domain": self._domain,
             "selection_values": selection_values,
+            # credible intervals per arm (the gate's inputs; `refine` keep-dominance rule, 2026-10-04)
+            "intervals": {
+                str(name): list(diag.get("credible_interval"))
+                for name, diag in (parsed["diagnostics"] or {}).items()
+                if isinstance(diag, Mapping) and isinstance(diag.get("credible_interval"), list)
+            },
             "model_type": learner.get("model_type"),
             "validation_skill": learner.get("validation_skill"),
             "sample_count": learner.get("sample_count"),
@@ -1106,6 +1112,8 @@ class Adapt1Policy:
             "policy": pending["policy"],
             "abstained": pending["abstained"],
             "explored": pending.get("explored", False),
+            "guided": pending.get("guided", False),
+            "server_pick": pending.get("server_pick"),
             "selection_status": pending["selection_status"],
             "reason": pending["reason"],
             "mode": pending.get("mode"),

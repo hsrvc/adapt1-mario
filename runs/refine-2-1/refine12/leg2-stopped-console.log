@@ -1,0 +1,8 @@
+[     5s] mario-zero2r-takeoff-refine-2-1-v12: 466 rows held, max_samples 16384
+[    10s] mario-zero2r-apex-refine-2-1-v12: 256 rows held, max_samples 16384
+[    24s] rows of the earlier legs: {'keep': 440, 'override': 282}
+[    24s] keeping fix 9:apex:override_apex_brake at x=724 (from artifacts/refine12/run-20261116T174550Z/frontier.jsonl#r1)
+[    24s] keeping fix 24:takeoff:override_jump at x=1548 (from artifacts/refine12/run-20261116T174550Z/frontier.jsonl#r2)
+[    24s] keeping fix 28:apex:override_apex_pull_back at x=1668 (from artifacts/refine12/run-20261116T174550Z/frontier.jsonl#r3)
+[    24s] keeping fix 31:apex:override_apex_pull_back at x=1941 (from artifacts/refine12/run-20261116T174550Z/frontier.jsonl#r4)
+[   288s] frozen r00: 2-1 end=dead max_x=1817 decisions=30 overrides=[(24, 1548, 'right_run_jump_full', 'jump')] apex_overrides=1

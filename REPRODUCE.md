@@ -22,12 +22,17 @@ python scripts/pub/verify_runs.py runs        # every evidence file against its 
   ([quickstart](https://docs.reilabs.org/docs/neuroadapt/quickstart), [full index](https://docs.reilabs.org/llms.txt)).
 - Put the key in the environment only: `export REI_KEY=...`. Rei's own examples call it `ADAPT1_API_KEY`; these
   scripts read `REI_KEY`.
-- Adapt-1 bills **Records** (every row, result or feedback you send) and **Queries** (every decision you ask for).
-  Check your balance at [app.reilabs.org/adapt-1](https://app.reilabs.org/adapt-1) first; the API doesn't report it.
+- Adapt-1 bills **credits** from one pool: "a query and a record each cost one credit", reads included (since
+  November 2026; our earlier runs were billed as separate Records and Queries, and their costs below use those names).
+  Check your balance at
+  [app.reilabs.org/adapt-1](https://app.reilabs.org/adapt-1) before and after a run; the API doesn't report it.
+- Record the server build: `GET https://rei-neuroadapt-api.reilabs.org/version` (host root, not `/api/v1`) returns
+  `commit_sha`. `zero_start_duo.py` and `rebuild_domains.py` write it to the run log at the start and the end. The
+  other scripts do not, so note it yourself.
 - Use a **new domain name** for every run. Reusing one mixes your rows with old ones, and `--recreate` deletes any
   existing domain with that name first.
-- Run each script that spends Records (`machina_acquire.py`, `ingest_demos.py`, `zero_start_duo.py`) with `--dry-run`
-  first. It runs the same code against an offline stub and spends nothing. The evaluation scripts spend Queries only.
+- Run each script that sends rows (`machina_acquire.py`, `ingest_demos.py`, `zero_start_duo.py`,
+  `rebuild_domains.py`, `refine_frontier.py`) with `--dry-run` first. It runs the same code against an offline stub and spends nothing. The evaluation scripts spend Queries only.
 
 ## 3. Machina: ≈ 470 Records, 15 minutes
 
@@ -131,6 +136,76 @@ and use a new `--out-dir` and `--run-id`. Each stage's settings are in `runs/zer
 **Expect:** a rising online clear rate and a frozen clear somewhere around 8,000 Records. Ours went 1/45 → 11/27 →
 18/26 → 19/24 clears per stage, with the first frozen clear at the start of stage 5. Your exact numbers will differ
 (see the note on refits above).
+
+## 5b. Correctors for 2-1 on a frozen 1-1 base: ≈ 7,300 credits, plus the base
+
+A base that clears 1-1 stays frozen. Two new domains learn when to replace one of its moves, until the frozen system
+reaches the 2-1 flag and still clears 1-1. Read [`runs/refine-2-1/`](runs/refine-2-1/) first: it says what our code
+does and what Adapt-1 does.
+
+**The base.** The base is the 1-1 player: a takeoff domain (moves on the ground) and an apex domain (choices in
+mid-air) that clear 1-1 frozen, for example your pair from §5. Ours was built in another way, because by our account
+the server no longer held the October pair's model:
+
+```bash
+# the 8,498 rows of the October zero-start pair, fed again in the original order: 8,512 credits
+gunzip -kf runs/base-rebuild/rows-base.jsonl.gz
+python scripts/rebuild_domains.py --account mine --rows runs/base-rebuild/rows-base.jsonl \
+  --config-dir runs/base-rebuild --which base --create --route explicit --max-credits 9500
+# then 1,000 more rows of online play, as in §5: 2,420 credits
+python scripts/zero_start_duo.py --takeoff-domain mario-zero2r-takeoff --apex-domain mario-zero2r-apex \
+  --max-samples 16384 --features full_v3 --apex-features apex_v3 --credit frame_horizon --horizon 128 \
+  --model-type extra_trees --exploration-mode ucb --episodes 1000 --seed 200 --max-records 1000 --eval-every 5 \
+  --eval-seeds 777 --stop-flat 100 --max-credits 3200 --out-dir artifacts/base2-s1 --run-id base2-s1
+```
+
+The two config files name the domains `mario-zero2r-takeoff` and `mario-zero2r-apex`. Domains belong to one account,
+so these names are free on yours the first time. For a second attempt, change `domain_id` in both config files. After
+the feed alone our pair reached 2737 on 1-1, with no flag. After the 1,000
+online rows it reached the flag at three checkpoints in a row. Do not send the base any rows after this point.
+
+**The correctors.** Leg 1 creates them and works forward from the first place where Mario fails:
+
+```bash
+python scripts/refine_frontier.py --account mine --base-takeoff-domain mario-zero2r-takeoff \
+  --base-apex-domain mario-zero2r-apex --create-refiners --model-max-weight 0.9 --min-context-observations 4 \
+  --abstain-on-ood --refine-takeoff-domain my-takeoff-fix-2-1 --refine-apex-domain my-apex-fix-2-1 \
+  --keep-dominance --keep-anchor 1 --anchor-1-1 1 --max-override-ratio 1.0 --leak-patience 6 --rounds 12 \
+  --repeat-cap 100 --lead-repeats 6 --block-repeats 4 --fight-patience 3 --archive-records 0 --workers 4 \
+  --max-records 15000 --max-credits 15000 --reward-max 0.002 --override-cost 0.05 \
+  --out-dir artifacts/fix --run-id fix
+```
+
+Add `--dry-run` first: it runs the same loop against an offline stub and spends nothing. The stub has no trained
+player, so the dry run ends with `RETENTION: 1-1 frozen 315 (no flag)` and `"outcome": "balance_unmet"`. That is the
+expected end of a dry run. `--account` is only a label that the log records. The script refuses to send a row to the
+base domains. Keep `--reward-max 0.002` and `--override-cost 0.05`: the script's defaults differ, and our three tries
+without both of them did not work.
+
+If a leg stops before the flag, start the next leg on the same correctors: drop `--create-refiners`, and add
+`--depth 4 --keep-fixes-from <the frontier.jsonl of every earlier leg>`. Our run took two legs (4,365 and 1,733
+credits) and two checks after the flag (582 and 577 credits: the same command with `--rounds 0` and smaller caps, and for the
+live check a new `--out-dir`). The exact command of each is in `runs/refine-2-1/refine12/*.provenance.json`. This script does not record the server build.
+
+**Expect:**
+
+- Each round prints one frozen 2-1 game and one frozen 1-1 game. The 1-1 game must show the flag and 0 overrides.
+- A correction can drop out after later rows. The script then sends a few repair rows and plays the game again.
+- Our frozen 2-1 reach went 736 → 1654 → 1817 → 2098 → 3026 → 3193 (the flag) in 5 corrections.
+- **Your numbers will differ.** The server does not fit the same model twice from the same rows, so your base plays
+  its own route through 2-1 and needs its own corrections. The run can also stop with no flag: the method fixes one
+  move at a time, and a place that needs several new moves together is out of its reach. On one of our earlier bases
+  the tower at x = 3026 was such a place (our analysis, and its evidence is not in this repo).
+- Reproducible here means the rows, the code and the evaluations. The server's model fits are not bit-identical.
+
+Checks without a key (0 credits):
+
+```bash
+L=runs/refine-2-1/refine12/leg2-frontier.jsonl.gz
+python scripts/refine_replay.py --log $L --tag final --out 2-1-flag.gif    # the frozen 2-1 game: 46 decisions, flag
+python scripts/refine_replay.py --log $L --tag r01-1-1                     # the frozen 1-1 game: flag, 0 corrections
+python scripts/pub/verify_runs.py runs                                      # every bundle against its hashes
+```
 
 ## 6. Watch your run
 

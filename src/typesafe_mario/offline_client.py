@@ -37,18 +37,182 @@ class OfflineAdapt1Client:
         self.decisions: dict[str, str] = {}  # decision_id -> domain_id
         self.samples: dict[str, int] = {}
         self.feedback_log: dict[str, list[dict[str, Any]]] = {}
+        self.values: dict[str, dict[str, Any]] = {}  # value learner per domain
+        self.value_skill = (
+            0.5  # the validation skill a fake fit reports (tests lower it to exercise the gate)
+        )
 
     # --- the subset of Adapt1Client the scripts use ------------------------------------
 
     def call(self, method: str, path: str, body: Any = None) -> tuple[int, Any]:
+        parts = path.strip("/").split("/")
         if method == "DELETE" and path.startswith("/domains/"):
-            self.domains.pop(path.split("/")[2], None)
+            self.domains.pop(parts[1], None)
+            self.values.pop(parts[1], None)
             return 200, {}
+        if method == "GET" and len(parts) == 2 and parts[0] == "domains":
+            if parts[1] not in self.domains:
+                from .adapt1_client import Adapt1Error
+
+                raise Adapt1Error(404, {"detail": f"domain not found: {parts[1]}"})
+            return 200, {"domain_id": parts[1], **(self.domains[parts[1]].get("config") or {})}
+        if method == "POST" and len(parts) >= 4 and parts[0] == "domains" and parts[2] == "value":
+            return self._value(parts[1], parts[3], body)
+        if method == "POST" and parts[2:] == ["planning", "adversarial"]:
+            return self._plan(parts[1], body)
         raise OfflineContractError(f"offline client does not implement {method} {path}")
+
+    # --- value learner + native planning (measured shapes, findings #75) ----------------------
+
+    def _value(self, domain_id: str, op: str, body: Any) -> tuple[int, Any]:
+        self._domain(domain_id)
+        self._require_session(body or {})
+        v = self.values.setdefault(
+            domain_id, {"config": None, "rows": {}, "model": None, "training": None}
+        )
+        if op == "state":
+            if v["config"] is None:
+                return 200, {"domain_id": domain_id, "status": "not_configured", "sample_count": 0}
+            return 200, {
+                "domain_id": domain_id,
+                "status": "configured",
+                "config": v["config"],
+                "sample_count": len(v["rows"]),
+                "model": v["model"],
+                "training": v["training"],
+                "frozen": False,
+            }
+        if op == "configure":
+            cfg = (body or {}).get("config") or {}
+            if not (isinstance(cfg.get("relation"), str) and isinstance(cfg.get("policy"), str)):
+                raise OfflineContractError(
+                    "value/configure needs config.relation and config.policy"
+                )
+            v["config"] = dict(cfg)
+            return 200, {"domain_id": domain_id, "status": "configured", "config": v["config"]}
+        if v["config"] is None:
+            raise OfflineContractError(f"value/{op} before value/configure")
+        if op == "observe":
+            rows = (body or {}).get("observations") or []
+            if not 1 <= len(rows) <= 50:
+                raise OfflineContractError("value/observe takes 1-50 observations")
+            for r in rows:
+                for key in ("record_id", "episode_id", "step"):
+                    if key not in r:
+                        raise OfflineContractError(f"value observation missing {key}")
+                if sum(k in r for k in ("target", "outcome", "continuation")) != 1:
+                    raise OfflineContractError(
+                        "value observation needs exactly one of target/outcome/continuation"
+                    )
+                pf = r.get("policy_features") or {}
+                if not all(
+                    isinstance(x, (int, float)) and not isinstance(x, bool) for x in pf.values()
+                ):
+                    raise OfflineContractError(
+                        "value policy_features must be numeric (encode categories as one-hots)"
+                    )
+                v["rows"][r["record_id"]] = r
+            return 200, {"accepted": len(rows), "duplicates": 0}
+        if op == "train":
+            if not (body or {}).get("request_id"):
+                raise OfflineContractError("value/train needs request_id")
+            version = len(v["rows"])
+            v["model"] = {
+                "model_type": "mlp_v2",
+                "model_version": version,
+                "model_sha256": f"{version:064x}",
+                "validation_skill": self.value_skill,
+                "version": version,
+            }
+            v["training"] = {
+                "status": "trained",
+                "request_id": body["request_id"],
+                "installed": True,
+            }
+            return 202, {"domain_id": domain_id, "training": v["training"]}
+        if op == "predict":
+            return 200, {
+                "predictions": [
+                    self._fake_value(i.get("policy_features") or {})
+                    for i in (body or {}).get("inputs") or []
+                ]
+            }
+        raise OfflineContractError(f"offline client does not implement value/{op}")
+
+    @staticmethod
+    def _fake_value(features: Mapping[str, Any]) -> float:
+        # a stand-in, not a learner: more open road ahead and more speed look better
+        return (
+            float(features.get("clear_forward", 0.0)) * 0.01
+            + float(features.get("speed_x", 0.0)) * 0.001
+        )
+
+    def _plan(self, domain_id: str, body: Any) -> tuple[int, Any]:
+        self._domain(domain_id)
+        self._require_session(body or {})
+        for key in ("relation", "policy", "root"):
+            if key not in (body or {}):
+                raise OfflineContractError(f"planning request missing {key}")
+        v = self.values.get(domain_id) or {}
+        if body.get("evaluator_source") == "value_model" and not v.get("model"):
+            raise OfflineContractError(
+                "planning with value_model before a value model is installed (live: 409)"
+            )
+        cfg = v.get("config") or {}
+        if (body["relation"], body["policy"]) != (cfg.get("relation"), cfg.get("policy")):
+            raise OfflineContractError("planning relation/policy must match the value config")
+        nodes = {n["id"]: n for n in body.get("nodes") or []}
+        root = nodes.get(body["root"]["id"])
+        if root is None or not root.get("children"):
+            raise OfflineContractError(
+                "the root must link to the graph through a node with the same id and children"
+            )
+        best_action, best_value = None, -math.inf
+        for edge in root["children"]:
+            node = nodes.get(edge["target"])
+            if node is None:
+                raise OfflineContractError(f"edge target {edge['target']} is not a node")
+            val = (
+                node["terminal_value"]
+                if node.get("terminal_value") is not None
+                else self._fake_value(node.get("policy_features") or {})
+            )
+            if val > best_value:
+                best_action, best_value = edge["action"], val
+        return 200, {
+            "plan": {
+                "action": best_action,
+                "value": best_value,
+                "completed_depth": 1,
+                "evaluations": len(root["children"]),
+            },
+            "evaluator": {
+                "source": "value_model",
+                "model_version": (v.get("model") or {}).get("model_version"),
+                "learning_updates": False,
+            },
+        }
+
+    def version(self) -> Any:
+        return {"commit_sha": "offline", "schema_version": "offline", "version": "offline"}
 
     def create_domain(self, config: Mapping[str, Any]) -> tuple[int, Any]:
         domain_id = config["domain_id"]
         learning = config.get("learning") or {}
+        if not learning and not config.get("hypotheses"):
+            # a plain domain (e.g. one that hosts only a value learner): the live API creates it with defaults
+            self.domains[domain_id] = {
+                "config": json.loads(json.dumps(config)),
+                "features": [],
+                "policies": set(),
+                "outcomes": set(),
+                "seq": None,
+                "tcp": False,
+                "seen_steps": set(),
+            }
+            self.samples[domain_id] = 0
+            self.feedback_log[domain_id] = []
+            return 201, {"domain_id": domain_id}
         seq = learning.get("sequential")
         if seq and seq.get("enabled"):
             for key in (
@@ -141,7 +305,10 @@ class OfflineAdapt1Client:
         dom = self._domain(domain_id)
         self._require_session(body)
         decision_id = body.get("decision_id")
-        if self.decisions.get(decision_id) != domain_id:
+        # two routes: a decision id from a query on this domain, or no id and the context in the request
+        # (the docs' "replay historical transitions with explicit context")
+        explicit = decision_id is None and body.get("context") is not None
+        if not explicit and self.decisions.get(decision_id) != domain_id:
             raise OfflineContractError(
                 "feedback.decision_id was not issued by a query on this domain"
             )
@@ -180,7 +347,7 @@ class OfflineAdapt1Client:
         return 200, {
             "credit_assignment": {
                 "contextual_learning_applied": True,
-                "context_source": "decision",
+                "context_source": "request" if explicit else "decision",
             },
             "policy_scores": [],
         }

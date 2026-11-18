@@ -8,6 +8,8 @@ Design constraints:
 - ``502/503/504`` are transient with possibly-ambiguous writes: honour ``Retry-After``
   first, then exponential backoff with jitter ``0.5 -> 1 -> 2 -> 4 -> 8`` s.
   ``413`` (payload) and ``409`` (state conflict) are not retryable.
+- ``429 engine_overloaded`` (first seen 2026-10-04, six parallel `refine` workers): the request was refused, not
+  processed; retried with longer waits (``OVERLOAD_WAITS``) that do not count against the attempts above.
 
 The policy code depends only on the small duck-typed surface ``query(...)`` /
 ``feedback(...)`` / ``create_domain(...)``, so an offline fake can be substituted in
@@ -29,6 +31,7 @@ DEFAULT_BASE_URL = "https://rei-neuroadapt-api.reilabs.org/api/v1"
 BROWSER_UA = "Mozilla/5.0"
 RETRYABLE_STATUS = {502, 503, 504}
 BACKOFF_SCHEDULE = (0.5, 1.0, 2.0, 4.0, 8.0)
+OVERLOAD_WAITS = (5.0, 10.0, 20.0, 40.0, 60.0, 60.0, 60.0, 60.0)
 
 
 class Adapt1Error(RuntimeError):
@@ -82,7 +85,10 @@ class Adapt1Client:
             headers["Content-Type"] = "application/json"
 
         last_exc: Exception | None = None
-        for attempt in range(self._max_attempts):
+        overloads = 0
+        attempt = -1
+        while attempt + 1 < self._max_attempts:
+            attempt += 1
             request = urllib.request.Request(url, data=payload, headers=headers, method=method)
             try:
                 with urllib.request.urlopen(request, timeout=self._timeout) as response:
@@ -91,6 +97,15 @@ class Adapt1Client:
                 status = exc.code
                 raw = exc.read()
                 parsed = _read_json(raw)
+                if status == 429 and overloads < len(OVERLOAD_WAITS):
+                    retry_after = _parse_retry_after(exc.headers.get("Retry-After"))
+                    time.sleep(
+                        max(retry_after or 0.0, OVERLOAD_WAITS[overloads]) + random.uniform(0, 2)
+                    )
+                    overloads += 1
+                    attempt -= 1  # an overload refusal does not use up a transient-error attempt
+                    last_exc = exc
+                    continue
                 if status not in RETRYABLE_STATUS:
                     # 413/409/4xx are not retryable — surface immediately.
                     raise Adapt1Error(status, parsed) from exc
@@ -115,6 +130,17 @@ class Adapt1Client:
         ) from last_exc
 
     # --- domain helpers -------------------------------------------------------
+
+    def version(self) -> Any:
+        """``GET /version`` at the host root (not under ``/api/v1``): the server build (``commit_sha``, ``schema_version``).
+        Record it at the start and the end of every run (findings #73). One credit."""
+        saved = self._base_url
+        root = saved.removesuffix("/api/v1")
+        self._base_url = root
+        try:
+            return self.call("GET", "/version")[1]
+        finally:
+            self._base_url = saved
 
     def create_domain(self, config: dict[str, Any]) -> tuple[int, Any]:
         return self.call("POST", "/domains", config)

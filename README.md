@@ -1,7 +1,8 @@
 # Adapt-1 plays Super Mario Bros
 
 [Adapt-1](https://docs.reilabs.org) (Rei Labs' NeuroAdapt API) learns to clear World 1-1 of the original Super Mario
-Bros, and its trajectory engine Machina also clears World 2-1. This repo has the recipes that reach the flag, the
+Bros. On World 2-1, its trajectory engine Machina clears the level, and a frozen 1-1 player clears it with 5
+corrections that two more Adapt-1 domains apply. This repo has the recipes that reach the flag, the
 code to rerun them, and the evidence from our runs.
 
 It is a fork of [fhshaik/typesafe-mario](https://github.com/fhshaik/typesafe-mario): the emulator harness and the
@@ -46,9 +47,18 @@ first pipe with a piranha plant (x ≈ 735, 23% of the level); the warm start di
 | recipe | idea | result | cost |
 |---|---|---|---|
 | [**Machina on 2-1**](runs/machina-2-1/) | the same engine on World 2-1, starting from the sequence it found on 1-1 | first flag at attempt 278; the frozen replay clears 2-1 3/3 | ≈ 350 Records |
+| [**Correctors on a frozen 1-1 player**](runs/refine-2-1/) | a rebuilt copy of the zero-start player gets no more rows; two small domains learn when to replace one of its moves | frozen: 2-1 flag with 5 corrections in 46 decisions, and 1-1 flag with 0 corrections | ≈ 7,300 credits for the correctors that work; ≈ 25,500 with the player and three retired tries |
 
 Machina clears 2-1 by editing its 1-1 sequence into a new 2-1 sequence, and that sequence no longer clears 1-1. The
 [2-1 page](runs/machina-2-1/) has the videos: the frozen replay, and attempt 1 next to attempt 278.
+
+The correctors keep 1-1: the same frozen system clears both levels. Our code finds each correction by trying single
+moves just before the place where Mario fails. The two corrector domains learn where each one applies, and 4 of the 5
+play through a rule in our client that reads the server's score intervals. The method fixes one move at a time, and it
+was tuned on this level over four tries in one night. The [correctors page](runs/refine-2-1/) lists what the result
+shows and what it does not.
+
+![the frozen 1-1 player with its correctors reaches the 2-1 flag](runs/refine-2-1/replays/2-1-flag.gif)
 
 ## Watch it play (1-1)
 
@@ -79,8 +89,9 @@ export REI_KEY=...                            # your Adapt-1 key, from app.reila
 python scripts/machina_acquire.py --domain-id my-machina-1 --dry-run --attempts 3    # free rehearsal
 ```
 
-Adapt-1 bills **Records** (each row or result you send) and **Queries** (each decision you ask for) separately.
-Get a key and see your balance at [app.reilabs.org/adapt-1](https://app.reilabs.org/adapt-1).
+Adapt-1 bills **credits** from one pool: 1 per row or result you send, 1 per decision you ask for and 1 per other call. Our runs before
+November 2026 were billed as separate Records and Queries, and their costs here use those names. Get a key and see
+your balance at [app.reilabs.org/adapt-1](https://app.reilabs.org/adapt-1).
 Offline steps cost nothing. Coding agents: read [`AGENTS.md`](AGENTS.md) first.
 
 ## Layout
@@ -89,7 +100,8 @@ Offline steps cost nothing. Coding agents: read [`AGENTS.md`](AGENTS.md) first.
 src/typesafe_mario/   harness, parser, features, Adapt-1 client (stdlib only), learning loops
 scripts/              the commands in REPRODUCE.md; historical/ = an exact older generator the warm-start data needs
 tests/                offline tests (no key, no network)
-runs/                 the evidence: machina/, warm-start/, zero-start/stage-1..5/, dashboard/, each with a sha256 index
+runs/                 the evidence: machina/, machina-2-1/, warm-start/, zero-start/stage-1..5/, refine-2-1/,
+                      base-rebuild/, dashboard/, each with a sha256 index
 ```
 
 No Nintendo ROM or other game data is included (see [`NOTICE`](NOTICE)). Our code is MIT.

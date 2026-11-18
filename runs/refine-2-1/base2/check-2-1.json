@@ -1,0 +1,283 @@
+{
+ "kind": "rebuild-check",
+ "account": "hsc",
+ "at": "2026-11-16T11:25:17.968933+00:00",
+ "git": "bf0f03154a79fc253540891a23cbe7d44bb982e2",
+ "server_version": {
+  "build_time": "unknown",
+  "commit_sha": "f5e1ab83e73acb4948f6d12270134e4f9f6a7a6e",
+  "schema_version": "5",
+  "source_fingerprint": "sha256:449af134…",
+  "version": "v0.1.0"
+ },
+ "env": "SuperMarioBros-2-1-v0",
+ "seeds": [
+  777
+ ],
+ "learner_before": {
+  "mario-zero2r-takeoff": {
+   "installed": true,
+   "model_type": "extra_trees",
+   "candidate_model_type": "extra_trees",
+   "model_status": "trained",
+   "reason": null,
+   "episode_count": null,
+   "validation_skill": 0.7121066887782858,
+   "sample_count": 6094,
+   "live_sample_count": 6094
+  },
+  "mario-zero2r-apex": {
+   "installed": true,
+   "model_type": "extra_trees",
+   "candidate_model_type": "extra_trees",
+   "model_status": "trained",
+   "reason": null,
+   "episode_count": null,
+   "validation_skill": 0.6915126899998043,
+   "sample_count": 3402,
+   "live_sample_count": 3404
+  }
+ },
+ "learner_after": {
+  "mario-zero2r-takeoff": {
+   "installed": true,
+   "model_type": "extra_trees",
+   "candidate_model_type": "extra_trees",
+   "model_status": "trained",
+   "reason": null,
+   "episode_count": null,
+   "validation_skill": 0.7121066887782858,
+   "sample_count": 6094,
+   "live_sample_count": 6094
+  },
+  "mario-zero2r-apex": {
+   "installed": true,
+   "model_type": "extra_trees",
+   "candidate_model_type": "extra_trees",
+   "model_status": "trained",
+   "reason": null,
+   "episode_count": null,
+   "validation_skill": 0.6915126899998043,
+   "sample_count": 3402,
+   "live_sample_count": 3404
+  }
+ },
+ "results": [
+  {
+   "decisions": 11,
+   "frames": 384,
+   "gif_frames": 192,
+   "max_x": 736,
+   "reached_flag": false,
+   "reward_total": 665.0,
+   "apex_choices": {
+    "apex_keep": 10
+   },
+   "trace": [
+    {
+     "decision": 0,
+     "kind": "apex",
+     "x": 48,
+     "choice": "apex_keep",
+     "frame": 16,
+     "vx": 1.0
+    },
+    {
+     "decision": 1,
+     "kind": "takeoff",
+     "x": 40,
+     "grounded": true,
+     "macro": "right_run_jump_short",
+     "status": "selected",
+     "frames": 28,
+     "x_after": 65
+    },
+    {
+     "decision": 1,
+     "kind": "apex",
+     "x": 109,
+     "choice": "apex_keep",
+     "frame": 17,
+     "vx": 3.0
+    },
+    {
+     "decision": 2,
+     "kind": "takeoff",
+     "x": 65,
+     "grounded": true,
+     "macro": "right_run_jump_short",
+     "status": "selected",
+     "frames": 30,
+     "x_after": 148
+    },
+    {
+     "decision": 2,
+     "kind": "apex",
+     "x": 199,
+     "choice": "apex_keep",
+     "frame": 17,
+     "vx": 3.0
+    },
+    {
+     "decision": 3,
+     "kind": "takeoff",
+     "x": 148,
+     "grounded": true,
+     "macro": "right_run_jump_short",
+     "status": "selected",
+     "frames": 30,
+     "x_after": 238
+    },
+    {
+     "decision": 3,
+     "kind": "apex",
+     "x": 268,
+     "choice": "apex_keep",
+     "frame": 10,
+     "vx": 3.0
+    },
+    {
+     "decision": 4,
+     "kind": "takeoff",
+     "x": 238,
+     "grounded": true,
+     "macro": "right_run_jump_full",
+     "status": "selected",
+     "frames": 33,
+     "x_after": 306
+    },
+    {
+     "decision": 4,
+     "kind": "apex",
+     "x": 323,
+     "choice": "apex_keep",
+     "frame": 21,
+     "vx": 1.4375
+    },
+    {
+     "decision": 5,
+     "kind": "takeoff",
+     "x": 306,
+     "grounded": true,
+     "macro": "right_run_jump_mid",
+     "status": "selected",
+     "frames": 38,
+     "x_after": 352
+    },
+    {
+     "decision": 5,
+     "kind": "apex",
+     "x": 359,
+     "choice": "apex_keep",
+     "frame": 17,
+     "vx": 0.8125
+    },
+    {
+     "decision": 6,
+     "kind": "takeoff",
+     "x": 352,
+     "grounded": true,
+     "macro": "right_run_jump_short",
+     "status": "selected",
+     "frames": 27,
+     "x_after": 370
+    },
+    {
+     "decision": 6,
+     "kind": "apex",
+     "x": 390,
+     "choice": "apex_keep",
+     "frame": 25,
+     "vx": 1.5625
+    },
+    {
+     "decision": 7,
+     "kind": "takeoff",
+     "x": 370,
+     "grounded": true,
+     "macro": "right_jump_full",
+     "status": "selected",
+     "frames": 82,
+     "x_after": 490
+    },
+    {
+     "decision": 7,
+     "kind": "apex",
+     "x": 566,
+     "choice": "apex_keep",
+     "frame": 28,
+     "vx": 3.0
+    },
+    {
+     "decision": 8,
+     "kind": "takeoff",
+     "x": 490,
+     "grounded": true,
+     "macro": "right_run_jump_full",
+     "status": "selected",
+     "frames": 51,
+     "x_after": 635
+    },
+    {
+     "decision": 8,
+     "kind": "apex",
+     "x": 686,
+     "choice": "apex_keep",
+     "frame": 17,
+     "vx": 3.0
+    },
+    {
+     "decision": 9,
+     "kind": "takeoff",
+     "x": 635,
+     "grounded": true,
+     "macro": "right_run_jump_short",
+     "status": "selected",
+     "frames": 30,
+     "x_after": 724
+    },
+    {
+     "decision": 9,
+     "kind": "apex",
+     "x": 725,
+     "choice": "apex_keep",
+     "frame": 25,
+     "vx": 0.625
+    },
+    {
+     "decision": 10,
+     "kind": "takeoff",
+     "x": 724,
+     "grounded": true,
+     "macro": "right_run_jump_full",
+     "status": "selected",
+     "frames": 33,
+     "x_after": 733
+    },
+    {
+     "decision": 11,
+     "kind": "takeoff",
+     "x": 733,
+     "grounded": false,
+     "macro": "right_run_jump_full",
+     "status": "selected",
+     "frames": 2,
+     "x_after": 736
+    }
+   ],
+   "gif": "artifacts/base2-check/2-1/2-1-seed777.gif",
+   "seed": 777,
+   "tag": "2-1",
+   "takeoff_server": {
+    "selected": 11
+   },
+   "apex_server": {
+    "selected": 10
+   }
+  }
+ ],
+ "flags": 0,
+ "reach": [
+  736
+ ]
+}

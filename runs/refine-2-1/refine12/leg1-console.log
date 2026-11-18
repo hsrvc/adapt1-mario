@@ -1,0 +1,168 @@
+  mario-zero2r-takeoff-refine-2-1-v12: engine ready after 4s
+  mario-zero2r-apex-refine-2-1-v12: engine ready after 3s
+[     9s] created mario-zero2r-takeoff-refine-2-1-v12 / mario-zero2r-apex-refine-2-1-v12
+[    14s] mario-zero2r-takeoff-refine-2-1-v12: 0 rows held, max_samples 16384
+[    19s] mario-zero2r-apex-refine-2-1-v12: 0 rows held, max_samples 16384
+[   118s] frozen r00: 2-1 end=dead max_x=736 decisions=11 overrides=[] apex_overrides=0
+[   421s] frozen r00-1-1: 1-1 end=flag max_x=3161 decisions=48 overrides=[] apex_overrides=0
+[   421s] round 0: anchoring keep_base at 79 decisions of the 1-1 game
+[   778s] round 1: failure at x=736 (dead), sweeping decisions [10, 9, 8]: 33 trials (Records left 14921)
+[   778s] round 1: anchoring keep_base at 0 decisions before the frontier
+[  1212s]    9:apex:override_apex_pull_back               credit=0.00459 reach=1654 end=dead
+[  1212s]    9:apex:override_apex_brake                   credit=0.00459 reach=1654 end=dead
+[  1212s]    8:takeoff:override_right_run_jump_mid        credit=0.00139 reach=917 end=dead
+[  1212s]    9:takeoff:override_jump                      credit=0.00097 reach=921 end=dead
+[  1212s]    9:takeoff:override_right_run_jump_mid        credit=0.00096 reach=918 end=dead
+[  1212s]    8:takeoff:override_right_run_jump_full       credit=0.00055 reach=746 end=dead
+[  1212s]    8:takeoff:override_right_jump_full           credit=0.00055 reach=746 end=dead
+[  1212s]    8:takeoff:override_jump                      credit=0.00051 reach=738 end=dead
+[  1212s]    8:takeoff:keep_base                          credit=0.00050 reach=736 end=dead
+[  1212s]    8:apex:override_apex_brake                   credit=0.00033 reach=753 end=dead
+[  1212s]    8:apex:keep_base                             credit=0.00024 reach=736 end=dead
+[  1212s]    8:apex:override_apex_pull_back               credit=0.00024 reach=735 end=dead
+[  1212s] round 1: leader 9:apex:override_apex_brake credit=0.00459 reach=1654; passing edits here ['override_apex_brake', 'override_apex_pull_back']
+[  1246s]   mario-zero2r-apex-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  1276s]    probe after 4 repeats: abstained None (credible_intervals_overlap) samples=41 sent={'mario-zero2r-takeoff-refine-2-1-v12': 75, 'mario-zero2r-apex-refine-2-1-v12': 41}
+[  1276s]    leader override_apex_brake ci=(0.654757, 1.0); blocking 3: keep_base(0.859975, 1.0), override_apex_keep(0.571593, 1.0), override_apex_pull_back(0.410487, 1.0)
+[  1483s]    probe after 14 repeats: abstained None (credible_intervals_overlap) samples=51 sent={'mario-zero2r-takeoff-refine-2-1-v12': 75, 'mario-zero2r-apex-refine-2-1-v12': 51}
+[  1483s]    leader override_apex_brake ci=(0.00083, 1.0); blocking 3: keep_base(0.18816, 0.976976), override_apex_keep(0.0, 0.960689), override_apex_pull_back(0.0, 0.964173)
+[  1687s]    probe after 24 repeats: selected override_apex_brake (credible_intervals_overlap) samples=61 sent={'mario-zero2r-takeoff-refine-2-1-v12': 75, 'mario-zero2r-apex-refine-2-1-v12': 61}
+[  1687s]    leader override_apex_brake ci=(0.789722, 1.0); blocking 2: override_apex_keep(0.266727, 1.0), override_apex_pull_back(0.578361, 1.0)
+[  1928s] frozen r01-after24: 2-1 end=dead max_x=1654 decisions=25 overrides=[] apex_overrides=1
+[  2353s] frozen r01-1-1: 1-1 end=flag max_x=3161 decisions=48 overrides=[] apex_overrides=0
+[  2607s]    1-1 keep margin (takeoff) after round 1: smallest [(0.8027, 8, 600), (0.9984, 12, 661), (1.0, 0, 40)] (an override fires below 0); an override's mean is above keep's at 0 of 48 decisions
+[  2769s]    1-1 keep margin (apex) after round 1: smallest [(0.1403, 3, 238), (0.1404, 30, 2020), (0.141, 1, 65)] (an override fires below 0); an override's mean is above keep's at 30 of 31 decisions
+[  2769s] round 2: failure at x=1654 (dead), sweeping decisions [24, 23, 22]: 33 trials (Records left 14864)
+[  2769s] round 2: anchoring keep_base at 18 decisions before the frontier
+[  3703s]    22:takeoff:override_jump                     credit=0.00255 reach=1939 end=dead
+[  3703s]    23:takeoff:override_right_run_jump_full      credit=0.00147 reach=1737 end=dead
+[  3703s]    23:takeoff:override_right_jump_full          credit=0.00147 reach=1737 end=dead
+[  3703s]    24:takeoff:override_right_jump_full          credit=0.00138 reach=1828 end=dead
+[  3703s]    24:takeoff:override_noop                     credit=0.00137 reach=1828 end=dead
+[  3703s]    23:takeoff:override_left                     credit=0.00137 reach=1731 end=dead
+[  3703s]    24:takeoff:override_jump                     credit=0.00133 reach=1817 end=dead
+[  3703s]    22:takeoff:override_right                    credit=0.00117 reach=1654 end=dead
+[  3703s]    22:takeoff:keep_base                         credit=0.00117 reach=1654 end=dead
+[  3703s]    22:takeoff:override_noop                     credit=0.00116 reach=1651 end=dead
+[  3703s]    23:apex:override_apex_pull_back              credit=0.00114 reach=1738 end=dead
+[  3703s]    22:takeoff:override_right_run_jump_full      credit=0.00114 reach=1648 end=dead
+[  3703s] round 2: left out (untested extra override): ['24:takeoff:override_noop', '24:takeoff:override_left', '24:takeoff:override_right_run_jump_short', '24:takeoff:override_right_jump_full', '23:apex:override_apex_pull_back', '22:takeoff:override_jump']
+[  3703s] round 2: leader 24:takeoff:override_jump credit=0.00133 reach=1817; passing edits here ['override_jump', 'override_right_run']
+[  3756s]    probe after 4 repeats: abstained None (credible_intervals_overlap) samples=115 sent={'mario-zero2r-takeoff-refine-2-1-v12': 115, 'mario-zero2r-apex-refine-2-1-v12': 76}
+[  3756s]    leader override_jump ci=(0.245529, 0.836594); blocking 9: keep_base(0.691872, 0.932513), override_left(0.078668, 0.817874), override_noop(0.106032, 0.843999), override_right(0.061998, 0.801701), override_right_jump_full(0.127426, 0.862746), override_right_run(0.051583, 0.827377)
+[  3882s]    probe after 14 repeats: abstained None (credible_intervals_overlap) samples=125 sent={'mario-zero2r-takeoff-refine-2-1-v12': 125, 'mario-zero2r-apex-refine-2-1-v12': 76}
+[  3882s]    leader override_jump ci=(0.313596, 0.787613); blocking 9: keep_base(0.661989, 0.904232), override_left(0.075721, 0.814416), override_noop(0.102996, 0.840715), override_right(0.059101, 0.798123), override_right_jump_full(0.124331, 0.859592), override_right_run(0.048331, 0.823417)
+[  4009s]    probe after 24 repeats: abstained None (credible_intervals_overlap) samples=135 sent={'mario-zero2r-takeoff-refine-2-1-v12': 135, 'mario-zero2r-apex-refine-2-1-v12': 76}
+[  4009s]    leader override_jump ci=(0.091918, 0.971449); blocking 9: keep_base(0.282245, 0.950948), override_left(0.0, 1.0), override_noop(0.0, 1.0), override_right(0.0, 1.0), override_right_jump_full(0.0, 1.0), override_right_run(0.0, 1.0)
+[  4107s]   mario-zero2r-takeoff-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  4127s]   mario-zero2r-takeoff-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  4163s]    probe after 34 repeats: abstained None (credible_intervals_overlap) samples=145 sent={'mario-zero2r-takeoff-refine-2-1-v12': 145, 'mario-zero2r-apex-refine-2-1-v12': 76}
+[  4163s]    leader override_jump ci=(0.342244, 0.91476); blocking 9: keep_base(0.024001, 0.526964), override_left(0.0, 1.0), override_noop(0.0, 1.0), override_right(0.0, 1.0), override_right_jump_full(0.0, 1.0), override_right_run(0.0, 1.0)
+[  4283s]    probe after 44 repeats: abstained None (credible_intervals_overlap) samples=155 sent={'mario-zero2r-takeoff-refine-2-1-v12': 155, 'mario-zero2r-apex-refine-2-1-v12': 76}
+[  4283s]    leader override_jump ci=(0.397618, 0.857934); blocking 9: keep_base(0.057524, 0.493733), override_left(0.0, 1.0), override_noop(0.0, 1.0), override_right(0.0, 1.0), override_right_jump_full(0.0, 1.0), override_right_run(0.0, 1.0)
+[  4409s]    probe after 54 repeats: abstained None (credible_intervals_overlap) samples=165 sent={'mario-zero2r-takeoff-refine-2-1-v12': 165, 'mario-zero2r-apex-refine-2-1-v12': 76}
+[  4409s]    leader override_jump ci=(0.430869, 0.826278); blocking 9: keep_base(0.076318, 0.464438), override_left(0.0, 1.0), override_noop(0.0, 1.0), override_right(0.0, 1.0), override_right_jump_full(0.0, 1.0), override_right_run(0.0, 1.0)
+[  4539s]    probe after 64 repeats: selected override_jump (credible_intervals_overlap) samples=175 sent={'mario-zero2r-takeoff-refine-2-1-v12': 175, 'mario-zero2r-apex-refine-2-1-v12': 76}
+[  4539s]    leader override_jump ci=(0.451242, 0.803523); blocking 8: override_left(0.0, 1.0), override_noop(0.0, 1.0), override_right(0.0, 1.0), override_right_jump_full(0.0, 1.0), override_right_run(0.0, 1.0), override_right_run_jump_full(0.0, 1.0)
+[  4695s] frozen r02-after64: 2-1 end=dead max_x=921 decisions=14 overrides=[(9, 724, 'right_run_jump_full', 'jump')] apex_overrides=0
+[  4695s]    LEAK: the deployed game departs from the tested one at decision 9 (x=724): reach 921 vs tested 1817; teaching 9:takeoff:keep_base
+[  5104s] frozen r02-leakfix1-d9: 2-1 end=dead max_x=1646 decisions=25 overrides=[] apex_overrides=2
+[  5104s]    LEAK: the deployed game departs from the tested one at decision 24 (x=1548): reach 1646 vs tested 1817; teaching 24:takeoff:override_jump
+[  5185s]   mario-zero2r-takeoff-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  5485s] frozen r02-leakfix1-d24: 2-1 end=dead max_x=1817 decisions=30 overrides=[(24, 1548, 'right_run_jump_full', 'jump')] apex_overrides=1
+[  5913s] frozen r02-1-1: 1-1 end=flag max_x=3161 decisions=48 overrides=[] apex_overrides=0
+[  6169s]    1-1 keep margin (takeoff) after round 2: smallest [(0.4742, 12, 661), (0.6258, 29, 1892), (0.6274, 18, 1167)] (an override fires below 0); an override's mean is above keep's at 0 of 48 decisions
+[  6327s]    1-1 keep margin (apex) after round 2: smallest [(0.1291, 28, 1744), (0.1301, 18, 1167), (0.1305, 12, 661)] (an override fires below 0); an override's mean is above keep's at 0 of 31 decisions
+[  6327s] round 3: failure at x=1817 (dead), sweeping decisions [29, 28, 27]: 30 trials (Records left 14737)
+[  6327s] round 3: anchoring keep_base at 27 decisions before the frontier
+[  7440s]    28:takeoff:override_right_run_jump_full      credit=0.00197 reach=2067 end=credited
+[  7440s]    28:apex:override_apex_pull_back              credit=0.00180 reach=2098 end=dead
+[  7440s]    27:takeoff:override_jump                     credit=0.00161 reach=1966 end=dead
+[  7440s]    27:takeoff:override_right_run_jump_short     credit=0.00158 reach=1960 end=dead
+[  7440s]    27:takeoff:override_right_run_jump_full      credit=0.00156 reach=1956 end=dead
+[  7440s]    28:takeoff:override_right_run_jump_short     credit=0.00148 reach=1968 end=dead
+[  7440s]    28:takeoff:override_right                    credit=0.00144 reach=1960 end=dead
+[  7440s]    28:takeoff:override_right_run                credit=0.00142 reach=1956 end=dead
+[  7440s]    28:takeoff:override_right_jump_full          credit=0.00139 reach=1950 end=dead
+[  7440s]    27:takeoff:override_right_run                credit=0.00088 reach=1817 end=dead
+[  7440s]    27:takeoff:keep_base                         credit=0.00088 reach=1817 end=dead
+[  7440s]    28:takeoff:override_jump                     credit=0.00078 reach=1826 end=dead
+[  7440s] round 3: left out (untested extra override): ['28:takeoff:override_right', '28:takeoff:override_right_run', '28:takeoff:override_right_jump_full', '27:takeoff:override_right_run_jump_short', '27:takeoff:override_right_run_jump_full']
+[  7440s] round 3: leader 28:apex:override_apex_pull_back credit=0.00180 reach=2098; passing edits here ['override_apex_pull_back']
+[  7440s] round 3: balance {'keep': 176, 'override': 144} {'mario-zero2r-takeoff-refine-2-1-v12': {'keep': 110, 'override': 118}, 'mario-zero2r-apex-refine-2-1-v12': {'keep': 66, 'override': 26}} — anchoring keep_base before more override rows
+[  7440s] round 3: anchoring keep_base at 27 decisions before the frontier
+[  7572s] round 3: anchoring keep_base at 79 decisions of the 1-1 game
+[  7957s]   mario-zero2r-takeoff-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  8082s]    probe after 4 repeats: abstained None (credible_intervals_overlap) samples=140 sent={'mario-zero2r-takeoff-refine-2-1-v12': 290, 'mario-zero2r-apex-refine-2-1-v12': 140}
+[  8082s]    leader override_apex_pull_back ci=(0.16017, 0.793067); blocking 3: keep_base(0.43587, 0.685441), override_apex_brake(0.1352, 0.799583), override_apex_keep(0.0, 0.92226)
+[  8094s]    kept fixes not selected now: ['24:takeoff:override_jump'] — re-teaching (10 trials next batch)
+[  8242s]   mario-zero2r-takeoff-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  8280s]    probe after 24 repeats: abstained None (credible_intervals_overlap) samples=150 sent={'mario-zero2r-takeoff-refine-2-1-v12': 300, 'mario-zero2r-apex-refine-2-1-v12': 150}
+[  8280s]    leader override_apex_pull_back ci=(0.22987, 0.726116); blocking 3: keep_base(0.434896, 0.676913), override_apex_brake(0.134208, 0.798527), override_apex_keep(0.0, 0.919339)
+[  8404s]   mario-zero2r-apex-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  8435s]    probe after 34 repeats: abstained None (credible_intervals_overlap) samples=160 sent={'mario-zero2r-takeoff-refine-2-1-v12': 300, 'mario-zero2r-apex-refine-2-1-v12': 160}
+[  8435s]    leader override_apex_pull_back ci=(0.026157, 0.909876); blocking 3: keep_base(0.20104, 0.843468), override_apex_brake(0.0, 0.970148), override_apex_keep(0.0, 0.983664)
+[  8565s]   mario-zero2r-apex-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[  8596s]    probe after 44 repeats: abstained None (credible_intervals_overlap) samples=170 sent={'mario-zero2r-takeoff-refine-2-1-v12': 300, 'mario-zero2r-apex-refine-2-1-v12': 170}
+[  8596s]    leader override_apex_pull_back ci=(0.179301, 0.772301); blocking 3: keep_base(0.241779, 0.779308), override_apex_brake(0.0, 0.969033), override_apex_keep(0.0, 0.982309)
+[  8748s]    probe after 54 repeats: selected override_apex_pull_back (credible_intervals_overlap) samples=180 sent={'mario-zero2r-takeoff-refine-2-1-v12': 300, 'mario-zero2r-apex-refine-2-1-v12': 180}
+[  8748s]    leader override_apex_pull_back ci=(0.671605, 1.0); blocking 2: override_apex_brake(0.0, 1.0), override_apex_keep(0.0, 1.0)
+[  9088s] frozen r03-after54: 2-1 end=dead max_x=2098 decisions=33 overrides=[(24, 1548, 'right_run_jump_full', 'jump')] apex_overrides=2
+[  9526s] frozen r03-1-1: 1-1 end=flag max_x=3161 decisions=48 overrides=[] apex_overrides=0
+[  9788s]    1-1 keep margin (takeoff) after round 3: smallest [(0.5024, 21, 1324), (0.519, 16, 1040), (0.5231, 17, 1059)] (an override fires below 0); an override's mean is above keep's at 0 of 48 decisions
+[  9970s]    1-1 keep margin (apex) after round 3: smallest [(0.3805, 17, 1059), (0.4198, 4, 344), (0.4216, 22, 1347)] (an override fires below 0); an override's mean is above keep's at 0 of 31 decisions
+[  9970s] round 4: failure at x=2098 (dead), sweeping decisions [32, 31, 30]: 33 trials (Records left 14520)
+[  9970s] round 4: anchoring keep_base at 32 decisions before the frontier
+[ 11545s]    31:apex:override_apex_pull_back              credit=0.00499 reach=3026 end=credited
+[ 11545s]    31:apex:override_apex_brake                  credit=0.00338 reach=2701 end=dead
+[ 11545s]    30:takeoff:override_noop                     credit=0.00309 reach=2455 end=dead
+[ 11545s]    30:takeoff:override_right_run_jump_short     credit=0.00301 reach=2438 end=dead
+[ 11545s]    32:takeoff:override_jump                     credit=0.00258 reach=2568 end=dead
+[ 11545s]    32:takeoff:override_right_jump_full          credit=0.00256 reach=2565 end=dead
+[ 11545s]    31:takeoff:override_right_run_jump_mid       credit=0.00173 reach=2291 end=dead
+[ 11545s]    31:takeoff:override_right_run_jump_short     credit=0.00170 reach=2285 end=dead
+[ 11545s]    31:takeoff:override_jump                     credit=0.00170 reach=2285 end=dead
+[ 11545s]    32:takeoff:override_right_run_jump_full      credit=0.00168 reach=2386 end=dead
+[ 11545s]    32:takeoff:override_right_run_jump_short     credit=0.00164 reach=2378 end=dead
+[ 11545s]    30:takeoff:override_right_jump_full          credit=0.00133 reach=2098 end=dead
+[ 11545s] round 4: left out (untested extra override): ['30:takeoff:override_noop']
+[ 11545s] round 4: leader 32:takeoff:override_jump credit=0.00258 reach=2568; passing edits here ['override_jump', 'override_left', 'override_right_jump_full', 'override_right_run_jump_full', 'override_right_run_jump_mid', 'override_right_run_jump_short']
+[ 11596s]    probe after 4 repeats: abstained None (credible_intervals_overlap) samples=348 sent={'mario-zero2r-takeoff-refine-2-1-v12': 348, 'mario-zero2r-apex-refine-2-1-v12': 201}
+[ 11596s]    leader override_jump ci=(0.544031, 0.909913); blocking 9: keep_base(0.717855, 0.880736), override_left(0.1148, 0.761296), override_noop(0.025517, 0.640563), override_right(0.045703, 0.712774), override_right_jump_full(0.305041, 0.937415), override_right_run(0.0, 0.592623)
+[ 11613s]    kept fixes not selected now: ['24:takeoff:override_jump'] — re-teaching (10 trials next batch)
+[ 11811s]   mario-zero2r-takeoff-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[ 11848s]    probe after 24 repeats: abstained None (credible_intervals_overlap) samples=368 sent={'mario-zero2r-takeoff-refine-2-1-v12': 368, 'mario-zero2r-apex-refine-2-1-v12': 201}
+[ 11848s]    leader override_jump ci=(0.57585, 0.889989); blocking 9: keep_base(0.486688, 0.803668), override_left(0.023885, 0.959801), override_noop(0.0, 0.890388), override_right(0.0, 0.880609), override_right_jump_full(0.191573, 1.0), override_right_run(0.0, 0.777747)
+[ 11863s]    kept fixes not selected now: ['24:takeoff:override_jump'] — re-teaching (10 trials next batch)
+[ 12050s]   mario-zero2r-takeoff-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[ 12087s]    probe after 44 repeats: abstained None (credible_intervals_overlap) samples=388 sent={'mario-zero2r-takeoff-refine-2-1-v12': 388, 'mario-zero2r-apex-refine-2-1-v12': 201}
+[ 12087s]    leader override_jump ci=(0.602612, 0.89353); blocking 9: keep_base(0.476586, 0.783498), override_left(0.024314, 0.960244), override_noop(0.0, 0.890884), override_right(0.0, 0.881122), override_right_jump_full(0.192129, 1.0), override_right_run(0.0, 0.778331)
+[ 12102s]    kept fixes not selected now: ['24:takeoff:override_jump'] — re-teaching (10 trials next batch)
+[ 12102s]    the leader fights a kept fix 3 batches in a row — switching to 31:apex:override_apex_pull_back (credit 0.00499, reach 3026)
+[ 12345s]   mario-zero2r-takeoff-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[ 12382s]    probe after 60 repeats: abstained None (credible_intervals_overlap) samples=207 sent={'mario-zero2r-takeoff-refine-2-1-v12': 398, 'mario-zero2r-apex-refine-2-1-v12': 207}
+[ 12382s]    leader override_apex_pull_back ci=(0.505876, 0.894599); blocking 3: keep_base(0.47053, 0.692656), override_apex_brake(0.399361, 0.973338), override_apex_keep(0.0, 0.928418)
+[ 12592s]   mario-zero2r-apex-refine-2-1-v12: retrain running, no model installed — waiting 15s before the frozen eval
+[ 12627s]    probe after 70 repeats: selected override_apex_pull_back (credible_intervals_overlap) samples=217 sent={'mario-zero2r-takeoff-refine-2-1-v12': 398, 'mario-zero2r-apex-refine-2-1-v12': 217}
+[ 12627s]    leader override_apex_pull_back ci=(0.824661, 1.0); blocking 2: override_apex_brake(0.681772, 1.0), override_apex_keep(0.045721, 0.999926)
+[ 13243s] frozen r04-after70: 2-1 end=stall max_x=3026 decisions=54 overrides=[(24, 1548, 'right_run_jump_full', 'jump')] apex_overrides=3
+[ 13726s] frozen r04-1-1: 1-1 end=flag max_x=3161 decisions=48 overrides=[] apex_overrides=0
+[ 13983s]    1-1 keep margin (takeoff) after round 4: smallest [(0.2705, 21, 1324), (0.3278, 7, 519), (0.3287, 17, 1059)] (an override fires below 0); an override's mean is above keep's at 1 of 48 decisions
+[ 14149s]    1-1 keep margin (apex) after round 4: smallest [(0.2577, 18, 1167), (0.2588, 12, 661), (0.2663, 40, 2660)] (an override fires below 0); an override's mean is above keep's at 0 of 31 decisions
+[ 14149s] round 5: failure at x=3026 (stall), sweeping decisions [53, 52, 51]: 36 trials (Records left 14385)
+[ 14149s] round 5: anchoring keep_base at 71 decisions before the frontier
+[ 15423s]    53:takeoff:override_right_run_jump_mid       credit=0.00003 reach=3026 end=stall
+[ 15423s]    53:takeoff:override_right_run_jump_full      credit=0.00003 reach=3026 end=stall
+[ 15423s]    53:takeoff:keep_base                         credit=0.00003 reach=3026 end=stall
+[ 15423s]    53:apex:override_apex_brake                  credit=0.00003 reach=3026 end=stall
+[ 15423s]    53:apex:keep_base                            credit=0.00003 reach=3026 end=stall
+[ 15423s]    52:takeoff:override_right_run_jump_full      credit=0.00002 reach=3026 end=stall
+[ 15423s]    52:takeoff:keep_base                         credit=0.00002 reach=3026 end=stall
+[ 15423s]    51:takeoff:override_right_run_jump_full      credit=0.00002 reach=3026 end=stall
+[ 15423s]    51:takeoff:override_left                     credit=0.00002 reach=3026 end=stall
+[ 15423s]    51:takeoff:keep_base                         credit=0.00002 reach=3026 end=stall
+[ 15423s]    53:takeoff:override_right_run_jump_short     credit=0.00000 reach=3026 end=stall
+[ 15423s]    53:takeoff:override_right_run                credit=0.00000 reach=3026 end=stall
+[ 15423s] round 5: NO single edit at [53, 52, 51] gets past x=3026 — stop (multi-move blocker?)
+[ 15450s] DONE {"kind": "summary", "outcome": "unsolved", "records_spent": 722, "credits": 4365, "credits_by_kind": {"mario-zero2r-takeoff-refine-2-1-v12": 2, "create_domain": 2, "mario-zero2r-apex-refine-2-1-v12": 2, "query": 3637, "feedback": 722}, "sent_by_domain": {"mario-zero2r-takeoff-refine-2-1-v12": 466, "mario-zero2r-apex-refine-2-1-v12": 256}, "rows_by_kind": {"keep": 440, "override": 282}, "rows_by_domain": {"mario-zero2r-takeoff-refine-2-1-v12": {"keep": 260, "override": 206}, "mario-zero2r-apex-refine-2-1-v12": {"keep": 180, "override": 76}}, "reward_max": 0.002, "override_cost": 0.05, "rewards_capped": 392, "corrector_live_sample_count_after": {"mario-zero2r-takeoff-refine-2-1-v12": 466, "mario-zero2r-apex-refine-2-1-v12": 256}, "final_frozen": "2-1 end=stall max_x=3026 decisions=54", "base_changed": [], "base_feedback_calls": 0, "base_cache": {"hits": 11679, "misses": 307}, "corrector_cache": {"hits": 9132, "misses": 2132}, "wall_s": 15450}
+[ 15450s] log: artifacts/refine12/run-20261116T174550Z/frontier.jsonl

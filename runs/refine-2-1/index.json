@@ -1,0 +1,228 @@
+[
+ {
+  "file": "base2/run.jsonl",
+  "gz": "base2/run.jsonl.gz",
+  "sha256_uncompressed": "69da745abbfe8a6cf1075e2e1d90006c9801c1f06a623fc5898a87f539308ebf",
+  "bytes": 1648388,
+  "note": "base stage: 13 online games, 4 frozen checkpoints"
+ },
+ {
+  "file": "base2/run.provenance.json",
+  "sha256": "3ee0d5baabf3b11b1e64b7851b2a15843143a608186e9b32e8f91b34794a24c3",
+  "bytes": 2981,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "base2/console.log",
+  "sha256": "52abe250342c91a4ead8971b0afb1545759c66ea3ae21c057b39f811e07add03",
+  "bytes": 6577,
+  "note": "console of the base stage"
+ },
+ {
+  "file": "base2/frozen/ep000-seed777.gif",
+  "sha256": "636395fd2985e9bd429b8d0a7b02d1e75a58577b43ecf7b753af8a10cd298e15",
+  "bytes": 1958595,
+  "note": "frozen 1-1 checkpoint game"
+ },
+ {
+  "file": "base2/frozen/ep005-seed777.gif",
+  "sha256": "7d6ccb4dc9cea0f0bdff06d52e0ffdd7fccd22a43023f384d4bb0d146377e66b",
+  "bytes": 2085514,
+  "note": "frozen 1-1 checkpoint game"
+ },
+ {
+  "file": "base2/frozen/ep010-seed777.gif",
+  "sha256": "3018bea2363832a486094e9075f040926c5ee49cf810aa39b6f1c28f4c8f0081",
+  "bytes": 2189402,
+  "note": "frozen 1-1 checkpoint game"
+ },
+ {
+  "file": "base2/frozen/ep013-final-seed777.gif",
+  "sha256": "2d3d632f2bcd317d155f4c62975441dd4100804d4745ae34223d35de083bb2a5",
+  "bytes": 2327531,
+  "note": "frozen 1-1 checkpoint game"
+ },
+ {
+  "file": "base2/check-1-1.json",
+  "sha256": "71c1db0751cb43bc0b9ba063e75e2b37d2d120a8dfc24cbcb23b10974d65a4e5",
+  "bytes": 71416,
+  "note": "frozen base on 1-1 after the stage"
+ },
+ {
+  "file": "base2/check-2-1.json",
+  "sha256": "b32ddd1cf746ef913b7e8fcea00b898e5c6ca1a41d40b1f2a34293e38102ea52",
+  "bytes": 5570,
+  "note": "frozen base on 2-1 after the stage"
+ },
+ {
+  "file": "refine9/leg1-frontier.jsonl",
+  "gz": "refine9/leg1-frontier.jsonl.gz",
+  "sha256_uncompressed": "528ae5004cb5e7b77882a3788b4ef294db20a16389cf4b2c20ae0232ffc95d73",
+  "bytes": 10490155,
+  "note": "retired pair v9: 1654, then a stalled gate"
+ },
+ {
+  "file": "refine9/leg1-frontier.provenance.json",
+  "sha256": "1d64a7cdbd004229e26c74eacf7adabf37f4d89df0a7dfd51ebe1c4593041748",
+  "bytes": 4166,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "refine9/check-frontier.jsonl",
+  "gz": "refine9/check-frontier.jsonl.gz",
+  "sha256_uncompressed": "e64822ea4f7b455bf93eea4332f800cc6b0d1d2f34d36165d4ac006ae184bc69",
+  "bytes": 109098,
+  "note": "v9 after the stalled round: 2-1 1368, 1-1 flag"
+ },
+ {
+  "file": "refine9/check-frontier.provenance.json",
+  "sha256": "cec7bfa65f936d2d1adeb6128adf8feeeb799bf13bb4f2dd24aed2edcfe40f4b",
+  "bytes": 4083,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "refine10/leg1-frontier.jsonl",
+  "gz": "refine10/leg1-frontier.jsonl.gz",
+  "sha256_uncompressed": "c00f5b545bb56cf84a1903c9d3bd78862849735a43a3e7731b02b85e91617ef4",
+  "bytes": 7090077,
+  "note": "retired pair v10: stopped by hand in round 2 (no summary record)"
+ },
+ {
+  "file": "refine10/leg1-frontier.provenance.json",
+  "sha256": "5f1581d28d096b3e744b6b322f8ef513473209c6d66e9ccb57efa9a207b1d088",
+  "bytes": 3306,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "refine11/leg1-frontier.jsonl",
+  "gz": "refine11/leg1-frontier.jsonl.gz",
+  "sha256_uncompressed": "ffd7ab1e5ec9750cf7fa59cc9e5371cd272887b09c8894ee4a40ce4bf1ec89c9",
+  "bytes": 3865582,
+  "note": "retired pair v11: reward cap, leader drift in round 2"
+ },
+ {
+  "file": "refine11/leg1-frontier.provenance.json",
+  "sha256": "40c39b2f8e1485940377d391c44fe65b5e6c50d960451c21994d020c953ee26e",
+  "bytes": 4489,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "refine12/leg1-frontier.jsonl",
+  "gz": "refine12/leg1-frontier.jsonl.gz",
+  "sha256_uncompressed": "f911b90a5d0d8a1201c1584a43bdde9be3fd24492cc6c0b9703c85d913ce0884",
+  "bytes": 13379106,
+  "note": "v12 rounds 1-4: 736 -> 3026"
+ },
+ {
+  "file": "refine12/leg1-frontier.provenance.json",
+  "sha256": "c6585e9df06a2fd6edb2071241aaca58ea3be1e98b746f63748ec30f1fd711f9",
+  "bytes": 4579,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "refine12/leg2-stopped-frontier.jsonl",
+  "gz": "refine12/leg2-stopped-frontier.jsonl.gz",
+  "sha256_uncompressed": "b94607e3e5c85a0e4c47932b4a5d817851387f1af5796cc026cfbd4f751a951d",
+  "bytes": 49323,
+  "note": "v12 leg 2 on the old code, stopped after its first frozen game (1817); no rows sent"
+ },
+ {
+  "file": "refine12/leg2-stopped-frontier.provenance.json",
+  "sha256": "c147e3c9d57035957cb1c7ab3177cdf0c20d84ff25a2e888c7cf2fad6d0caf46",
+  "bytes": 3568,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "refine12/leg2-frontier.jsonl",
+  "gz": "refine12/leg2-frontier.jsonl.gz",
+  "sha256_uncompressed": "a554a940711ad791479fbeadb986d87ad07f6f592fe9952829dd0f3583f924f6",
+  "bytes": 5552188,
+  "note": "v12 leg 2: repair to 3026, tower sweep, FLAG"
+ },
+ {
+  "file": "refine12/leg2-frontier.provenance.json",
+  "sha256": "2bce7e66e335c8ecd36f7f1a7d917ffc77e9de946ba2d42343445c3f358daf1b",
+  "bytes": 4698,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "refine12/confirm-frontier.jsonl",
+  "gz": "refine12/confirm-frontier.jsonl.gz",
+  "sha256_uncompressed": "cb6ca4301cd3cc0f3e11b9fbee407cde6133ceb8a4dd1122c6cb76f959f3d331",
+  "bytes": 2320021,
+  "note": "v12 confirmation: 79 keep rows, then 2-1 flag and 1-1 flag on the new versions"
+ },
+ {
+  "file": "refine12/confirm-frontier.provenance.json",
+  "sha256": "a0cee52600137b8bbea4faf1c381d752a8bcc89e1977882c1c1037b95350d215",
+  "bytes": 4814,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "refine12/live-base-frontier.jsonl",
+  "gz": "refine12/live-base-frontier.jsonl.gz",
+  "sha256_uncompressed": "34c4dec028763276ccab1d92dce9d2b0f093668f9e81f02c46283aeed3e626b0",
+  "bytes": 297477,
+  "note": "v12 with an empty base cache (base answers fetched live): 2-1 flag, 1-1 flag"
+ },
+ {
+  "file": "refine12/live-base-frontier.provenance.json",
+  "sha256": "2dc00f42f901fda5103199df5de59ed849dbbee555d6ce00c3b606fc4eeedf15",
+  "bytes": 22718,
+  "note": "commit, command, versions"
+ },
+ {
+  "file": "refine9/leg1-console.log",
+  "sha256": "53f2c315141ec5c2cdfa76f0fdbc92c177b7cbaa7695e3b23ebac31f8d80c7e4",
+  "bytes": 23083,
+  "note": "console"
+ },
+ {
+  "file": "refine9/check-console.log",
+  "sha256": "bc144cc4cd2e929b80edb8b5233148a1c9aef4093830107f687c2d1501c82181",
+  "bytes": 1158,
+  "note": "console"
+ },
+ {
+  "file": "refine10/leg1-console.log",
+  "sha256": "b6474ec06bcf97f8074f7f979a448c24afa9bf39b4d0a2b802d384ca47d8828b",
+  "bytes": 10337,
+  "note": "console"
+ },
+ {
+  "file": "refine11/leg1-console.log",
+  "sha256": "0500c99e25c66e233cd3cfaa54bc3d9125fb5ee53efcd5af196b0c9d9da1934e",
+  "bytes": 7672,
+  "note": "console"
+ },
+ {
+  "file": "refine12/leg1-console.log",
+  "sha256": "549a7b5d9973d332e305115a0d5e7c134dcfd0a7cc7d976560482a8b6bf52e93",
+  "bytes": 23077,
+  "note": "console"
+ },
+ {
+  "file": "refine12/leg2-stopped-console.log",
+  "sha256": "724eb7dbad88cc160ce0fa257a23493d987fa8b5d5068790d4db8a28fffe80d7",
+  "bytes": 857,
+  "note": "console"
+ },
+ {
+  "file": "refine12/leg2-console.log",
+  "sha256": "01931a5403b3d835912020adcfd6ba9735dd30254ce9b15dd0dc458ea1caf6a4",
+  "bytes": 5786,
+  "note": "console"
+ },
+ {
+  "file": "refine12/confirm-console.log",
+  "sha256": "7c470bb857f542c64a2159b8b8500b5568c0b0ededf9ee1e7fb69f73d3fd203c",
+  "bytes": 3285,
+  "note": "console"
+ },
+ {
+  "file": "refine12/live-base-console.log",
+  "sha256": "503efc756a437acf26d6147cbb81abf4cb41b8e0c9215e89a09d6fb4ab230651",
+  "bytes": 2905,
+  "note": "console"
+ }
+]

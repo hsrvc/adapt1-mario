@@ -4,14 +4,17 @@ You are probably here to reproduce a result. [`REPRODUCE.md`](REPRODUCE.md) has 
 cheap and valid:
 
 1. **The API key lives in `REI_KEY` only.** Never write it into a file, a command you echo, a log or a commit.
-2. **Live runs cost the user money.** Records are spent per row sent. Run offline first (`pytest -q`, then every script
-   that spends Records with `--dry-run`) and tell the user the Record cost from REPRODUCE.md before you start a live run.
+2. **Live runs cost the user money.** Adapt-1 bills 1 credit per row sent, 1 per decision asked for and 1 per other call (status reads included). Run offline
+   first (`pytest -q`, then every script that sends rows with `--dry-run`) and tell the user the cost from REPRODUCE.md
+   before you start a live run.
 3. **Use a new domain name for every live run.** Don't reuse or delete the user's existing domains: `--recreate`
    deletes a domain with that name first.
 4. **A `200` response means the server accepted the request, not that anything learned.** Judge a run by a frozen
    evaluation: `max_x` 3161 means the flag, and it only counts if the summary shows 0 % abstained (otherwise the
    client's fallback played, not the learner). `frozen_eval.py --wait-installed` avoids evaluating while the model is
-   retraining.
+   retraining. The corrector setup of REPRODUCE §5b is the exception: its correctors abstain often by design, and an
+   abstention there means "keep the base's move", unless a fixed client rule plays a correction from the server's
+   score intervals (see `runs/refine-2-1/`).
 5. **Rewards must be in [0, 1]** (and, for sequential learning, add up to at most 1 per episode). The server silently
    clips anything else, and the learner can then refuse to choose (`abstained` on every query). The scripts already
    respect this; keep it if you change them.
@@ -29,6 +32,7 @@ cheap and valid:
 | Machina (`/domains/{id}/trajectory/*`) | `src/typesafe_mario/machina.py`, `scripts/machina_acquire.py` |
 | the zero-start loop (credit, Record budget, wait for an installed model) | `src/typesafe_mario/online_duo.py`, `scripts/zero_start_duo.py` |
 | the numbers sent per decision | `src/typesafe_mario/adapt1_policy.py` (feature sets), `src/typesafe_mario/cadence.py` |
+| correctors on a frozen player (trials before the failure point, keep/override domains, the 1-1 check) | `src/typesafe_mario/frontier.py`, `src/typesafe_mario/refinement.py`, `scripts/refine_frontier.py`; replay a logged frozen game for free: `scripts/refine_replay.py` |
 | feed recorded rows to a domain | `scripts/ingest_demos.py` |
 | evaluate with learning off | `scripts/frozen_eval.py`, `scripts/machina_frozen.py` |
 | film a run on the dashboard | `scripts/dashboard_live.py` (live: about 80 Queries; `--from-evidence`: free), `scripts/machina_dashboard.py` (free) |

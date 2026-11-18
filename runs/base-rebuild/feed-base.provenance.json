@@ -1,0 +1,360 @@
+{
+ "kind": "rebuild-feed",
+ "target": "artifacts/rebuild-zero2/feeds/feed-base-20261115T161652Z.jsonl",
+ "target_sha256": null,
+ "written_at": "2026-11-15T16:16:52+00:00",
+ "command": [
+  "rebuild_domains.py",
+  "--account",
+  "hsc",
+  "--rows",
+  "artifacts/rebuild-zero2/rows-base.jsonl",
+  "--config-dir",
+  "artifacts/rebuild-zero2",
+  "--which",
+  "base",
+  "--create",
+  "--route",
+  "explicit",
+  "--max-credits",
+  "9500",
+  "--run-id",
+  "rebuild-zero2r"
+ ],
+ "script_sha256": "f1ed53ce…",
+ "cwd": "/Users/hsrvc/Documents/playground/rei/mario/agent",
+ "git": {
+  "commit": "4ac059bef906dd1624ee416aa653c1c821f02144",
+  "dirty": false,
+  "dirty_files": [],
+  "diff_sha256": null,
+  "diff": null
+ },
+ "environment": {
+  "python": "3.13.15",
+  "platform": "macOS-14.4.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+   "gym-super-mario-bros": "9.1.0",
+   "nes-py": "9.0.1",
+   "gymnasium": "1.3.0",
+   "numpy": "2.5.3",
+   "pillow": "12.3.0"
+  }
+ },
+ "inputs": {
+  "rows": {
+   "path": "artifacts/rebuild-zero2/rows-base.jsonl",
+   "sha256": "cc031625…",
+   "provenance": null
+  }
+ },
+ "extra": {
+  "args": {
+   "account": "hsc",
+   "rows": "artifacts/rebuild-zero2/rows-base.jsonl",
+   "config_dir": "artifacts/rebuild-zero2",
+   "which": "base",
+   "only_95pct_state": "False",
+   "route": "explicit",
+   "create": "True",
+   "max_credits": "9500",
+   "limit": "0",
+   "resume": "None",
+   "run_id": "rebuild-zero2r",
+   "out_dir": "artifacts/rebuild-zero2/feeds",
+   "dry_run": "False",
+   "allow_dirty": "False"
+  },
+  "domains": {
+   "takeoff": "mario-zero2r-takeoff",
+   "apex": "mario-zero2r-apex"
+  },
+  "configs": {
+   "takeoff": {
+    "domain_id": "mario-zero2r-takeoff",
+    "hypotheses": [
+     {
+      "name": "noop",
+      "policy": "noop",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     },
+     {
+      "name": "right",
+      "policy": "right",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     },
+     {
+      "name": "right_run",
+      "policy": "right_run",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     },
+     {
+      "name": "left",
+      "policy": "left",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     },
+     {
+      "name": "right_run_jump_short",
+      "policy": "right_run_jump_short",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     },
+     {
+      "name": "right_run_jump_mid",
+      "policy": "right_run_jump_mid",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     },
+     {
+      "name": "right_run_jump_full",
+      "policy": "right_run_jump_full",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     },
+     {
+      "name": "right_jump_full",
+      "policy": "right_jump_full",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     }
+    ],
+    "learning": {
+     "context": {
+      "feature_paths": [
+       "values.speed_x",
+       "values.speed_y",
+       "values.grounded",
+       "values.jump_phase",
+       "values.airborne_frames",
+       "values.crossing_gap",
+       "values.enemy_ahead",
+       "values.enemy_dist",
+       "values.contact_frames",
+       "values.takeoff_deadline",
+       "values.must_jump",
+       "values.obstacle_ahead",
+       "values.obstacle_dist",
+       "values.gap_ahead",
+       "values.gap_dist",
+       "values.clear_forward",
+       "values.outcome",
+       "values.stalled",
+       "values.drop_dist",
+       "values.drop_depth",
+       "values.floor_below",
+       "values.last_frames",
+       "values.obstacle_height"
+      ],
+      "max_samples": 16384
+     },
+     "enabled": true,
+     "policy": {
+      "exploration_mode": "ucb",
+      "min_context_observations": 16,
+      "model_max_weight": 0.9
+     },
+     "reward": {
+      "aggregation": "weighted_mean",
+      "components": [
+       {
+        "field": "values.reward",
+        "goal": "maximize",
+        "max": 1.0,
+        "min": 0.0,
+        "weight": 1.0
+       }
+      ]
+     },
+     "training": {
+      "enabled": true,
+      "model_type": "extra_trees"
+     }
+    },
+    "query_templates": {
+     "feedback_outcomes": [
+      "advanced",
+      "setback",
+      "no_progress",
+      "died",
+      "cleared"
+     ]
+    },
+    "schema": {
+     "event_types": [
+      "frame"
+     ],
+     "relations": [
+      "controls"
+     ],
+     "signals": [
+      "reward",
+      "speed_x",
+      "speed_y",
+      "grounded",
+      "jump_phase",
+      "airborne_frames",
+      "crossing_gap",
+      "enemy_ahead",
+      "enemy_dist",
+      "contact_frames",
+      "takeoff_deadline",
+      "must_jump",
+      "obstacle_ahead",
+      "obstacle_dist",
+      "gap_ahead",
+      "gap_dist",
+      "clear_forward",
+      "outcome",
+      "stalled",
+      "drop_dist",
+      "drop_depth",
+      "floor_below",
+      "last_frames",
+      "obstacle_height"
+     ]
+    }
+   },
+   "apex": {
+    "domain_id": "mario-zero2r-apex",
+    "hypotheses": [
+     {
+      "name": "apex_keep",
+      "policy": "apex_keep",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     },
+     {
+      "name": "apex_brake",
+      "policy": "apex_brake",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     },
+     {
+      "name": "apex_pull_back",
+      "policy": "apex_pull_back",
+      "predicts": [
+       "advanced"
+      ],
+      "relation": "controls"
+     }
+    ],
+    "learning": {
+     "context": {
+      "feature_paths": [
+       "values.speed_x",
+       "values.speed_y",
+       "values.grounded",
+       "values.jump_phase",
+       "values.airborne_frames",
+       "values.enemy_ahead",
+       "values.enemy_dist",
+       "values.obstacle_dist",
+       "values.gap_dist",
+       "values.clear_forward",
+       "values.stalled",
+       "values.drop_dist",
+       "values.drop_depth",
+       "values.floor_below",
+       "values.apex_vx",
+       "values.apex_rise",
+       "values.apex_height",
+       "values.obstacle_height"
+      ],
+      "max_samples": 16384
+     },
+     "enabled": true,
+     "policy": {
+      "exploration_mode": "ucb",
+      "min_context_observations": 16,
+      "model_max_weight": 0.9
+     },
+     "reward": {
+      "aggregation": "weighted_mean",
+      "components": [
+       {
+        "field": "values.reward",
+        "goal": "maximize",
+        "max": 1.0,
+        "min": 0.0,
+        "weight": 1.0
+       }
+      ]
+     },
+     "training": {
+      "enabled": true,
+      "model_type": "extra_trees"
+     }
+    },
+    "query_templates": {
+     "feedback_outcomes": [
+      "advanced",
+      "setback",
+      "no_progress",
+      "died",
+      "cleared"
+     ]
+    },
+    "schema": {
+     "event_types": [
+      "frame"
+     ],
+     "relations": [
+      "controls"
+     ],
+     "signals": [
+      "reward",
+      "speed_x",
+      "speed_y",
+      "grounded",
+      "jump_phase",
+      "airborne_frames",
+      "enemy_ahead",
+      "enemy_dist",
+      "obstacle_dist",
+      "gap_dist",
+      "clear_forward",
+      "stalled",
+      "drop_dist",
+      "drop_depth",
+      "floor_below",
+      "apex_vx",
+      "apex_rise",
+      "apex_height",
+      "obstacle_height"
+     ]
+    }
+   }
+  },
+  "git_at_start": {
+   "commit": "4ac059bef906dd1624ee416aa653c1c821f02144",
+   "dirty": false,
+   "dirty_files": [],
+   "diff_sha256": null,
+   "diff": null
+  }
+ }
+}

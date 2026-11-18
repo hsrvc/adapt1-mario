@@ -27,6 +27,8 @@ FORBIDDEN_TEXT = [
     r"CLAUDE\.md",
     r"findings\.md",
     r'"session_id": ?"[0-9a-f]{16,}:',  # the proxy's per-account session (redacted by build_public_tree.py)
+    # the same session id under any key (owner_session_id, user_id, tenant_id — seen 2026-11-14): match its shape
+    r"(?<![0-9a-f])[0-9a-f]{24}:[0-9a-f]{32}(?![0-9a-f])",
 ]
 HEX64 = re.compile(r"(?<![0-9a-f])[0-9a-f]{64}(?![0-9a-f])")
 # Machina responses hash each proposal into "fingerprint" (server-side, not a secret); allowed per match, not per line.

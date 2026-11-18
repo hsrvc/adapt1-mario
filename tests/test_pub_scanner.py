@@ -77,3 +77,52 @@ def test_verify_runs_checks_gz_and_raw_hashes(tmp_path):
         [sys.executable, str(script), str(tmp_path)], capture_output=True, text=True, check=False
     )
     assert r.returncode == 1 and "MISMATCH clip.gif" in r.stdout, r.stdout
+
+
+def test_session_id_shape_is_caught_under_any_key(tmp_path):
+    sid = "a" * 24 + ":" + "b" * 32
+    (tmp_path / "items.json").write_text('{"user_id": "' + sid + '", "tenant_id": "' + sid + '"}\n')
+    code, out = _run(tmp_path)
+    assert code == 1 and "items.json:1" in out
+
+
+def test_builder_redacts_the_session_shape_in_plain_and_gz_run_files(tmp_path):
+    import gzip
+    import hashlib
+    import importlib.util
+    import json
+
+    spec = importlib.util.spec_from_file_location(
+        "bpt", Path(__file__).resolve().parents[1] / "scripts" / "pub" / "build_public_tree.py"
+    )
+    bpt = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(bpt)
+    sid = "c" * 24 + ":" + "d" * 32
+    b = tmp_path / "runs" / "2026-11-14-demo"
+    b.mkdir(parents=True)
+    plain = ('{"owner_session_id": "' + sid + '"}\n').encode()
+    (b / "domain.json").write_bytes(plain)
+    raw = ('{"user_id": "' + sid + '"}\n').encode()
+    (b / "log.jsonl.gz").write_bytes(gzip.compress(raw))
+    json.dump(
+        [
+            {
+                "file": "domain.json",
+                "sha256": hashlib.sha256(plain).hexdigest(),
+                "bytes": len(plain),
+            },
+            {
+                "file": "log.jsonl",
+                "gz": "log.jsonl.gz",
+                "sha256_uncompressed": hashlib.sha256(raw).hexdigest(),
+            },
+        ],
+        (b / "index.json").open("w"),
+    )
+    assert bpt.redact_sessions(tmp_path) == 1 and bpt.redact_plain(tmp_path) == 1
+    assert sid.encode() not in (b / "domain.json").read_bytes()
+    assert sid.encode() not in gzip.decompress((b / "log.jsonl.gz").read_bytes())
+    idx = {e["file"]: e for e in json.loads((b / "index.json").read_text())}
+    assert (
+        idx["domain.json"]["sha256"] == hashlib.sha256((b / "domain.json").read_bytes()).hexdigest()
+    )

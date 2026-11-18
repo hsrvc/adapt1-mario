@@ -8,3 +8,6 @@ artifacts/
 .env
 *.nes
 *.rom
+# written by the commands in REPRODUCE 5b
+runs/base-rebuild/rows-base.jsonl
+/*.gif
