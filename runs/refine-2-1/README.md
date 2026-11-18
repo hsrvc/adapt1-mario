@@ -20,7 +20,7 @@ the best replacements, on the ground and at the top of each jump, and how each m
 for a moment at each of the 5 corrections.
 
 
-https://github.com/user-attachments/assets/0e327075-c30a-47fe-a8f9-2d11d8e4642c
+https://github.com/user-attachments/assets/52e51f79-d624-42b0-82ff-5c81391475aa
 
 
 Render it yourself from the log, with no key:

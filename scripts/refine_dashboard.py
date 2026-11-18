@@ -56,7 +56,8 @@ def how(status: str | None, edit: str) -> str:
     if status == "abstained":
         return "Adapt-1 gave no choice: the player's move plays"
     if status == "keep_dominance":
-        return "Adapt-1 gave no choice: the client rule plays the replacement"
+        # the client rule applies only when Adapt-1 abstained for this reason
+        return "Adapt-1 gave no choice (its score ranges overlap): the client rule plays the replacement"
     return status or ""
 
 
@@ -64,7 +65,8 @@ def option_label(option: str, base: str) -> str:
     if option == KEEP:
         return f"keep the player's move ({LABEL.get(base, base)})"
     move = option.removeprefix("override_")
-    return f"replace with {LABEL.get(move, move)}"
+    same = " (the same move)" if move == base else ""
+    return f"replace with {LABEL.get(move, move)}{same}"
 
 
 def scores(
@@ -72,9 +74,7 @@ def scores(
 ) -> int:
     """Bars for "keep" and the best replacements; the option that played is highlighted. Returns the next y."""
     t = d.theme
-    # a replacement that is the player's own move plays the same move as "keep": leave it out
-    same = f"override_{base}"
-    others = sorted((k for k in values if k not in (KEEP, same)), key=lambda k: -float(values[k]))
+    others = sorted((k for k in values if k != KEEP), key=lambda k: -float(values[k]))
     shown = [KEEP, *others[: rows - 1]]
     if edit not in shown:
         shown[-1] = edit
@@ -134,10 +134,15 @@ def draw(
     d._text("Corrector on the ground: Adapt-1's scores", d.font_label, t.text, x, y)
     y += 24
     y = scores(d, x, y, w, st.get("values") or {}, st["base"], st["edit"], rows=5)
-    d._text(
-        how(st["status"], st["edit"]), d.font_small, t.warning if corrected else t.muted, x, y + 2
+    y = d._wrapped(
+        how(st["status"], st["edit"]),
+        d.font_small,
+        t.warning if corrected else t.muted,
+        x,
+        y + 2,
+        w,
     )
-    y += 28
+    y += 10
     d._rule(x, y, w)
     y += 14
 
@@ -148,12 +153,13 @@ def draw(
         y = scores(
             d, x, y, w, st.get("apex_values") or {}, st["apex_base"], st["apex_edit"], rows=4
         )
-        d._text(
+        d._wrapped(
             how(st["apex_status"], st["apex_edit"]),
             d.font_small,
             t.warning if air_corrected else t.muted,
             x,
             y + 2,
+            w,
         )
     else:
         d._text(
